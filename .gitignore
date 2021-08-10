@@ -48,3 +48,14 @@ Thumbs.db
 *.mov
 *.wmv
 
+**/obj/*
+**/bin/*
+
+**/.vscode/*
+**/*crash*.json
+/.project
+/.classpath
+/.travis.yml
+/snapshot.sh
+/release.sh
+/readme.md
