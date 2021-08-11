@@ -11,12 +11,18 @@ public class Trainings {
 		calculate(items);
 	}
 
-	public static void calculate(Item[] items) {
+	public static Item[] calculate(Item[] items) {
+		int vendavel = 0;
 
 		for (int i = 0; i < items.length; i++) {
 			items[i].d -= 1;
+			
 
 			if (items[i].d <= 10) {
+
+				if (items[i].d == 10) {
+					items[i].price = items[i].fullPrice;
+				}
 
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
 					items[i].price = items[i].fullPrice;
@@ -28,26 +34,34 @@ public class Trainings {
 					}
 				}
 
-			} else if (items[i].d <= 20)) {
-				
-				
+			} else if (items[i].d <= 20) {
+
+				if (items[i].d == 20) {
+					items[i].price = items[i].fullPrice;
+				}
+
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
 					items[i].price = items[i].fullPrice;
 				} else {
 					if (items[i].type.equals("CSD")) {
-						items[i].price = items[i].fullPrice - 500;
+						items[i].price = items[i].price - 500;
 					} else {
-						items[i].price = items[i].fullPrice - 400;
+						items[i].price = items[i].price - 400;
 					}
 				}
 			} else if (items[i].d <= 30) {
+				
+				if (items[i].d == 30) {
+					items[i].price = items[i].fullPrice;
+				}
+
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
 					items[i].price = items[i].fullPrice;
 				} else {
 					if (items[i].type.equals("CSPO")) {
-						items[i].price = items[i].fullPrice - 500;
+						items[i].price = items[i].price - 500;
 					} else {
-						items[i].price = items[i].fullPrice - 600;
+						items[i].price = items[i].price - 600;
 					}
 				}
 			} else {
@@ -55,24 +69,27 @@ public class Trainings {
 					items[i].price = items[i].fullPrice;
 				} else {
 					if (items[i].type.equals("CSM")) {
-						items[i].price = items[i].fullPrice - 700;
+						items[i].price = items[i].price - 700;
 					} else {
-						items[i].price = items[i].fullPrice - 800;
+						items[i].price = items[i].price - 800;
 					}
 				}
 			}
-			
-			if(items[i].type.equals("CSD") && items[i].price > 900) {
+
+			if (items[i].type.equals("CSD") && items[i].price < 900) {
 				items[i].price = 900;
-			} else if(items[i].type.equals("CSM") && items[i].price > 1000) {
-				items[i].price = 900;
-			} else 	if(items[i].type.equals("CSPO") && items[i].price > 1200) {
-				items[i].price = 900;
+			} else if (items[i].type.equals("CSM") && items[i].price < 1000) {
+				items[i].price = 1000;
+			} else if (items[i].type.equals("CSPO") && items[i].price < 1200) {
+				items[i].price = 1200;
 			}
+
+			vendavel += (items[i].a * items[i].price);
 
 			System.out.println("Preço treinamento SEM desconto:" + items[i].fullPrice);
 			System.out.println("Preço treinamento COM desconto:" + items[i].price);
-			System.out.println("Total Vendavel" + items[i].type + items[i].a * items[i].price);
 		}
+		System.out.println("Total Vendavel: " + vendavel);
+		return items;
 	}
 }
