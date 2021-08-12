@@ -4,15 +4,22 @@ public class Trainings {
 
 	public static void main(String[] args) {
 		
-		Item i1 = new Item(15, 50, 20, true, "CSD", 2000, 2000);
-		Item i2 = new Item(31, 50, 15, true, "CSPO", 4000, 4000);
-		Item i3 = new Item(4, 50, 2, true, "CSM", 3000, 3000);
+		Item i1 = new Item(15, 50, 20, true, "CSD", 2000);
+		Item i2 = new Item(31, 50, 15, true, "CSPO", 4000);
+		Item i3 = new Item(4, 50, 2, true, "CSM", 3000);
 		Item[] items = new Item[] { i1, i2, i3 };
-		calculate(items);
 		
-		// TODO System.out.println();
+		for (int i = 0; i < items.length; i++) {
+			System.out.println("Item " + i +" before discount: " + items[i].price);	
+		}
+	
+		items= calculate(items);
 		
-		System.out.println(amount);
+		for (int i = 0; i < items.length; i++) {
+			System.out.println("Item " + i +" after discount: " + items[i].price);	
+		}
+		
+		System.out.println("Total salable: " + amount);
 	}
 
 	private static int amount;
