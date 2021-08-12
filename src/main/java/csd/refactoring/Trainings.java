@@ -16,13 +16,8 @@ public class Trainings {
 
 		for (int i = 0; i < items.length; i++) {
 			items[i].d -= 1;
-			
 
 			if (items[i].d <= 10) {
-
-				if (items[i].d == 10) {
-					items[i].price = items[i].fullPrice;
-				}
 
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
 					items[i].price = items[i].fullPrice;
@@ -36,32 +31,23 @@ public class Trainings {
 
 			} else if (items[i].d <= 20) {
 
-				if (items[i].d == 20) {
-					items[i].price = items[i].fullPrice;
-				}
-
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
 					items[i].price = items[i].fullPrice;
 				} else {
 					if (items[i].type.equals("CSD")) {
-						items[i].price = items[i].price - 500;
+						items[i].price = items[i].fullPrice - 500;
 					} else {
-						items[i].price = items[i].price - 400;
+						items[i].price = items[i].fullPrice - 400;
 					}
 				}
 			} else if (items[i].d <= 30) {
-				
-				if (items[i].d == 30) {
-					items[i].price = items[i].fullPrice;
-				}
-
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
 					items[i].price = items[i].fullPrice;
 				} else {
 					if (items[i].type.equals("CSPO")) {
-						items[i].price = items[i].price - 500;
+						items[i].price = items[i].fullPrice - 500;
 					} else {
-						items[i].price = items[i].price - 600;
+						items[i].price = items[i].fullPrice - 600;
 					}
 				}
 			} else {
