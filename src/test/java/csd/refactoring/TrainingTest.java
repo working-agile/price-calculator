@@ -4,11 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TrainingTest {
+	
+	
+	// priceWithDiscount
+	
+	
 	@Test
-	void should_have_minimum_price_for_CSD_of_900() {
+	void CSDtrainings_shouldHaveMinimumPriceOf900() {
 
 		// Arrange
-		Item i1 = new Item(32, 50, 20, true, "CSD", 1000, 1000);
+		Item i1 = new Item(32, 50, 20, true, "CSD", 1200, 1200);
 		Item[] items = new Item[] { i1 };
 
 		// Act
@@ -18,6 +23,8 @@ public class TrainingTest {
 		Assertions.assertEquals(900, items[0].price);
 	}
 
+
+	// TODO
 	@Test
 	void should_have_minimum_price_for_CSM_of_1000() {
 
@@ -32,13 +39,14 @@ public class TrainingTest {
 		Assertions.assertEquals(1000, items[0].price);
 	}
 
+	// TODO
 	@Test
 	void should_have_minimum_price_for_CSPO_of_1200() {
 
 		// Arrange
 		Item i1 = new Item(25, 50, 20, true, "CSPO", 1300, 1300);
 		Item[] items = new Item[] { i1 };
-		
+
 		// Act
 		items = Trainings.calculate(items);
 
@@ -60,8 +68,11 @@ public class TrainingTest {
 		Assertions.assertEquals(4000, items[0].price);
 	}
 
+	
+	// when_then
+	
 	@Test
-	void should_have_fullprice_5_days_before_training_and_less_than_3_seats() {
+	void when3orLessSeats5DaysBeforeCourse_shouldHaveFullprice() {
 
 		// Arrange
 		Item i1 = new Item(6, 50, 2, true, "CSD", 1300, 2000);
@@ -75,7 +86,7 @@ public class TrainingTest {
 	}
 
 	@Test
-	void should_apply_30_plus_days_range_discount_CSD() {
+	void forCSDwhen30orMoreDaysBeforeCourse_shouldApplyDiscount800() {
 
 		// Arrange
 		Item i1 = new Item(35, 50, 5, true, "CSD", 2000, 2000);
@@ -88,6 +99,7 @@ public class TrainingTest {
 		Assertions.assertEquals(1200, items[0].price);
 	}
 
+	// TODO
 	@Test
 	void should_apply_30_plus_days_range_discount_CSM() {
 
@@ -102,6 +114,7 @@ public class TrainingTest {
 		Assertions.assertEquals(2300, items[0].price);
 	}
 
+	// TODO
 	@Test
 	void should_apply_30_plus_days_range_discount_CSPO() {
 
@@ -115,9 +128,11 @@ public class TrainingTest {
 		// Assert
 		Assertions.assertEquals(3200, items[0].price);
 	}
+
 	
+	// TODO [30, 29]
 	@Test
-	void should_apply_30_to_20_days_range_discount_CSD() {
+	void should_apply_30_to_20_days_range_discount_CSD(int daysBeforeTraining) {
 
 		// Arrange
 		Item i1 = new Item(31, 50, 5, true, "CSD", 2000, 2000);
@@ -130,6 +145,9 @@ public class TrainingTest {
 		Assertions.assertEquals(1400, items[0].price);
 	}
 
+	
+	
+	// TODO [30, 29]
 	@Test
 	void should_apply_30_to_20_days_range_discount_CSM() {
 
@@ -157,7 +175,7 @@ public class TrainingTest {
 		// Assert
 		Assertions.assertEquals(3500, items[0].price);
 	}
-	
+
 	@Test
 	void should_apply_20_to_10_days_range_discount_CSD() {
 
@@ -199,7 +217,7 @@ public class TrainingTest {
 		// Assert
 		Assertions.assertEquals(3600, items[0].price);
 	}
-	
+
 	@Test
 	void should_apply_less_than_10_days_range_discount_CSD() {
 
@@ -241,4 +259,6 @@ public class TrainingTest {
 		// Assert
 		Assertions.assertEquals(3800, items[0].price);
 	}
+
+	
 }
