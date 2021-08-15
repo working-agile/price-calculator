@@ -3,29 +3,25 @@ package csd.refactoring;
 public class DataProcessor {
 
 	public static void main(String[] args) {
-		
+
 		Item i1 = new Item(15, 50, 20, true, "CSD", 2000);
 		Item i2 = new Item(31, 50, 15, true, "CSPO", 4000);
 		Item i3 = new Item(4, 50, 2, true, "CSM", 3000);
 		Item[] items = new Item[] { i1, i2, i3 };
-		
+
+		items = processData(items);
+
 		for (int i = 0; i < items.length; i++) {
-			System.out.println("Item " + i +" before discount: " + items[i].price);	
+			System.out.println("Item " + i + " after discount: " + items[i].price);
 		}
-	
-		items= processData(items);
-		
-		for (int i = 0; i < items.length; i++) {
-			System.out.println("Item " + i +" after discount: " + items[i].price);	
-		}
-		
-		System.out.println("Total amount left to sell: " + amount);
+
+		System.out.println("Total amount left to sell: " + value);
 	}
 
-	private static int amount;
-	
+	public static int value;
+
 	public static Item[] processData(Item[] items) {
-		amount = 0;
+		value = 0;
 
 		for (int i = 0; i < items.length; i++) {
 			items[i].d -= 1;
@@ -33,47 +29,37 @@ public class DataProcessor {
 			if (items[i].d <= 10) {
 
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
-					items[i].price = items[i].fullPrice;
+					items[i].price = items[i].full;
 				} else {
 					if (items[i].type.equals("CSD")) {
-						items[i].price = items[i].fullPrice - (items[i].d * 30);
+						items[i].price = items[i].full - (items[i].d * 30);
 					} else {
-						items[i].price = items[i].fullPrice - (items[i].d * 20);
+						items[i].price = items[i].full - (items[i].d * 20);
 					}
 				}
 
 			} else if (items[i].d <= 20) {
 
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
-					items[i].price = items[i].fullPrice;
+					items[i].price = items[i].full;
 				} else {
 					if (items[i].type.equals("CSD")) {
-						items[i].price = items[i].fullPrice - 500;
+						items[i].price = items[i].full - 500;
 					} else {
-						items[i].price = items[i].fullPrice - 400;
-					}
-				}
-			} else if (items[i].d <= 30) {
-				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
-					items[i].price = items[i].fullPrice;
-				} else {
-					if (items[i].type.equals("CSPO")) {
-						items[i].price = items[i].fullPrice - 500;
-					} else {
-						items[i].price = items[i].fullPrice - 600;
+						items[i].price = items[i].full - 400;
 					}
 				}
 			} else {
 				if (items[i].d <= 1 || items[i].a <= 3 && items[i].d <= 5) {
-					items[i].price = items[i].fullPrice;
+					items[i].price = items[i].full;
 				} else {
-					if (items[i].type.equals("CSM")) {
-						items[i].price = items[i].fullPrice - 700;
+					if (items[i].type.equals("CSPO")) {
+						items[i].price = items[i].full - 700;
 					} else {
-						items[i].price = items[i].fullPrice - 800;
+						items[i].price = items[i].full - 600;
 					}
 				}
-			}
+			} 
 
 			if (items[i].type.equals("CSD") && items[i].price < 900) {
 				items[i].price = 900;
@@ -83,10 +69,10 @@ public class DataProcessor {
 				items[i].price = 1200;
 			}
 
-			amount += (items[i].a * items[i].price);
+			value += (items[i].a * items[i].price);
 
 		}
-		
+
 		return items;
 	}
 }

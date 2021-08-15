@@ -70,7 +70,7 @@ public class TrainingTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 1000, 2000 })
+	@ValueSource(ints = { 1000, 1700 })
 	void discountsOverruledByMinimumPriceForCSPO(int initialFullPrice) {
 
 		// Arrange
@@ -198,44 +198,13 @@ public class TrainingTest {
 		Assertions.assertEquals(2000 - 400, items[0].price);
 	}
 
-	// discount when 30 or less days before the training course
+	// discount when more than 20 days before the training course
 
 	@Test
-	void when30orLessDaysBeforeTraining_shouldApplyDiscountForCSPO() {
+	void whenMoreThan20DaysBeforeTraining_shouldApplyDiscountForCSPO() {
 
 		// Arrange
-		Item i1 = new Item(31, 50, 5, true, "CSPO", 4000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = DataProcessor.processData(items);
-
-		// Assert
-		Assertions.assertEquals(4000 - 500, items[0].price);
-	}
-
-	@ParameterizedTest
-	@ValueSource(strings = { "CSD", "CSM" })
-	void when30orLessDaysBeforeTraining_shouldApplyDiscountForCSDandCSM(String trainingCourse) {
-
-		// Arrange
-		Item i1 = new Item(31, 50, 5, true, trainingCourse, 2000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = DataProcessor.processData(items);
-
-		// Assert
-		Assertions.assertEquals(2000 - 600, items[0].price);
-	}
-
-	// discount when more than 30 days before the training course
-
-	@Test
-	void whenMoreThan30DaysBeforeTraining_shouldApplyDiscountForCSM() {
-
-		// Arrange
-		Item i1 = new Item(32, 50, 5, true, "CSM", 4000);
+		Item i1 = new Item(22, 50, 5, true, "CSPO", 4000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
@@ -246,18 +215,39 @@ public class TrainingTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "CSD", "CSPO" })
-	void whenMoreThan30DaysBeforeTraining_shouldApplyDiscountForCSDandCSPO(String trainingCourse) {
+	@ValueSource(strings = { "CSD", "CSM" })
+	void whenMoreThan20DaysBeforeTraining_shouldApplyDiscountForCSDandCSM(String trainingCourse) {
 
 		// Arrange
-		Item i1 = new Item(32, 50, 5, true, trainingCourse, 4000);
+		Item i1 = new Item(22, 50, 5, true, trainingCourse, 2000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
 		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(4000 - 800, items[0].price);
+		Assertions.assertEquals(2000 - 600, items[0].price);
 	}
 
+ 
+ 
+	// total current value of training courses 
+	
+	@Test
+	void should_calculate_total_value_of_remaining_training_courses() {
+		
+		Item i1 = new Item(30, 50, 5, true, "CSD", 4000);
+		Item i2 = new Item(15, 50, 1, true, "CSD", 2000);
+		
+		Item[] items = new Item[] { i1, i2 };
+		
+		// Act
+		items = DataProcessor.processData(items);
+
+		// Assert
+		Assertions.assertEquals(3400*5 + 1500*1 , DataProcessor.value);
+		
+	}
+	
+	 
 }
