@@ -1,6 +1,7 @@
 package csd.refactoring;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.platform.runner.JUnitPlatform;
@@ -8,260 +9,255 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 public class TrainingTest {
-	
-	@ParameterizedTest
-	@ValueSource(ints = { 1000, 1200 })
-	void CSDtrainings_shouldHaveMinimumPriceOf900(int priceWithDiscount) {
+
+	// minimum prices
+
+	@Test
+	void discountsOverruledByMinimumPriceForCSD() {
 
 		// Arrange
-		Item i1 = new Item(32, 50, 20, true, "CSD", priceWithDiscount);
+		Item i1 = new Item(32, 50, 20, true, "CSD", 1200);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
 		Assertions.assertEquals(900, items[0].price);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = { 1000, 1300 })
-	void CSMtrainings_shouldHaveMinimumPriceOf1000(int priceWithDiscount) {
+	@Test
+	void discountsAllowedWhenOverMinimumPriceForCSD() {
 
 		// Arrange
-		Item i1 = new Item(25, 50, 20, true, "CSM", priceWithDiscount);
+		Item i1 = new Item(32, 50, 20, true, "CSD", 3000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
+
+		// Assert
+		Assertions.assertTrue(items[0].price > 900);
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = { 1000, 1500 })
+	void discountsOverruledByMinimumPriceForCSM(int initialFullPrice) {
+
+		// Arrange
+		Item i1 = new Item(32, 50, 20, true, "CSM", initialFullPrice);
+		Item[] items = new Item[] { i1 };
+
+		// Act
+		items = DataProcessor.processData(items);
 
 		// Assert
 		Assertions.assertEquals(1000, items[0].price);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = { 1000, 1200 })
-	void CSPOtrainings_shouldHaveMinimumPriceOf1200(int priceWithDiscount) {
+	@Test
+	void discountsAllowedWhenOverMinimumPriceForCSM() {
 
 		// Arrange
-		Item i1 = new Item(25, 50, 20, true, "CSPO", priceWithDiscount);
+		Item i1 = new Item(32, 50, 20, true, "CSM", 3000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
+
+		// Assert
+		Assertions.assertTrue(items[0].price > 1000);
+	}
+
+	@ParameterizedTest
+	@ValueSource(ints = { 1000, 2000 })
+	void discountsOverruledByMinimumPriceForCSPO(int initialFullPrice) {
+
+		// Arrange
+		Item i1 = new Item(32, 50, 20, true, "CSPO", initialFullPrice);
+		Item[] items = new Item[] { i1 };
+
+		// Act
+		items = DataProcessor.processData(items);
 
 		// Assert
 		Assertions.assertEquals(1200, items[0].price);
 	}
 
-	void shouldHaveFullprice_theDayBeforeTraining() {
+	@Test
+	void discountsAllowedWhenOverMinimumPriceForCSPO() {
 
 		// Arrange
-		Item i1 = new Item(1, 50, 20, true, "CSPO", 4000);
+		Item i1 = new Item(32, 50, 20, true, "CSPO", 2001);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
+
+		// Assert
+		Assertions.assertTrue(items[0].price > 1200);
+	}
+
+	// full prices
+
+	@ParameterizedTest
+	@ValueSource(strings = { "CSD", "CSPO", "CSM" })
+	void shouldHaveFullPrice_theDayBeforeTraining(String trainingCourse) {
+
+		// Arrange
+		Item i1 = new Item(2, 50, 20, true, trainingCourse, 4000);
+		Item[] items = new Item[] { i1 };
+
+		// Act
+		items = DataProcessor.processData(items);
 
 		// Assert
 		Assertions.assertEquals(4000, items[0].price);
 	}
-	
+
+	// full prices when few seats left close to training course
+
 	@ParameterizedTest
-	@ValueSource(ints = { 6, 3 })
-	void when3orLessSeats5DaysBeforeCourse_shouldHaveFullprice(int daysBeforeTraining) {
+	@ValueSource(strings = { "CSD", "CSPO", "CSM" })
+	void whenFewSeatsLeftCloseToTrainingDate_shouldHaveFullPrice(String trainingCourse) {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 2, true, "CSD", 2000);
+		Item i1 = new Item(6 /* days left */, 50, 3 /* seats left */, true, trainingCourse, 2000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
 		Assertions.assertEquals(2000, items[0].price);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = { 35, 37 })
-	void forCSDwhen30orMoreDaysBeforeCourse_shouldApplyDiscount800(int daysBeforeTraining) {
+	// Proportional discount 10 days before the training course
+
+	@Test
+	void shouldApplyProportionalDiscountForCSD() {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSD", 2000);
+		int daysBeforeProcessing = 11;
+		Item i1 = new Item(daysBeforeProcessing /* days left */, 50, 5, true, "CSD", 2000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(1200, items[0].price);
+		int expectedPrice = 2000 - 10 * 30;
+		Assertions.assertEquals(expectedPrice, items[0].price);
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 34, 39 })
-	void forCSMwhen30orMoreDaysBeforeCourse_shouldApplyDiscount700(int daysBeforeTraining) {
+	@ValueSource(strings = { "CSPO", "CSM" })
+	void shouldApplyProportionalDiscountForCSMandCSPO(String trainingCourse) {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSM", 3000);
+		int daysBeforeProcessing = 11;
+		Item i1 = new Item(daysBeforeProcessing /* days left */, 50, 5, true, trainingCourse, 2000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(2300, items[0].price);
+		int expectedPrice = 2000 - 10 * 20;
+		Assertions.assertEquals(expectedPrice, items[0].price);
+	}
+
+	// discount when 20 or less days before the training course
+
+	@Test
+	void when20orLessDaysBeforeTraining_shouldApplyDiscountForCSD() {
+
+		// Arrange
+		Item i1 = new Item(21, 50, 5, true, "CSD", 2000);
+		Item[] items = new Item[] { i1 };
+
+		// Act
+		items = DataProcessor.processData(items);
+
+		// Assert
+		Assertions.assertEquals(2000 - 500, items[0].price);
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 35, 37 })
-	void forCSPOwhen30orMoreDaysBeforeCourse_shouldApplyDiscount800(int daysBeforeTraining) {
+	@ValueSource(strings = { "CSPO", "CSM" })
+	void when20orLessDaysBeforeTraining_shouldApplyDiscountForCSMandCSPO(String trainingCourse) {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSPO", 4000);
+		Item i1 = new Item(21, 50, 5, true, trainingCourse, 2000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(3200, items[0].price);
+		Assertions.assertEquals(2000 - 400, items[0].price);
 	}
 
-	
-	@ParameterizedTest
-	@ValueSource(ints = { 31, 22 })
-	void forCSDwhenBetween30and20DaysBeforeCourse_shouldApplyDiscount600(int daysBeforeTraining) {
+	// discount when 30 or less days before the training course
+
+	@Test
+	void when30orLessDaysBeforeTraining_shouldApplyDiscountForCSPO() {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSD", 2000);
+		Item i1 = new Item(31, 50, 5, true, "CSPO", 4000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(1400, items[0].price);
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = { 24, 30 })
-	void forCSMwhenBetween30and20DaysBeforeCourse_shouldApplyDiscount600(int daysBeforeTraining) {
-
-		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSM", 3000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = Trainings.calculate(items);
-
-		// Assert
-		Assertions.assertEquals(2400, items[0].price);
+		Assertions.assertEquals(4000 - 500, items[0].price);
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 25, 31 })
-	void forCSPOwhenBetween30and20DaysBeforeCourse_shouldApplyDiscount500(int daysBeforeTraining) {
+	@ValueSource(strings = { "CSD", "CSM" })
+	void when30orLessDaysBeforeTraining_shouldApplyDiscountForCSDandCSM(String trainingCourse) {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSPO", 4000);
+		Item i1 = new Item(31, 50, 5, true, trainingCourse, 2000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(3500, items[0].price);
+		Assertions.assertEquals(2000 - 600, items[0].price);
+	}
+
+	// discount when more than 30 days before the training course
+
+	@Test
+	void whenMoreThan30DaysBeforeTraining_shouldApplyDiscountForCSM() {
+
+		// Arrange
+		Item i1 = new Item(32, 50, 5, true, "CSM", 4000);
+		Item[] items = new Item[] { i1 };
+
+		// Act
+		items = DataProcessor.processData(items);
+
+		// Assert
+		Assertions.assertEquals(4000 - 700, items[0].price);
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 20, 19 })
-	void forCSDwhenBetween20and10DaysBeforeCourse_shouldApplyDiscount500(int daysBeforeTraining) {
+	@ValueSource(strings = { "CSD", "CSPO" })
+	void whenMoreThan30DaysBeforeTraining_shouldApplyDiscountForCSDandCSPO(String trainingCourse) {
 
 		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSD", 2000);
+		Item i1 = new Item(32, 50, 5, true, trainingCourse, 4000);
 		Item[] items = new Item[] { i1 };
 
 		// Act
-		items = Trainings.calculate(items);
+		items = DataProcessor.processData(items);
 
 		// Assert
-		Assertions.assertEquals(1500, items[0].price);
+		Assertions.assertEquals(4000 - 800, items[0].price);
 	}
 
-	@ParameterizedTest
-	@ValueSource(ints = { 18, 14 })
-	void forCSMwhenBetween20and10DaysBeforeCourse_shouldApplyDiscount400(int daysBeforeTraining) {
-
-		// Arrange
-		Item i1 = new Item(18, 50, 5, true, "CSM", 3000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = Trainings.calculate(items);
-
-		// Assert
-		Assertions.assertEquals(2600, items[0].price);
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = { 15, 12 })
-	void forCSPOwhenBetween20and10DaysBeforeCourse_shouldApplyDiscount400int(int daysBeforeTraining) {
-
-		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSPO", 4000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = Trainings.calculate(items);
-
-		// Assert
-		Assertions.assertEquals(3600, items[0].price);
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = { 8, 6 })
-	void forCSDwhen10orLessDaysBeforeCourse_shouldApplyDiscount30perDay(int daysBeforeTraining) {
-
-		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSD", 2000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = Trainings.calculate(items);
-
-		// Assert
-		Assertions.assertTrue(1790 == items[0].price || 1900 == items[0].price);
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = { 6, 7 })
-	void forCSMwhen10orLessDaysBeforeCourse_shouldApplyDiscount20perDay(int daysBeforeTraining) {
-
-		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 5, true, "CSM", 3000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = Trainings.calculate(items);
-
-		// Assert
-		Assertions.assertTrue(2900 == items[0].price || 2880 == items[0].price);
-	}
-
-	@ParameterizedTest
-	@ValueSource(ints = { 11, 6 })
-	void forCSPOwhen10orLessDaysBeforeCourse_shouldApplyDiscount20perDay(int daysBeforeTraining) {
-
-		// Arrange
-		Item i1 = new Item(daysBeforeTraining, 50, 15, true, "CSPO", 4000);
-		Item[] items = new Item[] { i1 };
-
-		// Act
-		items = Trainings.calculate(items);
-
-		// Assert
-		Assertions.assertTrue(3800 == items[0].price || 3900 == items[0].price);
-	}
-
-	
 }

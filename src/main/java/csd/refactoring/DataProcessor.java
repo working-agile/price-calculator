@@ -1,6 +1,6 @@
 package csd.refactoring;
 
-public class Trainings {
+public class DataProcessor {
 
 	public static void main(String[] args) {
 		
@@ -13,18 +13,18 @@ public class Trainings {
 			System.out.println("Item " + i +" before discount: " + items[i].price);	
 		}
 	
-		items= calculate(items);
+		items= processData(items);
 		
 		for (int i = 0; i < items.length; i++) {
 			System.out.println("Item " + i +" after discount: " + items[i].price);	
 		}
 		
-		System.out.println("Total salable: " + amount);
+		System.out.println("Total amount left to sell: " + amount);
 	}
 
 	private static int amount;
 	
-	public static Item[] calculate(Item[] items) {
+	public static Item[] processData(Item[] items) {
 		amount = 0;
 
 		for (int i = 0; i < items.length; i++) {
