@@ -12,7 +12,7 @@ public class DataProcessor {
 		items = processData(items);
 
 		for (int i = 0; i < items.length; i++) {
-			System.out.println("Training course price" + i + " with discount: " + items[i].price);
+			System.out.println("Training course price " + items[i].full + " with discount: " + items[i].price);
 		}
 
 		System.out.println("Total amount left to sell: " + value);
