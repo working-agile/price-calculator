@@ -55,6 +55,7 @@ Thumbs.db
 **/*crash*.json
 /.project
 /.classpath
+/.settings
 /.travis.yml
 /snapshot.sh
 /release.sh
