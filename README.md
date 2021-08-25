@@ -5,7 +5,6 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 ### What is this repository for? ###
 
 * Refactoring for basic clean coding principles
-* Unit tests are provided
 
 ### Business Rules
 
