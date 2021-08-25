@@ -24,5 +24,6 @@ public class DataProcessorTests {
 
         System.out.println("Total amount still to sell: " + DataProcessor.value);
     }
+
 }
 
