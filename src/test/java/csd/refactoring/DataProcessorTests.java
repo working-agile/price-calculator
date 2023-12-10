@@ -72,7 +72,7 @@ public class DataProcessorTests {
              */
 
             // Arrange
-            Item i1 = new Item(25, 50, 20, true, "CSD", 4000);
+            Item i1 = new Item(25+1, 50, 20, true, "CSD", 4000);
             Item[] items = new Item[]{i1};
 
             // Act
