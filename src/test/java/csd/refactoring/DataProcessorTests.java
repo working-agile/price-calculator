@@ -221,7 +221,7 @@ public class DataProcessorTests {
         @DisplayName("Full prices on the day of the training course")
         @ParameterizedTest
         @ValueSource(strings = {"CSD", "CSPO", "CSM"})
-        void should_have_full_price_on_the_day_of_the_training_class(String trainingCourseType) {
+        void full_price_on_the_day_of_the_training_class(String trainingCourseType) {
 
             // Arrange
             /*
@@ -244,7 +244,7 @@ public class DataProcessorTests {
         @DisplayName("Full prices on the day prior to the training course")
         @ParameterizedTest
         @ValueSource(strings = {"CSD", "CSPO", "CSM"})
-        void should_have_full_price_on_the_day_prior_to_the_training_class(String trainingCourseType) {
+        void full_price_on_the_day_prior_to_the_training_class(String trainingCourseType) {
 
             // Arrange
             /*
@@ -267,7 +267,7 @@ public class DataProcessorTests {
         @DisplayName("Full prices 5 days prior to the training course if 3 or less seats left")
         @ParameterizedTest
         @ValueSource(strings = {"CSD", "CSPO", "CSM"})
-        void should_have_full_price_5_days_prior_to_the_training_class_if_3_or_less_seats_left(String trainingCourseType) {
+        void full_price_5_days_prior_to_the_training_class_if_3_or_less_seats_left(String trainingCourseType) {
 
             // Arrange
             /*
@@ -297,7 +297,7 @@ public class DataProcessorTests {
 
         @DisplayName("Proportional discount when 6 days before the training course")
         @Test
-        void should_apply_proportional_discount_from_day_6_for_CSD() {
+        void proportional_discount_from_day_6_for_CSD() {
 
             // Arrange
             /*
@@ -320,7 +320,7 @@ public class DataProcessorTests {
 
         @DisplayName("Proportional discount when 5 days before the training course and enough seats available")
         @Test
-        void should_apply_proportional_discount_day_5_for_CSD_when_enough_seats_available() {
+        void proportional_discount_day_5_for_CSD_when_enough_seats_available() {
 
             // Arrange
             /*
@@ -342,11 +342,10 @@ public class DataProcessorTests {
         }
 
 
-
         @DisplayName("Proportional discount when 10 days before the training course")
         @ParameterizedTest
         @ValueSource(strings = {"CSPO", "CSM"})
-        void should_apply_proportional_discount_for_CSM_and_CSPO(String trainingCourseType) {
+        void proportional_discount_for_CSM_and_CSPO_10_days_prior(String trainingCourseType) {
 
             // Arrange
             /*
@@ -378,7 +377,7 @@ public class DataProcessorTests {
 
         @DisplayName("Should calculate the total remaining sales")
         @Test
-        void should_calculate_total_value_of_remaining_training_courses() {
+        void calculate_total_value_of_remaining_training_courses() {
 
             /*
                 Number of seats:				5
