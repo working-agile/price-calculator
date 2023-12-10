@@ -95,7 +95,7 @@ public class DataProcessorTests {
                 SuperEarlyBird discount:		 -500
                 Discounted price:               3500
              */
-            Item i1 = new Item(25, 50, 20, true, "CSM", 4000);
+            Item i1 = new Item(25+1, 50, 20, true, "CSM", 4000);
             Item[] items = new Item[]{i1};
 
             // Act
@@ -119,7 +119,7 @@ public class DataProcessorTests {
                 SuperEarlyBird discount:		 -400
                 Discounted price:				3600
              */
-            Item i1 = new Item(32, 50, 20, true, "CSPO", 4000);
+            Item i1 = new Item(25+1, 50, 20, true, "CSPO", 4000);
             Item[] items = new Item[]{i1};
             // Act
             Item[] processedItems = DataProcessor.processData(items);
