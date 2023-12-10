@@ -135,7 +135,7 @@ public class DataProcessorTests {
     @DisplayName("Business rule: Minimum prices are guaranteed")
     class MinimumPrices {
 
-        @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSD")
+        @DisplayName("All discounts capped at minimum prices")
         @Test
         void super_early_bird_discount_overruled_by_minimum_price_for_CSD() {
 
