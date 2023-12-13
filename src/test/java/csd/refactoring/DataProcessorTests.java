@@ -24,7 +24,7 @@ public class DataProcessorTests {
             System.out.println("Training course price " + processedItems[i].full + " with discount: " + processedItems[i].price + " days left: " + processedItems[i].days);
         }
 
-        System.out.println("Total target still to sell: " + DataProcessor.value);
+        System.out.println("Total sales target remaining: " + DataProcessor.value);
     }
 
 
@@ -147,7 +147,7 @@ public class DataProcessorTests {
                 Minimum price CSD:				900
                 -->
                 SuperEarlyBird discount:		 -400
-                Discounted price:               800
+                Discounted price:               900
              */
             Item i1 = new Item(25+1, 50, 20, true, "CSD", 1200);
             Item[] items = new Item[] { i1 };
@@ -172,7 +172,7 @@ public class DataProcessorTests {
                 Minimum price CSM:				1000
                 -->
                 SuperEarlyBird discount:		 -500
-                Discounted price:               700
+                Discounted price:               1000
              */
             Item i1 = new Item(25+1, 50, 20, true, "CSM", 1500);
             Item[] items = new Item[] { i1 };
@@ -197,7 +197,7 @@ public class DataProcessorTests {
                 Minimum price CSPO:				1200
                 -->
                 SuperEarlyBird discount:		-400
-                Discounted price:               1100
+                Discounted price:               1200
              */
             Item i1 = new Item(25+1, 50, 20, true, "CSPO", 1500);
             Item[] items = new Item[] { i1 };
@@ -264,10 +264,10 @@ public class DataProcessorTests {
         }
 
 
-        @DisplayName("Full prices 5 days prior to the training course if 3 or less seats left")
+        @DisplayName("Full prices 5 days prior to the training course if less than seats left")
         @ParameterizedTest
         @ValueSource(strings = {"CSD", "CSPO", "CSM"})
-        void full_price_5_days_prior_to_the_training_class_if_3_or_less_seats_left(String trainingCourseType) {
+        void full_price_5_days_prior_to_the_training_class_if_less_than_3_seats_left(String trainingCourseType) {
 
             // Arrange
             /*

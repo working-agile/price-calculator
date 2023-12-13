@@ -60,10 +60,10 @@ public class FullPriceTests {
         }
 
 
-        @DisplayName("Full prices 5 days prior to the training course if 3 or less seats left")
+        @DisplayName("Full prices 5 days prior to the training course if less than seats left")
         @ParameterizedTest
         @ValueSource(strings = {"CSD", "CSPO", "CSM"})
-        void should_have_full_price_5_days_prior_to_the_training_class_if_3_or_less_seats_left(String trainingCourseType) {
+        void full_price_5_days_prior_to_the_training_class_if_less_than_3_seats_left(String trainingCourseType) {
 
             // Arrange
             /*
