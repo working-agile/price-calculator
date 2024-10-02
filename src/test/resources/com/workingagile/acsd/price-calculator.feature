@@ -8,13 +8,15 @@ Feature: Price calculation
     The last 10 day before the training course have a proportional discount rule.
     With each day passing the price increases.
 
+
   Scenario: Proportional discount on day 6
 
-    An example of the proportional discount, in the middle of the interval.
+    An example of the proportional discount, in the middle of the interval of the 10
+    days leading towards the training course.
 
-    Given a CSD training course:
-      | scheduled date | '30/09/2024' |
-      | full price     | 4000         |
-    When a client asks for a quote on '24/09/2024'
-    Then the discounted price should be '3820'
+    Given the following training course:
+      | training course | scheduled date | full price |
+      | CSD             | 30/09/2024     | 4000       |
+    When a client asks for a quote on 24/09/2024
+    Then the discounted price should be 3820
 

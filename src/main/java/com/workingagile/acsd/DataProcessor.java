@@ -4,6 +4,7 @@ public class DataProcessor {
 
 	public static int value;
 
+	// countdownOneDayToTrainingCourse_and_updatePrices
 	public static Item[] processData(Item[] itemList) {
 		value = 0;
 

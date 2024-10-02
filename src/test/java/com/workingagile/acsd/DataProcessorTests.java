@@ -12,6 +12,7 @@ public class DataProcessorTests {
         Item i3 = new Item(8, 30, 4, true, "CSM", 3000);
         Item[] items = new Item[]{i1, i2, i3};
 
+        System.out.println("Moving the date one day forward");
         Item[] processedItems = DataProcessor.processData(items);
 
         for (int i = 0; i < processedItems.length; i++) {
