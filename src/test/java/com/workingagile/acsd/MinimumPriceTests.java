@@ -25,16 +25,17 @@ public class MinimumPriceTests {
                 -->
                 SuperEarlyBird discount:		 -400
                 Discounted price:               800
+                Minimum price:                  900
              */
-            Item i1 = new Item(25+1, 50, 20, true, "CSD", 1200);
+            Item i1 = new Item("10 January 2024",25, 50, 20, true, "CSD", 1200);
             Item[] items = new Item[] { i1 };
-            int MINIMUM_PRICE_CSD = 900;
+            DataProcessor.list = items;
 
             // Act
-            Item[] processedItems = DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(MINIMUM_PRICE_CSD, processedItems[0].price);
+            assertEquals(900, DataProcessor.list[0].current);
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSM")
@@ -50,16 +51,17 @@ public class MinimumPriceTests {
                 -->
                 SuperEarlyBird discount:		 -500
                 Discounted price:               700
+                Minimum price:                  1000
              */
-            Item i1 = new Item(25+1, 50, 20, true, "CSM", 1500);
+            Item i1 = new Item("10 January 2024",25, 50, 20, true, "CSM", 1500);
             Item[] items = new Item[] { i1 };
-            int MINIMUM_PRICE_CSM = 1000;
+            DataProcessor.list = items;
 
             // Act
-            Item[] processedItems = DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(MINIMUM_PRICE_CSM, processedItems[0].price);
+            assertEquals(1000, DataProcessor.list[0].current);
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSPO")
@@ -75,16 +77,17 @@ public class MinimumPriceTests {
                 -->
                 SuperEarlyBird discount:		-400
                 Discounted price:               1100
+                Minimum price:                  1200
              */
-            Item i1 = new Item(25+1, 50, 20, true, "CSPO", 1500);
+            Item i1 = new Item("10 January 2024",25, 50, 20, true, "CSPO", 1500);
             Item[] items = new Item[] { i1 };
-            int MINIMUM_PRICE_CSPO = 1200;
+            DataProcessor.list = items;
 
             // Act
-            Item[] processedItems = DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(MINIMUM_PRICE_CSPO, processedItems[0].price);
+            assertEquals(1200, DataProcessor.list[0].current);
         }
 
     }

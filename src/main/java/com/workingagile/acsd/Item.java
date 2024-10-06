@@ -1,21 +1,23 @@
 package com.workingagile.acsd;
 
 public class Item {
+	public String date;
 	public int days;
 	public int seats;
-	public int available;
+	public int avail;
 	public Boolean online;
 	public String type;
-	public int price;
+	public int current;
 	public int full;
 
-	public Item(int days, int seats, int available, Boolean online, String type, int full) {
+	public Item(String date, int days, int seats, int avail, Boolean online, String type, int full) {
+		this.date = date;
 		this.days = days;
 		this.seats = seats;
-		this.available = available;
+		this.avail = avail;
 		this.online = online;
 		this.type = type;
-		this.price = full;
+		this.current = full;
 		this.full = full;
 	}
 }

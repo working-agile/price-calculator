@@ -26,14 +26,15 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            Item i1 = new Item(0+1, 50, 20, true, trainingCourseType, 4000);
+            Item i1 = new Item("10 January 2024",0, 50, 20, true, trainingCourseType, 4000);
             Item[] items = new Item[]{i1};
+            DataProcessor.list = items;
 
             // Act
-            Item[] processedItems = DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(4000, processedItems[0].price);
+            assertEquals(4000, DataProcessor.list[0].current);
         }
 
         @DisplayName("Full prices on the day prior to the training course")
@@ -48,14 +49,15 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            Item i1 = new Item(1+1, 50, 20, true, trainingCourseType, 4000);
+            Item i1 = new Item("10 January 2024",1, 50, 20, true, trainingCourseType, 4000);
             Item[] items = new Item[]{i1};
+            DataProcessor.list = items;
 
             // Act
-            Item[] processedItems = DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(4000, processedItems[0].price);
+            assertEquals(4000, DataProcessor.list[0].current);
         }
 
 
@@ -72,14 +74,15 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            Item i1 = new Item(5+1, 50, 2, true, trainingCourseType, 4000);
+            Item i1 = new Item("10 January 2024",5, 50, 2, true, trainingCourseType, 4000);
             Item[] items = new Item[]{i1};
+            DataProcessor.list = items;
 
             // Act
-            Item[] processedItems = DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(4000, processedItems[0].price);
+            assertEquals(4000, DataProcessor.list[0].current);
         }
 
     }

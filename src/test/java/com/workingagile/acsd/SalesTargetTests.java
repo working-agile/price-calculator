@@ -24,7 +24,7 @@ public class SalesTargetTests {
                 super early bird discount:		 400
                 Discounted price:				3600
              */
-            Item i1 = new Item(30+1, 50, 5, true, "CSD", 4000);
+            Item i1 = new Item("10 January 2024",30, 50, 5, true, "CSD", 4000);
             /*
                 Number of seats:				2
                 Days before training course:	9
@@ -33,11 +33,12 @@ public class SalesTargetTests {
                 Super Early bird discount:		9*30
                 Discounted price:				3500
              */
-            Item i2 = new Item(9+1, 50, 2, true, "CSD", 4000);
+            Item i2 = new Item("10 January 2024",9, 50, 2, true, "CSD", 4000);
             Item[] items = new Item[]{i1, i2};
+            DataProcessor.list = items;
 
             // Act
-            DataProcessor.processData(items);
+            DataProcessor.calculateData(false);
 
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;
