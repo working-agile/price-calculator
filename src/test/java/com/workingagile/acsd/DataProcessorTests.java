@@ -10,9 +10,9 @@ public class DataProcessorTests {
         System.out.println("Today is: 1. January 2025");
         System.out.println("Registering training courses:");
 
-        Item i1 = new Item("10 January 2025",10, 30, 10, true, "CSD", 3000);
-        Item i2 = new Item("9 January 2025",9, 30, 9, true, "CSPO", 4000);
-        Item i3 = new Item("20 January 2025", 20, 30, 20, false, "CSM", 3000);
+        Item i1 = new Item("10 January 2025",10, 30, 8, true, "CSD", 3000);
+        Item i2 = new Item("9 January 2025",9, 30, 7, true, "CSPO", 4000);
+        Item i3 = new Item("20 January 2025", 20, 30, 27, false, "CSM", 3000);
         Item[] list = new Item[] {i1, i2, i3};
 
         DataProcessor.list = list;
