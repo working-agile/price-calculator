@@ -6,7 +6,7 @@ public class DataProcessor {
 
 	public static TrainingCourse[] scheduledTrainingCourses;
 
-	public static void calculateData(boolean moveToNextDay) {
+	public static void decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
 
 		remainingSalesTarget = 0;
 

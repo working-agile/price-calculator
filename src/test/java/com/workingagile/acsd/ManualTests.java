@@ -17,7 +17,7 @@ public class ManualTests {
 
         DataProcessor.scheduledTrainingCourses = list;
 
-        DataProcessor.calculateData(false);
+        DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
         for (int i = 0; i < list.length; i++) {
             System.out.println("------------------------------");
@@ -37,7 +37,7 @@ public class ManualTests {
 
         System.out.println("\n\nMove to next day: 2. January");
 
-        DataProcessor.calculateData(true);
+        DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(true);
 
         System.out.println("Registered training courses");
 

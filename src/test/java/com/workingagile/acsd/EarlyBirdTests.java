@@ -34,7 +34,7 @@ public class EarlyBirdTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(3820, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "proportional discount expected");
@@ -58,7 +58,7 @@ public class EarlyBirdTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(3850, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "proportional discount expected when enough seats available");
@@ -85,7 +85,7 @@ public class EarlyBirdTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(3800, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "should apply proportional discount - first day of the interval");

@@ -38,7 +38,7 @@ public class SalesTargetTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;

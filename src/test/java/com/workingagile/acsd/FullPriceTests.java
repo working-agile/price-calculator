@@ -31,7 +31,7 @@ public class FullPriceTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(4000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
@@ -54,7 +54,7 @@ public class FullPriceTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(4000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
@@ -79,7 +79,7 @@ public class FullPriceTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(4000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);

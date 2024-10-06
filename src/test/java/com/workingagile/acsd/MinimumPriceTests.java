@@ -32,7 +32,7 @@ public class MinimumPriceTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(900, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
@@ -58,7 +58,7 @@ public class MinimumPriceTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(1000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
@@ -84,7 +84,7 @@ public class MinimumPriceTests {
             DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
-            DataProcessor.calculateData(false);
+            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             assertEquals(1200, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
