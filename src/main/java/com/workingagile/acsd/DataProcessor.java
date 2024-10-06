@@ -4,50 +4,53 @@ public class DataProcessor {
 
 	public static int value;
 
-	public static Item[] processData(Item[] itemList) {
+	public static Item[] list;
+
+	public static void calculateData(boolean next) {
+
 		value = 0;
 
-		for (int i = 0; i < itemList.length; i++) {
+		for (int i = 0; i < list.length; i++) {
 
-			itemList[i].days -= 1;
+			if (next && list[i].days > 0) {
+				list[i].days--;
+			}
 
-			if (itemList[i].days <= 10) {
+			if (list[i].days <= 10) {
 
-				if (itemList[i].days <= 1 || (itemList[i].available < 3 && itemList[i].days <= 5)) {
-					itemList[i].price = itemList[i].full;
+				if (list[i].days <= 1 || (list[i].avail < 3 && list[i].days <= 5)) {
+					list[i].current = list[i].full;
 				} else {
-					if (itemList[i].type.equals("CSD")) {
-						itemList[i].price = itemList[i].full - (itemList[i].days * 30);
+					if (list[i].type.equals("CSD")) {
+						list[i].current = list[i].full - (list[i].days * 30);
 					} else {
-						itemList[i].price = itemList[i].full - (itemList[i].days * 20);
+						list[i].current = list[i].full - (list[i].days * 20);
 					}
 				}
 
-			} else if (itemList[i].days > 10) {
+			} else if (list[i].days > 10) {
 
-				if (itemList[i].days <= 1 || (itemList[i].available < 3 && itemList[i].days <= 5)) {
-					itemList[i].price = itemList[i].full;
+				if (list[i].days <= 1 || (list[i].avail < 3 && list[i].days <= 5)) {
+					list[i].current = list[i].full;
 				} else {
-					if (itemList[i].type.equals("CSM")) {
-						itemList[i].price = itemList[i].full - 500;
+					if (list[i].type.equals("CSM")) {
+						list[i].current = list[i].full - 500;
 					} else {
-						itemList[i].price = itemList[i].full - 400;
+						list[i].current = list[i].full - 400;
 					}
 				}
 			}
 
-			if (itemList[i].type.equals("CSD") && itemList[i].price < 900) {
-				itemList[i].price = 900;
-			} else if (itemList[i].type.equals("CSM") && itemList[i].price < 1000) {
-				itemList[i].price = 1000;
-			} else if (itemList[i].type.equals("CSPO") && itemList[i].price < 1200) {
-				itemList[i].price = 1200;
+			if (list[i].type.equals("CSD") && list[i].current < 900) {
+				list[i].current = 900;
+			} else if (list[i].type.equals("CSM") && list[i].current < 1000) {
+				list[i].current = 1000;
+			} else if (list[i].type.equals("CSPO") && list[i].current < 1200) {
+				list[i].current = 1200;
 			}
 
-			value += (itemList[i].available * itemList[i].price);
+			value += (list[i].avail * list[i].current);
 
 		}
-
-		return itemList;
 	}
 }
