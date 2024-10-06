@@ -2,11 +2,24 @@ package com.workingagile.acsd;
 
 public class DataProcessor {
 
-	public static int remainingSalesTarget;
+	private int remainingSalesTarget;
 
-	public static TrainingCourse[] scheduledTrainingCourses;
+	private TrainingCourse[] scheduledTrainingCourses;
 
-	public static void decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
+
+	public DataProcessor(TrainingCourse[] trainingCourses) {
+		this.scheduledTrainingCourses = trainingCourses;
+	}
+
+	public TrainingCourse[] getScheduledTrainingCourses() {
+		return this.scheduledTrainingCourses.clone();
+	}
+
+	public int getRemainingSalesTarget() {
+		return remainingSalesTarget;
+	}
+
+	public void moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
 
 		remainingSalesTarget = 0;
 
@@ -53,19 +66,20 @@ public class DataProcessor {
 		}
 	}
 
-	private static boolean fullPricePolicyApplies(TrainingCourse trainingCourse) {
+	private boolean fullPricePolicyApplies(TrainingCourse trainingCourse) {
 		return trainingCourse.daysBeforeTrainingCourse <= 1 || (trainingCourse.remainingAvailableSeats < 3 && trainingCourse.daysBeforeTrainingCourse <= 5);
 	}
 
-	private static boolean isBeforeScheduledDate(TrainingCourse trainingCourse) {
+	private boolean isBeforeScheduledDate(TrainingCourse trainingCourse) {
 		return trainingCourse.daysBeforeTrainingCourse > 0;
 	}
 
-	private static boolean isSuperEarlyBird(TrainingCourse trainingCourse) {
+	private boolean isSuperEarlyBird(TrainingCourse trainingCourse) {
 		return trainingCourse.daysBeforeTrainingCourse > 10;
 	}
 
-	private static boolean isProportionalEarlyBird(TrainingCourse trainingCourse) {
+	private boolean isProportionalEarlyBird(TrainingCourse trainingCourse) {
 		return trainingCourse.daysBeforeTrainingCourse <= 10;
 	}
+
 }

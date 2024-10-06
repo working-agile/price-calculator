@@ -28,12 +28,13 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",11, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3600, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(3600, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
 
@@ -54,12 +55,13 @@ public class SuperEarlyBirdTests {
             // Arrange
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3600, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(3600, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount for CSM training course")
@@ -77,13 +79,13 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3500, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(3500, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
 
@@ -102,13 +104,13 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",32, 50, 20, true, "CSPO", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3600, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(3600, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
     }

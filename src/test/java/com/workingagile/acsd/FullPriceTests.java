@@ -28,13 +28,13 @@ public class FullPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",0, 50, 20, true, trainingCourseType, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(4000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(4000, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
         @DisplayName("Full prices on the day prior to the training course")
@@ -51,13 +51,13 @@ public class FullPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",1, 50, 20, true, trainingCourseType, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(4000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(4000, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
 
@@ -76,13 +76,13 @@ public class FullPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",5, 50, 2, true, trainingCourseType, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(4000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
+            assertEquals(4000, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
     }

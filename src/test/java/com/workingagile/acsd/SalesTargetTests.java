@@ -35,14 +35,14 @@ public class SalesTargetTests {
              */
             TrainingCourse i2 = new TrainingCourse("10 January 2024",9, 50, 2, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1, i2};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;
-            assertEquals(expectedRemainingSalesTarget, DataProcessor.remainingSalesTarget);
+            assertEquals(expectedRemainingSalesTarget, processor.getRemainingSalesTarget());
 
         }
     }

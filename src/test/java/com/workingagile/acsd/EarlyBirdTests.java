@@ -31,13 +31,13 @@ public class EarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",6, 50, 25, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3820, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "proportional discount expected");
+            assertEquals(3820, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice, "proportional discount expected");
         }
 
         @DisplayName("Proportional discount when 5 days before the training course and enough seats available")
@@ -55,13 +55,13 @@ public class EarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",5, 50, 25, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3850, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "proportional discount expected when enough seats available");
+            assertEquals(3850, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice, "proportional discount expected when enough seats available");
         }
 
 
@@ -82,13 +82,13 @@ public class EarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",10, 50, 25, true, trainingCourseType, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            DataProcessor.scheduledTrainingCourses = trainingCourses;
+            DataProcessor processor = new DataProcessor(trainingCourses);
 
             // Act
-            DataProcessor.decreaseDaysBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 
             // Assert
-            assertEquals(3800, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "should apply proportional discount - first day of the interval");
+            assertEquals(3800, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice, "should apply proportional discount - first day of the interval");
         }
 
     }
