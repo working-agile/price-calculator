@@ -27,15 +27,15 @@ public class MinimumPriceTests {
                 Discounted price:               800
                 Minimum price:                  900
              */
-            Item i1 = new Item("10 January 2024",25, 50, 20, true, "CSD", 1200);
-            Item[] items = new Item[] { i1 };
-            DataProcessor.list = items;
+            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 1200);
+            TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
+            DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
             DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(900, DataProcessor.list[0].current);
+            assertEquals(900, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSM")
@@ -53,15 +53,15 @@ public class MinimumPriceTests {
                 Discounted price:               700
                 Minimum price:                  1000
              */
-            Item i1 = new Item("10 January 2024",25, 50, 20, true, "CSM", 1500);
-            Item[] items = new Item[] { i1 };
-            DataProcessor.list = items;
+            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 1500);
+            TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
+            DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
             DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(1000, DataProcessor.list[0].current);
+            assertEquals(1000, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSPO")
@@ -79,15 +79,15 @@ public class MinimumPriceTests {
                 Discounted price:               1100
                 Minimum price:                  1200
              */
-            Item i1 = new Item("10 January 2024",25, 50, 20, true, "CSPO", 1500);
-            Item[] items = new Item[] { i1 };
-            DataProcessor.list = items;
+            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSPO", 1500);
+            TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
+            DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
             DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(1200, DataProcessor.list[0].current);
+            assertEquals(1200, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice);
         }
 
     }

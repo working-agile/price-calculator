@@ -2,54 +2,54 @@ package com.workingagile.acsd;
 
 public class DataProcessor {
 
-	public static int value;
+	public static int remainingSalesTarget;
 
-	public static Item[] list;
+	public static TrainingCourse[] scheduledTrainingCourses;
 
-	public static void calculateData(boolean next) {
+	public static void calculateData(boolean moveToNextDay) {
 
-		value = 0;
+		remainingSalesTarget = 0;
 
-		for (int i = 0; i < list.length; i++) {
+		for (int i = 0; i < scheduledTrainingCourses.length; i++) {
 
-			if (next && list[i].days > 0) {
-				list[i].days--;
+			if (moveToNextDay && scheduledTrainingCourses[i].daysBeforeTrainingCourse > 0) {
+				scheduledTrainingCourses[i].daysBeforeTrainingCourse--;
 			}
 
-			if (list[i].days <= 10) {
+			if (scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 10) {
 
-				if (list[i].days <= 1 || (list[i].avail < 3 && list[i].days <= 5)) {
-					list[i].current = list[i].full;
+				if (scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 1 || (scheduledTrainingCourses[i].remainingAvailableSeats < 3 && scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 5)) {
+					scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice;
 				} else {
-					if (list[i].type.equals("CSD")) {
-						list[i].current = list[i].full - (list[i].days * 30);
+					if (scheduledTrainingCourses[i].type.equals("CSD")) {
+						scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice - (scheduledTrainingCourses[i].daysBeforeTrainingCourse * 30);
 					} else {
-						list[i].current = list[i].full - (list[i].days * 20);
+						scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice - (scheduledTrainingCourses[i].daysBeforeTrainingCourse * 20);
 					}
 				}
 
-			} else if (list[i].days > 10) {
+			} else if (scheduledTrainingCourses[i].daysBeforeTrainingCourse > 10) {
 
-				if (list[i].days <= 1 || (list[i].avail < 3 && list[i].days <= 5)) {
-					list[i].current = list[i].full;
+				if (scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 1 || (scheduledTrainingCourses[i].remainingAvailableSeats < 3 && scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 5)) {
+					scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice;
 				} else {
-					if (list[i].type.equals("CSM")) {
-						list[i].current = list[i].full - 500;
+					if (scheduledTrainingCourses[i].type.equals("CSM")) {
+						scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice - 500;
 					} else {
-						list[i].current = list[i].full - 400;
+						scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice - 400;
 					}
 				}
 			}
 
-			if (list[i].type.equals("CSD") && list[i].current < 900) {
-				list[i].current = 900;
-			} else if (list[i].type.equals("CSM") && list[i].current < 1000) {
-				list[i].current = 1000;
-			} else if (list[i].type.equals("CSPO") && list[i].current < 1200) {
-				list[i].current = 1200;
+			if (scheduledTrainingCourses[i].type.equals("CSD") && scheduledTrainingCourses[i].currentDiscountedPrice < 900) {
+				scheduledTrainingCourses[i].currentDiscountedPrice = 900;
+			} else if (scheduledTrainingCourses[i].type.equals("CSM") && scheduledTrainingCourses[i].currentDiscountedPrice < 1000) {
+				scheduledTrainingCourses[i].currentDiscountedPrice = 1000;
+			} else if (scheduledTrainingCourses[i].type.equals("CSPO") && scheduledTrainingCourses[i].currentDiscountedPrice < 1200) {
+				scheduledTrainingCourses[i].currentDiscountedPrice = 1200;
 			}
 
-			value += (list[i].avail * list[i].current);
+			remainingSalesTarget += (scheduledTrainingCourses[i].remainingAvailableSeats * scheduledTrainingCourses[i].currentDiscountedPrice);
 
 		}
 	}

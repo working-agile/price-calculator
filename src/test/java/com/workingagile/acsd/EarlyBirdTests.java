@@ -29,15 +29,15 @@ public class EarlyBirdTests {
                 -->
                 discounted price:		 		4000-(6*30) = 3820
              */
-            Item i1 = new Item("10 January 2024",6, 50, 25, true, "CSD", 4000);
-            Item[] items = new Item[]{i1};
-            DataProcessor.list = items;
+            TrainingCourse i1 = new TrainingCourse("10 January 2024",6, 50, 25, true, "CSD", 4000);
+            TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
+            DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
             DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(3820, DataProcessor.list[0].current, "proportional discount expected");
+            assertEquals(3820, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "proportional discount expected");
         }
 
         @DisplayName("Proportional discount when 5 days before the training course and enough seats available")
@@ -53,15 +53,15 @@ public class EarlyBirdTests {
                 -->
                 discounted:		 				4000-(5*30) = 3850
              */
-            Item i1 = new Item("10 January 2024",5, 50, 25, true, "CSD", 4000);
-            Item[] items = new Item[]{i1};
-            DataProcessor.list = items;
+            TrainingCourse i1 = new TrainingCourse("10 January 2024",5, 50, 25, true, "CSD", 4000);
+            TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
+            DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
             DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(3850, DataProcessor.list[0].current, "proportional discount expected when enough seats available");
+            assertEquals(3850, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "proportional discount expected when enough seats available");
         }
 
 
@@ -80,15 +80,15 @@ public class EarlyBirdTests {
                 -->
                 discounted:		 				4000-(10*20) = 3800
              */
-            Item i1 = new Item("10 January 2024",10, 50, 25, true, trainingCourseType, 4000);
-            Item[] items = new Item[]{i1};
-            DataProcessor.list = items;
+            TrainingCourse i1 = new TrainingCourse("10 January 2024",10, 50, 25, true, trainingCourseType, 4000);
+            TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
+            DataProcessor.scheduledTrainingCourses = trainingCourses;
 
             // Act
             DataProcessor.calculateData(false);
 
             // Assert
-            assertEquals(3800, DataProcessor.list[0].current, "should apply proportional discount - first day of the interval");
+            assertEquals(3800, DataProcessor.scheduledTrainingCourses[0].currentDiscountedPrice, "should apply proportional discount - first day of the interval");
         }
 
     }
