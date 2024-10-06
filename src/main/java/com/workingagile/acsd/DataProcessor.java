@@ -12,13 +12,12 @@ public class DataProcessor {
 
 		for (int i = 0; i < scheduledTrainingCourses.length; i++) {
 
-			if (moveToNextDay && scheduledTrainingCourses[i].daysBeforeTrainingCourse > 0) {
+			if (isBeforeScheduledDate(i) && moveToNextDay) {
 				scheduledTrainingCourses[i].daysBeforeTrainingCourse--;
 			}
 
-			if (scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 10) {
-
-				if (scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 1 || (scheduledTrainingCourses[i].remainingAvailableSeats < 3 && scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 5)) {
+			if (isProportionalEarlyBird(i)) {
+				if (fullPricePolicyApplies(i)) {
 					scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice;
 				} else {
 					if (scheduledTrainingCourses[i].type.equals("CSD")) {
@@ -28,9 +27,9 @@ public class DataProcessor {
 					}
 				}
 
-			} else if (scheduledTrainingCourses[i].daysBeforeTrainingCourse > 10) {
+			} else if (isSuperEarlyBird(i)) {
 
-				if (scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 1 || (scheduledTrainingCourses[i].remainingAvailableSeats < 3 && scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 5)) {
+				if (fullPricePolicyApplies(i)) {
 					scheduledTrainingCourses[i].currentDiscountedPrice = scheduledTrainingCourses[i].fullPrice;
 				} else {
 					if (scheduledTrainingCourses[i].type.equals("CSM")) {
@@ -52,5 +51,21 @@ public class DataProcessor {
 			remainingSalesTarget += (scheduledTrainingCourses[i].remainingAvailableSeats * scheduledTrainingCourses[i].currentDiscountedPrice);
 
 		}
+	}
+
+	private static boolean fullPricePolicyApplies(int i) {
+		return scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 1 || (scheduledTrainingCourses[i].remainingAvailableSeats < 3 && scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 5);
+	}
+
+	private static boolean isBeforeScheduledDate(int i) {
+		return scheduledTrainingCourses[i].daysBeforeTrainingCourse > 0;
+	}
+
+	private static boolean isSuperEarlyBird(int i) {
+		return scheduledTrainingCourses[i].daysBeforeTrainingCourse > 10;
+	}
+
+	private static boolean isProportionalEarlyBird(int i) {
+		return scheduledTrainingCourses[i].daysBeforeTrainingCourse <= 10;
 	}
 }
