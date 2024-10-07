@@ -36,19 +36,6 @@ public class TrainingCourseService {
 
 	}
 
-
-
-	public void moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
-
-		if (moveToNextDay) {
-			moveToNextDayBeforeTrainingCourse();
-		}
-
-		priceCalculator.updateCurrentPrices(repository.getScheduledTrainingCourses());
-
-		salesTargetCalculator.updateSalesTarget(repository.getScheduledTrainingCourses());
-	}
-
 	public void moveToNextDayBeforeTrainingCourse() {
 		for (TrainingCourse trainingCourse: repository.getScheduledTrainingCourses()) {
 

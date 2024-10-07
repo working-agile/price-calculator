@@ -28,13 +28,13 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",11, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            TrainingCourseService processor = new TrainingCourseService(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3600, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
 

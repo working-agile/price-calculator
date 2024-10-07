@@ -29,13 +29,13 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 1200);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            TrainingCourseService processor = new TrainingCourseService(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(900, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(900, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSM")
