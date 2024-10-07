@@ -21,17 +21,22 @@ public class DataProcessor {
 
 	public void moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
 
+		moveToNextDayBeforeTrainingCourse(moveToNextDay);
+
+		updateCurrentPricesOfTrainingCourses();
+
+		updateSalesTarget();
+	}
+
+	private void updateSalesTarget() {
 		remainingSalesTarget = 0;
 
-		// moveToNextDayBeforeTrainingCourse
 		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
-
-			if (isBeforeScheduledDate(trainingCourse) && moveToNextDay) {
-				trainingCourse.daysBeforeTrainingCourse--;
-			}
+			remainingSalesTarget += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
 		}
+	}
 
-		// updateCurrentPricesOfTrainingCourses
+	private void updateCurrentPricesOfTrainingCourses() {
 		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
 			if (isProportionalEarlyBird(trainingCourse)) {
@@ -66,12 +71,14 @@ public class DataProcessor {
 				trainingCourse.currentDiscountedPrice = 1200;
 			}
 		}
+	}
 
-		// updateSalesTarget
+	private void moveToNextDayBeforeTrainingCourse(boolean moveToNextDay) {
 		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
-			remainingSalesTarget += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
-
+			if (isBeforeScheduledDate(trainingCourse) && moveToNextDay) {
+				trainingCourse.daysBeforeTrainingCourse--;
+			}
 		}
 	}
 
