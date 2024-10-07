@@ -23,11 +23,16 @@ public class DataProcessor {
 
 		remainingSalesTarget = 0;
 
+		// moveToNextDayBeforeTrainingCourse
 		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
 			if (isBeforeScheduledDate(trainingCourse) && moveToNextDay) {
 				trainingCourse.daysBeforeTrainingCourse--;
 			}
+		}
+
+		// updateCurrentPricesOfTrainingCourses
+		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
 			if (isProportionalEarlyBird(trainingCourse)) {
 				if (fullPricePolicyApplies(trainingCourse)) {
@@ -60,6 +65,10 @@ public class DataProcessor {
 			} else if (trainingCourse.type.equals("CSPO") && trainingCourse.currentDiscountedPrice < 1200) {
 				trainingCourse.currentDiscountedPrice = 1200;
 			}
+		}
+
+		// updateSalesTarget
+		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
 			remainingSalesTarget += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
 
