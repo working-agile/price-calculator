@@ -2,7 +2,7 @@ package com.workingagile.acsd;
 
 public class TrainingCoursesKeeper_and_DateMover {
 
-	private final TrainingCourse[] scheduledTrainingCourses;
+	private final TrainingCourseRepository repository;
 
 	private final PriceCalculator priceCalculator;
 
@@ -10,13 +10,13 @@ public class TrainingCoursesKeeper_and_DateMover {
 
 
 	public TrainingCoursesKeeper_and_DateMover(TrainingCourse[] trainingCourses) {
-		scheduledTrainingCourses = trainingCourses;
+		repository = new TrainingCourseRepository(trainingCourses);
 		priceCalculator = new PriceCalculator();
 		salesTargetCalculator = new SalesTargetCalculator();
 	}
 
 	public TrainingCourse[] getScheduledTrainingCourses() {
-		return this.scheduledTrainingCourses.clone();
+		return repository.getScheduledTrainingCourses().clone();
 	}
 
 	public int getRemainingSalesTarget() {
@@ -29,13 +29,13 @@ public class TrainingCoursesKeeper_and_DateMover {
 			moveToNextDayBeforeTrainingCourse();
 		}
 
-		priceCalculator.updateCurrentPrices(scheduledTrainingCourses);
+		priceCalculator.updateCurrentPrices(repository.getScheduledTrainingCourses());
 
-		salesTargetCalculator.updateSalesTarget(scheduledTrainingCourses);
+		salesTargetCalculator.updateSalesTarget(repository.getScheduledTrainingCourses());
 	}
 
 	private void moveToNextDayBeforeTrainingCourse() {
-		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
+		for (TrainingCourse trainingCourse: repository.getScheduledTrainingCourses()) {
 
 			if (isBeforeScheduledDate(trainingCourse)) {
 				trainingCourse.daysBeforeTrainingCourse--;
