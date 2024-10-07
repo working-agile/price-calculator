@@ -31,7 +31,7 @@ public class EarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",6, 50, 25, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -55,7 +55,7 @@ public class EarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",5, 50, 25, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -82,7 +82,7 @@ public class EarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",10, 50, 25, true, trainingCourseType, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);

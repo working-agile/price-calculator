@@ -28,7 +28,7 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",11, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -55,7 +55,7 @@ public class SuperEarlyBirdTests {
             // Arrange
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -79,7 +79,7 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -104,7 +104,7 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",32, 50, 20, true, "CSPO", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
+            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
