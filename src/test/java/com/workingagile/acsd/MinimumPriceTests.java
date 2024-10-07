@@ -29,7 +29,7 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 1200);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            DataProcessor processor = new DataProcessor(trainingCourses);
+            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -55,7 +55,7 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 1500);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            DataProcessor processor = new DataProcessor(trainingCourses);
+            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -81,7 +81,7 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSPO", 1500);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            DataProcessor processor = new DataProcessor(trainingCourses);
+            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);

@@ -15,7 +15,7 @@ public class ManualTests {
         TrainingCourse i3 = new TrainingCourse("20 January 2025", 20, 30, 27, false, "CSM", 3000);
         TrainingCourse[] trainingCourses = new TrainingCourse[] {i1, i2, i3};
 
-        DataProcessor processor = new DataProcessor(trainingCourses);
+        PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
 
         processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
 

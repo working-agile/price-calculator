@@ -1,13 +1,12 @@
 package com.workingagile.acsd;
 
-public class DataProcessor {
+public class PriceCalculator_and_SalesTargetCalculator_and_DateMover {
 
 	private int remainingSalesTarget;
 
 	private TrainingCourse[] scheduledTrainingCourses;
 
-
-	public DataProcessor(TrainingCourse[] trainingCourses) {
+	public PriceCalculator_and_SalesTargetCalculator_and_DateMover(TrainingCourse[] trainingCourses) {
 		this.scheduledTrainingCourses = trainingCourses;
 	}
 
@@ -21,17 +20,19 @@ public class DataProcessor {
 
 	public void moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
 
-		moveToNextDayBeforeTrainingCourse(moveToNextDay);
+		if (moveToNextDay) {
+			moveToNextDayBeforeTrainingCourse();
+		}
 
 		updateCurrentPricesOfTrainingCourses();
 
 		updateSalesTarget();
 	}
 
-	private void moveToNextDayBeforeTrainingCourse(boolean moveToNextDay) {
+	private void moveToNextDayBeforeTrainingCourse() {
 		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
-			if (isBeforeScheduledDate(trainingCourse) && moveToNextDay) {
+			if (isBeforeScheduledDate(trainingCourse)) {
 				trainingCourse.daysBeforeTrainingCourse--;
 			}
 		}

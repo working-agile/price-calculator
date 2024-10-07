@@ -35,7 +35,7 @@ public class SalesTargetTests {
              */
             TrainingCourse i2 = new TrainingCourse("10 January 2024",9, 50, 2, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1, i2};
-            DataProcessor processor = new DataProcessor(trainingCourses);
+            PriceCalculator_and_SalesTargetCalculator_and_DateMover processor = new PriceCalculator_and_SalesTargetCalculator_and_DateMover(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
