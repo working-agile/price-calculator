@@ -15,12 +15,11 @@ public class ManualTests {
         TrainingCourse i3 = new TrainingCourse("20 January 2025", 20, 30, 27, false, "CSM", 3000);
         TrainingCourse[] trainingCourses = new TrainingCourse[] {i1, i2, i3};
 
-        TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+        TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
-        processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+        trainingCourseService.updateCurrentPrices();
 
-
-        for (TrainingCourse trainingCourse: processor.getScheduledTrainingCourses()) {
+        for (TrainingCourse trainingCourse: trainingCourseService.getScheduledTrainingCourses()) {
             System.out.println("------------------------------");
             System.out.println("Training course");
             System.out.println("Type: " + trainingCourse.type);
@@ -32,17 +31,21 @@ public class ManualTests {
             System.out.println("Number of seats: " + trainingCourse.totalNumberOfSeats);
             System.out.println("Remaining available seats: " + trainingCourse.remainingAvailableSeats);
         }
+
+        trainingCourseService.updateSalesTarget();
+
         System.out.println("-----------------------------------------------------");
-        System.out.println("Total sales target remaining: " + processor.getRemainingSalesTarget());
+        System.out.println("Total sales target remaining: " + trainingCourseService.getRemainingSalesTarget());
         System.out.println("-----------------------------------------------------");
 
         System.out.println("\n\nMove to next day: 2. January");
 
-        processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(true);
+        trainingCourseService.moveToNextDayBeforeTrainingCourse();
+        trainingCourseService.updateCurrentPrices();
 
         System.out.println("Registered training courses");
 
-        for (TrainingCourse trainingCourse: processor.getScheduledTrainingCourses()) {
+        for (TrainingCourse trainingCourse: trainingCourseService.getScheduledTrainingCourses()) {
             System.out.println("------------------------------");
             System.out.println("Training course");
             System.out.println("Type: " + trainingCourse.type);
@@ -55,8 +58,10 @@ public class ManualTests {
             System.out.println("Remaining available seats: " + trainingCourse.remainingAvailableSeats);
         }
 
+        trainingCourseService.updateSalesTarget();
+
         System.out.println("-----------------------------------------------------");
-        System.out.println("Total sales target remaining: " + processor.getRemainingSalesTarget());
+        System.out.println("Total sales target remaining: " + trainingCourseService.getRemainingSalesTarget());
         System.out.println("-----------------------------------------------------");
     }
 

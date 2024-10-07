@@ -1,6 +1,6 @@
 package com.workingagile.acsd;
 
-public class TrainingCoursesKeeper_and_DateMover {
+public class TrainingCourseService {
 
 	private final TrainingCourseRepository repository;
 
@@ -9,7 +9,7 @@ public class TrainingCoursesKeeper_and_DateMover {
 	private final SalesTargetCalculator salesTargetCalculator;
 
 
-	public TrainingCoursesKeeper_and_DateMover(TrainingCourse[] trainingCourses) {
+	public TrainingCourseService(TrainingCourse[] trainingCourses) {
 		repository = new TrainingCourseRepository(trainingCourses);
 		priceCalculator = new PriceCalculator();
 		salesTargetCalculator = new SalesTargetCalculator();
@@ -23,6 +23,21 @@ public class TrainingCoursesKeeper_and_DateMover {
 		return salesTargetCalculator.getRemainingSalesTarget();
 	}
 
+
+	public void updateCurrentPrices() {
+
+		priceCalculator.updateCurrentPrices(repository.getScheduledTrainingCourses());
+
+	}
+
+	public void updateSalesTarget() {
+
+		salesTargetCalculator.updateSalesTarget(repository.getScheduledTrainingCourses());
+
+	}
+
+
+
 	public void moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(boolean moveToNextDay) {
 
 		if (moveToNextDay) {
@@ -34,7 +49,7 @@ public class TrainingCoursesKeeper_and_DateMover {
 		salesTargetCalculator.updateSalesTarget(repository.getScheduledTrainingCourses());
 	}
 
-	private void moveToNextDayBeforeTrainingCourse() {
+	public void moveToNextDayBeforeTrainingCourse() {
 		for (TrainingCourse trainingCourse: repository.getScheduledTrainingCourses()) {
 
 			if (isBeforeScheduledDate(trainingCourse)) {

@@ -28,7 +28,7 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",11, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService processor = new TrainingCourseService(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -55,13 +55,13 @@ public class SuperEarlyBirdTests {
             // Arrange
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3600, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount for CSM training course")
@@ -79,13 +79,13 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3500, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3500, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
 
@@ -104,13 +104,13 @@ public class SuperEarlyBirdTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",32, 50, 20, true, "CSPO", 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3600, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
     }

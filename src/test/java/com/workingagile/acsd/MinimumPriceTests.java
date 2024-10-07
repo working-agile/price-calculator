@@ -29,7 +29,7 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 1200);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService processor = new TrainingCourseService(trainingCourses);
 
             // Act
             processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
@@ -55,13 +55,13 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 1500);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(1000, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(1000, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSPO")
@@ -81,13 +81,13 @@ public class MinimumPriceTests {
              */
             TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSPO", 1500);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
-            TrainingCoursesKeeper_and_DateMover processor = new TrainingCoursesKeeper_and_DateMover(trainingCourses);
+            TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
             // Act
-            processor.moveToNextDayBeforeTrainingCourse_updateCurrentPricesOfTrainingCourses_updateSalesTarget(false);
+            trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(1200, processor.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(1200, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
         }
 
     }
