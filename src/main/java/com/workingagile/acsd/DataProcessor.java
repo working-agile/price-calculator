@@ -28,6 +28,15 @@ public class DataProcessor {
 		updateSalesTarget();
 	}
 
+	private void moveToNextDayBeforeTrainingCourse(boolean moveToNextDay) {
+		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
+
+			if (isBeforeScheduledDate(trainingCourse) && moveToNextDay) {
+				trainingCourse.daysBeforeTrainingCourse--;
+			}
+		}
+	}
+
 	private void updateSalesTarget() {
 		remainingSalesTarget = 0;
 
@@ -73,14 +82,6 @@ public class DataProcessor {
 		}
 	}
 
-	private void moveToNextDayBeforeTrainingCourse(boolean moveToNextDay) {
-		for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
-
-			if (isBeforeScheduledDate(trainingCourse) && moveToNextDay) {
-				trainingCourse.daysBeforeTrainingCourse--;
-			}
-		}
-	}
 
 	private boolean fullPricePolicyApplies(TrainingCourse trainingCourse) {
 		return trainingCourse.daysBeforeTrainingCourse <= 1 || (trainingCourse.remainingAvailableSeats < 3 && trainingCourse.daysBeforeTrainingCourse <= 5);
