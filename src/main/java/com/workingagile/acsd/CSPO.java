@@ -20,5 +20,8 @@ public class CSPO extends TrainingCourse {
 
     }
 
+    public String getDescription() {
+        return "CSPO";
+    }
 
 }

@@ -22,7 +22,7 @@ public class ManualTests {
         for (TrainingCourse trainingCourse: trainingCourseService.getScheduledTrainingCourses()) {
             System.out.println("------------------------------");
             System.out.println("Training course");
-            System.out.println("Type: " + trainingCourse.type);
+            System.out.println("Type: " + trainingCourse.getDescription());
             System.out.println("When: " + trainingCourse.scheduledDate);
             System.out.println("Remaining days before training course: " + trainingCourse.daysBeforeTrainingCourse);
             System.out.println("Online: " + trainingCourse.online);
@@ -48,7 +48,7 @@ public class ManualTests {
         for (TrainingCourse trainingCourse: trainingCourseService.getScheduledTrainingCourses()) {
             System.out.println("------------------------------");
             System.out.println("Training course");
-            System.out.println("Type: " + trainingCourse.type);
+            System.out.println("Type: " + trainingCourse.getDescription());
             System.out.println("When: " + trainingCourse.scheduledDate);
             System.out.println("Remaining days before training course: " + trainingCourse.daysBeforeTrainingCourse);
             System.out.println("Online: " + trainingCourse.online);

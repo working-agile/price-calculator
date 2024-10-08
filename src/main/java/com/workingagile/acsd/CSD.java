@@ -19,5 +19,8 @@ public class CSD extends TrainingCourse {
         }
     }
 
+    public String getDescription() {
+        return "CSD";
+    }
 
 }

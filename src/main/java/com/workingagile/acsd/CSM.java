@@ -21,5 +21,7 @@ public class CSM extends TrainingCourse {
 
     }
 
-
+    public String getDescription() {
+        return "CSM";
+    }
 }

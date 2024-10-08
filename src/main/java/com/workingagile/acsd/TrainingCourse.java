@@ -7,7 +7,6 @@ public abstract class TrainingCourse {
 	public int totalNumberOfSeats;
 	public int remainingAvailableSeats;
 	public Boolean online;
-	public String type;
 	public int currentDiscountedPrice;
 	public int fullPrice;
 
@@ -17,14 +16,15 @@ public abstract class TrainingCourse {
 		this.totalNumberOfSeats = totalNumberOfSeats;
 		this.remainingAvailableSeats = remainingAvailableSeats;
 		this.online = online;
-		this.type = type;
 		this.currentDiscountedPrice = fullPrice;
 		this.fullPrice = fullPrice;
 	}
 
+	public abstract String getDescription();
+
 	public abstract void updateCurrentPrice();
 
-		boolean isSuperEarlyBird() {
+	boolean isSuperEarlyBird() {
 		return this.daysBeforeTrainingCourse > 10;
 	}
 
