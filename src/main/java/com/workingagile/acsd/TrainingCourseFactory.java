@@ -6,12 +6,16 @@ public class TrainingCourseFactory {
                                                       int totalNumberOfSeats, int remainingAvailableSeats,
                                                       Boolean online, int fullPrice) {
         if (type.equals("CSD")) {
-            return new CSD(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online, fullPrice);
+            return new CSD(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online,
+                    fullPrice);
         } else if (type.equals("CSM")) {
-            return new CSM(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online, fullPrice);
+            return new CSM(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online,
+                    fullPrice);
         } else if (type.equals("CSPO")) {
-            return new CSPO(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online, fullPrice);
-        } else throw new IllegalArgumentException("Unknown training course type");
+            return new CSPO(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online,
+                    fullPrice);
+        } else
+            throw new IllegalArgumentException("Unknown training course type");
 
     }
 
