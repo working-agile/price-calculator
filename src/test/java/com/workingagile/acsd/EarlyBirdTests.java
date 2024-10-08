@@ -29,7 +29,8 @@ public class EarlyBirdTests {
                 -->
                 discounted price:		 		4000-(6*30) = 3820
              */
-            TrainingCourse i1 = new CSD("10 January 2024",6, 50, 25, true, 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",6, 50,
+                    25, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -37,7 +38,8 @@ public class EarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3820, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice, "proportional discount expected");
+            assertEquals(3820, trainingCourseService.getScheduledTrainingCourses()[0].
+                    getCurrentDiscountedPrice(), "proportional discount expected");
         }
 
         @DisplayName("Proportional discount when 5 days before the training course and enough seats available")
@@ -53,7 +55,8 @@ public class EarlyBirdTests {
                 -->
                 discounted:		 				4000-(5*30) = 3850
              */
-            TrainingCourse i1 = new CSD("10 January 2024",5, 50, 25, true, 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",5, 50,
+                    25, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -61,7 +64,8 @@ public class EarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3850, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice, "proportional discount expected when enough seats available");
+            assertEquals(3850, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice(), "proportional discount expected when enough seats available");
         }
 
 
@@ -92,7 +96,8 @@ public class EarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3800, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice, "should apply proportional discount - first day of the interval");
+            assertEquals(3800, trainingCourseService.getScheduledTrainingCourses()[0].
+                    getCurrentDiscountedPrice(), "should apply proportional discount - first day of the interval");
         }
 
     }

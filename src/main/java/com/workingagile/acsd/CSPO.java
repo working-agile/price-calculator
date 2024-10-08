@@ -8,14 +8,14 @@ public class CSPO extends TrainingCourse {
 
     public void updateCurrentPrice() {
         if (isProportionalEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - (this.daysBeforeTrainingCourse * 20);
+            setCurrentDiscountedPrice(getFullPrice() - (getDaysBeforeTrainingCourse() * 20));
         }
         else if (isSuperEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - 400;
+            setCurrentDiscountedPrice(getFullPrice() - 400);
         }
 
-        if (this.currentDiscountedPrice < 1200) {
-            this.currentDiscountedPrice = 1200;
+        if (getCurrentDiscountedPrice() < 1200) {
+            setCurrentDiscountedPrice(1200);
         }
 
     }

@@ -12,7 +12,8 @@ public class SalesTargetCalculator {
         remainingSalesTarget = 0;
 
         for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
-            remainingSalesTarget += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
+            remainingSalesTarget += (trainingCourse.getRemainingAvailableSeats()
+                    * trainingCourse.getCurrentDiscountedPrice());
         }
     }
 

@@ -34,7 +34,8 @@ public class SuperEarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
 
@@ -61,7 +62,8 @@ public class SuperEarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
         @DisplayName("Super Early Bird discount for CSM training course")
@@ -85,7 +87,8 @@ public class SuperEarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3500, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3500, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
 
@@ -110,7 +113,8 @@ public class SuperEarlyBirdTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(3600, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
     }

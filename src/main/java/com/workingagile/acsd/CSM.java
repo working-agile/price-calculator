@@ -9,14 +9,14 @@ public class CSM extends TrainingCourse {
     public void updateCurrentPrice() {
 
         if (isProportionalEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - (this.daysBeforeTrainingCourse * 20);
+            setCurrentDiscountedPrice(getFullPrice() - (getDaysBeforeTrainingCourse() * 20));
         }
         else if (isSuperEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - 500;
+            setCurrentDiscountedPrice(getFullPrice() - 500);
         }
 
-        if (this.currentDiscountedPrice < 1000) {
-            this.currentDiscountedPrice = 1000;
+        if (getCurrentDiscountedPrice() < 1000) {
+            setCurrentDiscountedPrice(1000);
         }
 
     }

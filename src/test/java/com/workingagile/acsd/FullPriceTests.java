@@ -38,7 +38,8 @@ public class FullPriceTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(4000, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(4000, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
         @DisplayName("Full prices on the day prior to the training course")
@@ -64,7 +65,8 @@ public class FullPriceTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(4000, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(4000, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
 
@@ -92,7 +94,8 @@ public class FullPriceTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(4000, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(4000, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
     }

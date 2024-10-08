@@ -8,14 +8,15 @@ public class CSD extends TrainingCourse {
 
     public void updateCurrentPrice() {
         if (isProportionalEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - (this.daysBeforeTrainingCourse * 30);
+            setCurrentDiscountedPrice(
+                    getFullPrice() - (getDaysBeforeTrainingCourse() * 30));
         }
         else if (isSuperEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - 400;
+            setCurrentDiscountedPrice(getFullPrice() - 400);
         }
 
-        if (this.currentDiscountedPrice < 900) {
-            this.currentDiscountedPrice = 900;
+        if (getCurrentDiscountedPrice() < 900) {
+            setCurrentDiscountedPrice(900);
         }
     }
 

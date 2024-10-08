@@ -35,7 +35,8 @@ public class MinimumPriceTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(900, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(900, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSM")
@@ -61,7 +62,8 @@ public class MinimumPriceTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(1000, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(1000, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSPO")
@@ -87,7 +89,8 @@ public class MinimumPriceTests {
             trainingCourseService.updateCurrentPrices();
 
             // Assert
-            assertEquals(1200, trainingCourseService.getScheduledTrainingCourses()[0].currentDiscountedPrice);
+            assertEquals(1200, trainingCourseService.getScheduledTrainingCourses()[0]
+                    .getCurrentDiscountedPrice());
         }
 
     }

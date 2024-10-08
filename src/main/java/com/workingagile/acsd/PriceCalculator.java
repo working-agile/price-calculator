@@ -7,7 +7,7 @@ public class PriceCalculator {
         for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
             if (fullPricePolicyApplies(trainingCourse)) {
-                trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+                trainingCourse.setCurrentDiscountedPrice(trainingCourse.getFullPrice());
             }
             else {
                 trainingCourse.updateCurrentPrice();
@@ -17,7 +17,8 @@ public class PriceCalculator {
     }
 
     private boolean fullPricePolicyApplies(TrainingCourse trainingCourse) {
-        return trainingCourse.daysBeforeTrainingCourse <= 1 || (trainingCourse.remainingAvailableSeats < 3 && trainingCourse.daysBeforeTrainingCourse <= 5);
+        return trainingCourse.getDaysBeforeTrainingCourse() <= 1 ||
+                (trainingCourse.getRemainingAvailableSeats() < 3 && trainingCourse.getDaysBeforeTrainingCourse() <= 5);
     }
 
 }

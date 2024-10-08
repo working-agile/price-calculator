@@ -23,13 +23,13 @@ public class ManualTests {
             System.out.println("------------------------------");
             System.out.println("Training course");
             System.out.println("Type: " + trainingCourse.getDescription());
-            System.out.println("When: " + trainingCourse.scheduledDate);
-            System.out.println("Remaining days before training course: " + trainingCourse.daysBeforeTrainingCourse);
-            System.out.println("Online: " + trainingCourse.online);
-            System.out.println("Full Price: " + trainingCourse.fullPrice);
-            System.out.println("Current price: " + trainingCourse.currentDiscountedPrice);
-            System.out.println("Number of seats: " + trainingCourse.totalNumberOfSeats);
-            System.out.println("Remaining available seats: " + trainingCourse.remainingAvailableSeats);
+            System.out.println("When: " + trainingCourse.getScheduledDate());
+            System.out.println("Remaining days before training course: " + trainingCourse.getDaysBeforeTrainingCourse());
+            System.out.println("Online: " + trainingCourse.getOnline());
+            System.out.println("Full Price: " + trainingCourse.getFullPrice());
+            System.out.println("Current price: " + trainingCourse.getCurrentDiscountedPrice());
+            System.out.println("Number of seats: " + trainingCourse.getTotalNumberOfSeats());
+            System.out.println("Remaining available seats: " + trainingCourse.getRemainingAvailableSeats());
         }
 
         trainingCourseService.updateSalesTarget();
@@ -49,13 +49,13 @@ public class ManualTests {
             System.out.println("------------------------------");
             System.out.println("Training course");
             System.out.println("Type: " + trainingCourse.getDescription());
-            System.out.println("When: " + trainingCourse.scheduledDate);
-            System.out.println("Remaining days before training course: " + trainingCourse.daysBeforeTrainingCourse);
-            System.out.println("Online: " + trainingCourse.online);
-            System.out.println("Full Price: " + trainingCourse.fullPrice);
-            System.out.println("Current price: " + trainingCourse.currentDiscountedPrice);
-            System.out.println("Number of seats: " + trainingCourse.totalNumberOfSeats);
-            System.out.println("Remaining available seats: " + trainingCourse.remainingAvailableSeats);
+            System.out.println("When: " + trainingCourse.getScheduledDate());
+            System.out.println("Remaining days before training course: " + trainingCourse.getDaysBeforeTrainingCourse());
+            System.out.println("Online: " + trainingCourse.getOnline());
+            System.out.println("Full Price: " + trainingCourse.getFullPrice());
+            System.out.println("Current price: " + trainingCourse.getCurrentDiscountedPrice());
+            System.out.println("Number of seats: " + trainingCourse.getTotalNumberOfSeats());
+            System.out.println("Remaining available seats: " + trainingCourse.getRemainingAvailableSeats());
         }
 
         trainingCourseService.updateSalesTarget();

@@ -40,13 +40,13 @@ public class TrainingCourseService {
 		for (TrainingCourse trainingCourse: repository.getScheduledTrainingCourses()) {
 
 			if (isBeforeScheduledDate(trainingCourse)) {
-				trainingCourse.daysBeforeTrainingCourse--;
+				trainingCourse.decreaseDaysBeforeTrainingCourse();
 			}
 		}
 	}
 
 	private boolean isBeforeScheduledDate(TrainingCourse trainingCourse) {
-		return trainingCourse.daysBeforeTrainingCourse > 0;
+		return trainingCourse.getDaysBeforeTrainingCourse() > 0;
 	}
 
 }
