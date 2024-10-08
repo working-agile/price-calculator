@@ -6,14 +6,16 @@ public class PriceCalculator {
 
         for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
-            if (trainingCourse.type.equals("CSD")) {
+            if (fullPricePolicyApplies(trainingCourse)) {
+                trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+            }
 
-                if (fullPricePolicyApplies(trainingCourse)) {
-                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
-                } else if (isProportionalEarlyBird(trainingCourse)) {
-                            trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 30);
+            else if (trainingCourse.type.equals("CSD")) {
+
+                if (isProportionalEarlyBird(trainingCourse)) {
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 30);
                 } else if (isSuperEarlyBird(trainingCourse)) {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 400;
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 400;
                 }
 
                 if (trainingCourse.currentDiscountedPrice < 900) {
@@ -22,10 +24,7 @@ public class PriceCalculator {
 
             } else if (trainingCourse.type.equals("CSM")) {
 
-                if (fullPricePolicyApplies(trainingCourse)) {
-                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
-                }
-                else if (isProportionalEarlyBird(trainingCourse)) {
+                if (isProportionalEarlyBird(trainingCourse)) {
                     trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 20);
                 }
                 else if (isSuperEarlyBird(trainingCourse)) {
@@ -38,10 +37,7 @@ public class PriceCalculator {
 
             } else if (trainingCourse.type.equals("CSPO")) {
 
-                if (fullPricePolicyApplies(trainingCourse)) {
-                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
-                }
-                else if (isProportionalEarlyBird(trainingCourse)) {
+                if (isProportionalEarlyBird(trainingCourse)) {
                     trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 20);
                 }
                 else if (isSuperEarlyBird(trainingCourse)) {
