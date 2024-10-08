@@ -24,7 +24,7 @@ public class SalesTargetTests {
                 super early bird discount:		 400
                 Discounted price:				3600
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",30, 50, 5, true, "CSD", 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",30, 50, 5, true, 4000);
             /*
                 Number of seats:				2
                 Days before training course:	9
@@ -33,7 +33,7 @@ public class SalesTargetTests {
                 Super Early bird discount:		9*30
                 Discounted price:				3500
              */
-            TrainingCourse i2 = new TrainingCourse("10 January 2024",9, 50, 2, true, "CSD", 4000);
+            TrainingCourse i2 = new CSD("10 January 2024",9, 50, 2, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1, i2};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
             trainingCourseService.updateCurrentPrices();

@@ -26,7 +26,7 @@ public class SuperEarlyBirdTests {
                 discounted price:				3600
 
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",11, 50, 20, true, "CSD", 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",11, 50, 20, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -53,7 +53,7 @@ public class SuperEarlyBirdTests {
              */
 
             // Arrange
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",25, 50, 20, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -77,7 +77,7 @@ public class SuperEarlyBirdTests {
                 SuperEarlyBird discount:		 -500
                 Discounted price:               3500
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 4000);
+            TrainingCourse i1 = new CSM("10 January 2024",25, 50, 20, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -102,7 +102,7 @@ public class SuperEarlyBirdTests {
                 SuperEarlyBird discount:		 -400
                 Discounted price:				3600
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",32, 50, 20, true, "CSPO", 4000);
+            TrainingCourse i1 = new CSPO("10 January 2024",32, 50, 20, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 

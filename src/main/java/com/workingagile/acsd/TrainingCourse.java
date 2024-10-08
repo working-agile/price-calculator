@@ -1,6 +1,7 @@
 package com.workingagile.acsd;
 
-public class TrainingCourse {
+public abstract class TrainingCourse {
+
 	public String scheduledDate;
 	public int daysBeforeTrainingCourse;
 	public int totalNumberOfSeats;
@@ -10,7 +11,7 @@ public class TrainingCourse {
 	public int currentDiscountedPrice;
 	public int fullPrice;
 
-	public TrainingCourse(String scheduledDate, int daysBeforeTrainingCourse, int totalNumberOfSeats, int remainingAvailableSeats, Boolean online, String type, int fullPrice) {
+	public TrainingCourse(String scheduledDate, int daysBeforeTrainingCourse, int totalNumberOfSeats, int remainingAvailableSeats, Boolean online, int fullPrice) {
 		this.scheduledDate = scheduledDate;
 		this.daysBeforeTrainingCourse = daysBeforeTrainingCourse;
 		this.totalNumberOfSeats = totalNumberOfSeats;
@@ -20,4 +21,16 @@ public class TrainingCourse {
 		this.currentDiscountedPrice = fullPrice;
 		this.fullPrice = fullPrice;
 	}
+
+	public abstract void updateCurrentPrice();
+
+		boolean isSuperEarlyBird() {
+		return this.daysBeforeTrainingCourse > 10;
+	}
+
+	boolean isProportionalEarlyBird() {
+		return this.daysBeforeTrainingCourse <= 10;
+	}
+
+
 }

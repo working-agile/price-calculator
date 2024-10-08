@@ -27,7 +27,7 @@ public class MinimumPriceTests {
                 Discounted price:               800
                 Minimum price:                  900
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSD", 1200);
+            TrainingCourse i1 = new CSD("10 January 2024",25, 50, 20, true, 1200);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -53,7 +53,7 @@ public class MinimumPriceTests {
                 Discounted price:               700
                 Minimum price:                  1000
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSM", 1500);
+            TrainingCourse i1 = new CSM("10 January 2024",25, 50, 20, true, 1500);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -79,7 +79,7 @@ public class MinimumPriceTests {
                 Discounted price:               1100
                 Minimum price:                  1200
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",25, 50, 20, true, "CSPO", 1500);
+            TrainingCourse i1 = new CSPO("10 January 2024",25, 50, 20, true, 1500);
             TrainingCourse[] trainingCourses = new TrainingCourse[] { i1 };
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 

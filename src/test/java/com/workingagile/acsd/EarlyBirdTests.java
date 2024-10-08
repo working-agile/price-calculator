@@ -29,7 +29,7 @@ public class EarlyBirdTests {
                 -->
                 discounted price:		 		4000-(6*30) = 3820
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",6, 50, 25, true, "CSD", 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",6, 50, 25, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -53,7 +53,7 @@ public class EarlyBirdTests {
                 -->
                 discounted:		 				4000-(5*30) = 3850
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",5, 50, 25, true, "CSD", 4000);
+            TrainingCourse i1 = new CSD("10 January 2024",5, 50, 25, true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -80,7 +80,11 @@ public class EarlyBirdTests {
                 -->
                 discounted:		 				4000-(10*20) = 3800
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",10, 50, 25, true, trainingCourseType, 4000);
+
+            TrainingCourse i1 = TrainingCourseFactory.createTrainingCourse(
+                    trainingCourseType,
+                    "10 January 2024",10,
+                    50, 25, true,4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 

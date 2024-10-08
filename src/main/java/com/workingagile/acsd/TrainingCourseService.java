@@ -16,7 +16,7 @@ public class TrainingCourseService {
 	}
 
 	public TrainingCourse[] getScheduledTrainingCourses() {
-		return repository.getScheduledTrainingCourses().clone();
+		return repository.getScheduledTrainingCourses();
 	}
 
 	public int getRemainingSalesTarget() {

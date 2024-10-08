@@ -1,8 +1,8 @@
 package com.workingagile.acsd;
 
-public class CSD extends TrainingCourse {
+public class CSPO extends TrainingCourse {
 
-    public CSD(String scheduledDate, int daysBeforeTrainingCourse, int totalNumberOfSeats, int remainingAvailableSeats, Boolean online, int fullPrice) {
+    public CSPO(String scheduledDate, int daysBeforeTrainingCourse, int totalNumberOfSeats, int remainingAvailableSeats, Boolean online, int fullPrice) {
         super(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online, fullPrice);
     }
 
@@ -11,12 +11,13 @@ public class CSD extends TrainingCourse {
             this.currentDiscountedPrice = this.fullPrice - (this.daysBeforeTrainingCourse * 20);
         }
         else if (isSuperEarlyBird()) {
-            this.currentDiscountedPrice = this.fullPrice - 500;
+            this.currentDiscountedPrice = this.fullPrice - 400;
         }
 
-        if (this.currentDiscountedPrice < 1000) {
-            this.currentDiscountedPrice = 1000;
+        if (this.currentDiscountedPrice < 1200) {
+            this.currentDiscountedPrice = 1200;
         }
+
     }
 
 

@@ -10,9 +10,9 @@ public class ManualTests {
         System.out.println("Today is: 1. January 2025");
         System.out.println("Registering training courses:");
 
-        TrainingCourse i1 = new TrainingCourse("10 January 2025",10, 30, 8, true, "CSD", 3000);
-        TrainingCourse i2 = new TrainingCourse("9 January 2025",9, 30, 7, true, "CSPO", 4000);
-        TrainingCourse i3 = new TrainingCourse("20 January 2025", 20, 30, 27, false, "CSM", 3000);
+        TrainingCourse i1 = new CSD("10 January 2025",10, 30, 8, true, 3000);
+        TrainingCourse i2 = new CSPO("9 January 2025",9, 30, 7, true, 4000);
+        TrainingCourse i3 = new CSM("20 January 2025", 20, 30, 27, false, 3000);
         TrainingCourse[] trainingCourses = new TrainingCourse[] {i1, i2, i3};
 
         TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);

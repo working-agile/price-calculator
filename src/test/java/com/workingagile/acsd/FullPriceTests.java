@@ -26,7 +26,11 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",0, 50, 20, true, trainingCourseType, 4000);
+
+            TrainingCourse i1 = TrainingCourseFactory.createTrainingCourse(
+                    trainingCourseType,
+                    "10 January 2024",0, 50, 20,
+                    true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -49,7 +53,10 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",1, 50, 20, true, trainingCourseType, 4000);
+            TrainingCourse i1 = TrainingCourseFactory.createTrainingCourse(
+                    trainingCourseType,
+                    "10 January 2024",1, 50, 20,
+                    true,4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
@@ -74,7 +81,10 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            TrainingCourse i1 = new TrainingCourse("10 January 2024",5, 50, 2, true, trainingCourseType, 4000);
+            TrainingCourse i1 = TrainingCourseFactory.createTrainingCourse(
+                    trainingCourseType,
+                    "10 January 2024",5, 50, 2,
+                    true, 4000);
             TrainingCourse[] trainingCourses = new TrainingCourse[]{i1};
             TrainingCourseService trainingCourseService = new TrainingCourseService(trainingCourses);
 
