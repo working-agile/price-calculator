@@ -6,37 +6,60 @@ public class PriceCalculator {
 
         for (TrainingCourse trainingCourse: scheduledTrainingCourses) {
 
-            if (isProportionalEarlyBird(trainingCourse)) {
-                if (fullPricePolicyApplies(trainingCourse)) {
-                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
-                } else {
-                    if (trainingCourse.type.equals("CSD")) {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 30);
-                    } else {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 20);
-                    }
-                }
-
-            } else if (isSuperEarlyBird(trainingCourse)) {
+            if (trainingCourse.type.equals("CSD")) {
 
                 if (fullPricePolicyApplies(trainingCourse)) {
                     trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
-                } else {
-                    if (trainingCourse.type.equals("CSM")) {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 500;
-                    } else {
+                } else if (isProportionalEarlyBird(trainingCourse)) {
+                            trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 30);
+                } else if (isSuperEarlyBird(trainingCourse)) {
                         trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 400;
-                    }
+                }
+
+                if (trainingCourse.currentDiscountedPrice < 900) {
+                    trainingCourse.currentDiscountedPrice = 900;
+                }
+
+            } else if (trainingCourse.type.equals("CSM")) {
+
+                calculateCurrentPrice(trainingCourse);
+
+            } else if (trainingCourse.type.equals("CSPO")) {
+
+                calculateCurrentPrice(trainingCourse);
+
+            }
+
+        }
+    }
+
+    private void calculateCurrentPrice(TrainingCourse trainingCourse) {
+        if (isProportionalEarlyBird(trainingCourse)) {
+            if (fullPricePolicyApplies(trainingCourse)) {
+                trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+            } else {
+                if (trainingCourse.type.equals("CSM") || trainingCourse.type.equals("CSPO")) {
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 20);
                 }
             }
 
-            if (trainingCourse.type.equals("CSD") && trainingCourse.currentDiscountedPrice < 900) {
-                trainingCourse.currentDiscountedPrice = 900;
-            } else if (trainingCourse.type.equals("CSM") && trainingCourse.currentDiscountedPrice < 1000) {
-                trainingCourse.currentDiscountedPrice = 1000;
-            } else if (trainingCourse.type.equals("CSPO") && trainingCourse.currentDiscountedPrice < 1200) {
-                trainingCourse.currentDiscountedPrice = 1200;
+        } else if (isSuperEarlyBird(trainingCourse)) {
+
+            if (fullPricePolicyApplies(trainingCourse)) {
+                trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+            } else {
+                if (trainingCourse.type.equals("CSM")) {
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 500;
+                } else if (trainingCourse.type.equals("CSPO")) {
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 400;
+                }
             }
+        }
+
+        if (trainingCourse.type.equals("CSM") && trainingCourse.currentDiscountedPrice < 1000) {
+            trainingCourse.currentDiscountedPrice = 1000;
+        } else if (trainingCourse.type.equals("CSPO") && trainingCourse.currentDiscountedPrice < 1200) {
+            trainingCourse.currentDiscountedPrice = 1200;
         }
     }
 
