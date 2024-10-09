@@ -33,20 +33,18 @@ public class MyStepdefs {
         LocalDate scheduledDate = LocalDate.parse(scheduledDateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate currentDate = LocalDate.parse(currentDateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-
-        int daysBeforeTrainingCourse = 0;
+        int daysBeforeTrainingCourse = (int) DAYS.between(currentDate, scheduledDate);
 
         return TrainingCourseFactory.createTrainingCourse(
             typeTrainingCourse, scheduledDateStr, daysBeforeTrainingCourse,
                 10, 10, true, fullPrice);
-
     }
-
 
     TrainingCourse theTrainingCourse;
 
-    @Given("the following training course:")
+    @Given("the following training course has been scheduled:")
     public void the_following_training_course(TrainingCourse trainingCourse) {
+
         theTrainingCourse = trainingCourse;
     }
 
