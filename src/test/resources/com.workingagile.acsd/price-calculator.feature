@@ -14,9 +14,9 @@ Feature: Price calculation
     An example of the proportional discount, in the middle of the interval of the 10
     days leading towards the training course.
 
-      And the following training course has been scheduled:
+      Given the following training course has been scheduled:
         | training course | full price | scheduled date | current date |
-        | CSD             |  4000      | 30/09/2024     | 30/09/2024   |
+        | CSD             |  4000      | 30/09/2024     | 24/09/2024   |
       When a client checks for the current price
       Then the discounted price should be 3820
 

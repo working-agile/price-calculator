@@ -22,33 +22,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MyStepdefs {
 
-    @Given("the current date is {int}\\/{int}\\/{int}")
-    public void theCurrentDateIs(int arg0, int arg1, int arg2) {
-    }
-
-
     @DataTableType
     public TrainingCourse definitionTrainingCourse(Map<String, String> dataTable) {
 
         String typeTrainingCourse = dataTable.get("training course");
-        String scheduledDate = dataTable.get("scheduled date");
         int fullPrice = Integer.parseInt(dataTable.get("full price"));
+        String scheduledDateStr = dataTable.get("scheduled date");
+        String currentDateStr = dataTable.get("current date");
 
-        //LocalDate.parse(scheduledDate, DateTimeFormatter.ofPattern("dd/MM/yyyy")),
-
-        (String type, String scheduledDate, int daysBeforeTrainingCourse,
-        int totalNumberOfSeats, int remainingAvailableSeats,
-        Boolean online, int fullPrice)
+        LocalDate scheduledDate = LocalDate.parse(scheduledDateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate currentDate = LocalDate.parse(currentDateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 
+        int daysBeforeTrainingCourse = 0;
 
         return TrainingCourseFactory.createTrainingCourse(
+            typeTrainingCourse, scheduledDateStr, daysBeforeTrainingCourse,
+                10, 10, true, fullPrice);
 
-                typeTrainingCourse, scheduledDate
-
-                0,
-                fullPrice,
-                0);
     }
 
 
