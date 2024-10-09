@@ -1,4 +1,4 @@
-package com.workingagile.acsd;
+package com.workingagile.acsd.bdd;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
