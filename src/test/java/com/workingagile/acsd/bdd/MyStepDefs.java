@@ -39,14 +39,16 @@ public class MyStepDefs {
     }
 
     TrainingCourse[] trainingCourses = new TrainingCourse[1];
+    TrainingCourseService service;
 
     @Given("the following training course has been scheduled:")
     public void the_following_training_course(TrainingCourse trainingCourse) {
 
-        trainingCourses[0] = trainingCourse;
-    }
+        System.out.println("Given training course: " + trainingCourse);
 
-    TrainingCourseService service = new TrainingCourseService(trainingCourses);
+        trainingCourses[0] = trainingCourse;
+        service = new TrainingCourseService(trainingCourses);
+    }
 
     @When("a client checks for the current price")
     public void aClientChecksForTheCurrentPrice() {
@@ -58,8 +60,8 @@ public class MyStepDefs {
     public void the_discounted_price_should_be(int expectedDiscountedPrice) {
 
         assertThat(trainingCourses[0].getCurrentDiscountedPrice(), is(equalTo(expectedDiscountedPrice)));
-    }
 
+    }
 
 
 }
