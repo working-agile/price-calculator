@@ -48,6 +48,10 @@ public abstract class TrainingCourse {
 		return fullPrice;
 	}
 
+	public void setCurrentDiscountedPrice(int currentDiscountedPrice) {
+		this.currentDiscountedPrice = currentDiscountedPrice;
+	}
+
 	// ---------------------------------------------------------------------------
 
 	public abstract String getDescription();
@@ -65,7 +69,4 @@ public abstract class TrainingCourse {
 	public void decreaseDaysBeforeTrainingCourse() { daysBeforeTrainingCourse--; }
 
 
-	public void setCurrentDiscountedPrice(int currentDiscountedPrice) {
-		this.currentDiscountedPrice = currentDiscountedPrice;
-	}
 }
