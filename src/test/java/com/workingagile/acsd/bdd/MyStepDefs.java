@@ -51,7 +51,7 @@ public class MyStepDefs {
     @When("a client checks for the current price")
     public void aClientChecksForTheCurrentPrice() {
 
-        //service.updateCurrentPrices();
+        service.updateCurrentPrices();
     }
 
     @Then("the discounted price should be {int}")
