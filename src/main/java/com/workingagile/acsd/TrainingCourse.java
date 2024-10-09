@@ -52,6 +52,19 @@ public abstract class TrainingCourse {
 		this.currentDiscountedPrice = currentDiscountedPrice;
 	}
 
+	@Override
+	public String toString() {
+		return "TrainingCourse{" +
+				"scheduledDate='" + scheduledDate + '\'' +
+				", daysBeforeTrainingCourse=" + daysBeforeTrainingCourse +
+				", totalNumberOfSeats=" + totalNumberOfSeats +
+				", remainingAvailableSeats=" + remainingAvailableSeats +
+				", online=" + online +
+				", currentDiscountedPrice=" + currentDiscountedPrice +
+				", fullPrice=" + fullPrice +
+				'}';
+	}
+
 	// ---------------------------------------------------------------------------
 
 	public abstract String getDescription();
