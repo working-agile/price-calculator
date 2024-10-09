@@ -2,10 +2,8 @@ package com.workingagile.acsd.bdd;
 
 import com.workingagile.acsd.TrainingCourse;
 import com.workingagile.acsd.TrainingCourseFactory;
-import io.cucumber.datatable.DataTable;
+import com.workingagile.acsd.TrainingCourseService;
 import io.cucumber.java.DataTableType;
-import io.cucumber.java.ParameterType;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,7 +18,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MyStepdefs {
+public class MyStepDefs {
 
     @DataTableType
     public TrainingCourse definitionTrainingCourse(Map<String, String> dataTable) {
@@ -40,40 +38,28 @@ public class MyStepdefs {
                 10, 10, true, fullPrice);
     }
 
-    TrainingCourse theTrainingCourse;
+    TrainingCourse[] trainingCourses = new TrainingCourse[1];
 
     @Given("the following training course has been scheduled:")
     public void the_following_training_course(TrainingCourse trainingCourse) {
 
-        theTrainingCourse = trainingCourse;
+        trainingCourses[0] = trainingCourse;
     }
 
-    @ParameterType(".*")
-    public LocalDate course_date(String courseDate) {
-        return LocalDate.parse(courseDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
+    TrainingCourseService service = new TrainingCourseService(trainingCourses);
 
-    Item[] processedItems;
+    @When("a client checks for the current price")
+    public void aClientChecksForTheCurrentPrice() {
 
-    @When("a client asks for a quote on {course_date}")
-    public void a_client_asks_for_a_quote_on(LocalDate courseDate) {
-
-        int daysBetween = (int) DAYS.between(courseDate, theTrainingCourse.scheduledDate);
-
-        Item item = new Item(daysBetween + 1, 10, 10, true,
-                theTrainingCourse.type,
-                theTrainingCourse.fullPrice);
-        Item[] items = new Item[]{item};
-
-        processedItems = DataProcessor.processData(items);
-
+        //service.updateCurrentPrices();
     }
 
     @Then("the discounted price should be {int}")
-    public void the_discounted_price_should_be(int discountedPrice) {
+    public void the_discounted_price_should_be(int expectedDiscountedPrice) {
 
-        assertThat(processedItems[0].price, is(equalTo(discountedPrice)));
+        assertThat(trainingCourses[0].getCurrentDiscountedPrice(), is(equalTo(expectedDiscountedPrice)));
     }
+
 
 
 }
