@@ -26,6 +26,11 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 * No discount applicable the day before the training course
 * No discount applicable 5 days prior to the training course whenever there are less than 3 seats left
  
+### Brances
+
+* 1-price-calculator-manual-test
+* 2-price-calculator-with-unit-tests
+* 3-price-calculator-renamed
 
 
 ### Who do I talk to? ###
