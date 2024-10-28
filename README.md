@@ -6,6 +6,12 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 * Refactoring for basic clean coding principles
 
+
+
+
+
+
+
 ### Business Rules
 
 #### The training courses and prices
