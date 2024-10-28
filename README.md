@@ -8,8 +8,7 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 
 ### Branches
-
-+ 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
+* 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
 
 
 
