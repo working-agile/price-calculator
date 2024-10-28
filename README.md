@@ -1,14 +1,17 @@
-# README #
 
 Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Alliance CSD training course.
 
 ### What is this repository for? ###
 
-* Refactoring for basic clean coding principles
+* Refactoring for basic clean coding and SOLID principles
 
 
+### Branches
 
-
+* 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
+* 2-price-calculator-with-unit-test: code is covered by unit tests.
+* 3-price-calculator-renamed: methods and variables renamed
+* 3b-price-calculator-SRP: main class broken down into smaller more cohesive classes
 
 
 
