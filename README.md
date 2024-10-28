@@ -10,7 +10,8 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 ### Branches
 
 * 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
-* 1-price-calculator-with-unit-test: code is covered by unit tests.
+* 2-price-calculator-with-unit-test: code is covered by unit tests.
+* 3-price-calculator-renamed: methods and variables renamed
 
 
 
