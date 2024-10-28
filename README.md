@@ -4,7 +4,15 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 ### What is this repository for? ###
 
-* Refactoring for basic clean coding principles
+* Refactoring for basic clean coding and SOLID principles
+
+
+### Branches
+
+* 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
+* 1-price-calculator-with-unit-test: code is covered by unit tests.
+
+
 
 ### Business Rules
 
