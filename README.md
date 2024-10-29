@@ -7,9 +7,7 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 ### What should you do here?
 
-* Check if the new ODSF immplementation breaks the LSP (Liskov Substitution Principle).
-* Create a *contract test* to show how it breaks the LSP
-* Then think about possible solutions (it needs a design refactoring)
+* Check out how the business rules are illustrated with scenarios
 
 
 ### Branches
