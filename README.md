@@ -23,7 +23,7 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 * 5b-price-calculator-LSP: a solution, breaking the Liskov Substitution Principle
 
 * 10a-price-calculator-BDD: setup for first scenario
-* 10b-price-calculator-BDD: implementation
+* 10b-price-calculator-BDD-implementation: implementation
 
 
 
