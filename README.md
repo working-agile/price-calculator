@@ -1,4 +1,3 @@
-# README #
 
 Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Alliance CSD training course.
 
@@ -6,11 +5,19 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 * Refactoring for basic clean coding and SOLID principles
 
+### What should you do here?
+
+* This is the starting point of the SOLID refactoring exercise.
 
 ### Branches
+
 * 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
-
-
+* 2-price-calculator-with-unit-test: code is covered by unit tests.
+* 3-price-calculator-renamed: methods and variables renamed
+* 3b-price-calculator-SRP: main class broken down into smaller more cohesive classes
+* 4-price-calculator-OCP: extension by inheritance
+* 5a-price-calculator-LSP: introduction of a new training course type: OD-SF
+* 5b-price-calculator-LSP: a solution, breaking the Liskov Substitution Principle
 
 ### Business Rules
 
