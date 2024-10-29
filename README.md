@@ -5,6 +5,9 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 * Refactoring for basic clean coding and SOLID principles
 
+### What should you do here?
+
+* Check this implementation where the OCP (Open-Closed-Principle) has been applied.
 
 ### Branches
 
@@ -13,6 +16,8 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 * 3-price-calculator-renamed: methods and variables renamed
 * 3b-price-calculator-SRP: main class broken down into smaller more cohesive classes
 * 4-price-calculator-OCP: extension by inheritance
+* 5a-price-calculator-LSP: introduction of a new training course type: OD-SF
+* 5b-price-calculator-LSP: a solution, breaking the Liskov Substitution Principle
 
 ### Business Rules
 
