@@ -18,7 +18,7 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 * 4-price-calculator-OCP: extension by inheritance
 * 5a-price-calculator-LSP: introduction of a new training course type: OD-SF
 * 5b-price-calculator-LSP: a solution, breaking the Liskov Substitution Principle
-* 
+
 ### Business Rules
 
 #### The training courses and prices
