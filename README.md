@@ -7,7 +7,10 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 ### What should you do here?
 
-* Check out how the business rules are illustrated with scenarios
+* Check out how the following techniques have been applied:
+
+1. Scenario Template
+2. DataTableType
 
 
 ### Branches
