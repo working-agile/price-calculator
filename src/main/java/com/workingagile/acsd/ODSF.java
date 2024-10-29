@@ -13,4 +13,8 @@ public class ODSF extends TrainingCourse {
         return "OD-SF";
     }
 
+    public void decreaseDaysBeforeTrainingCourse() {
+        throw new RuntimeException("ODSF don't have a scheduled date!");
+    }
+
 }

@@ -28,6 +28,20 @@ public class OnDemandSFTests {
     }
 
 
+    @DisplayName("On demand SF training (OD-SF) courses dont have a ")
+    @Test
+    void odsf_training_courses_dont_have_a_scheduled_date() {
+
+        TrainingCourse trainingCourse = TrainingCourseFactory
+                    .createTrainingCourse("OD-SF", "10 January 2024", 10,
+                            20, 19, true, 3500);
+        try {
+            trainingCourse.decreaseDaysBeforeTrainingCourse();
+            fail("Not expected to come here: ODSF don't have a scheduled date");
+        } catch(RuntimeException notImplemented) {
+            // Expected to come here!
+        }
+    }
 
 
 

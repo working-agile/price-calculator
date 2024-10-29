@@ -7,9 +7,7 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 ### What should you do here?
 
-* Introduce a new training course type "OD-SF": On Demand Scrum Foundations
-* As an "on demand" training course, there is not a specific start date as it is a recorded, automated training course.
-* Implement the new requirement using TDD
+* Look 
 
 
 ### Branches
