@@ -14,6 +14,9 @@ public class TrainingCourseFactory {
         } else if (type.equals("CSPO")) {
             return new CSPO(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online,
                     fullPrice);
+        }  else if (type.equals("OD-SF")) {
+            return new ODSF(scheduledDate, daysBeforeTrainingCourse, totalNumberOfSeats, remainingAvailableSeats, online,
+                    fullPrice);
         } else
             throw new IllegalArgumentException("Unknown training course type");
 
