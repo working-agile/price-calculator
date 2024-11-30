@@ -9,9 +9,13 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 * This is the starting point of the SOLID refactoring exercise.
 
+
+
+
 ### Branches
 
 * 1-price-calculator-manual-test: no documentation is found, only a "manual" automated test.
+* 1b-price-calculator-singleton-example: make singleton testable, remove dependencies
 * 2-price-calculator-with-unit-test: code is covered by unit tests.
 * 3-price-calculator-renamed: methods and variables renamed
 * 3b-price-calculator-SRP: main class broken down into smaller more cohesive classes
