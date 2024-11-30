@@ -5,12 +5,13 @@ Simplified version of the Refactoring exercise from Axel W. Berle's Scrum Allian
 
 * Refactoring for basic clean coding and SOLID principles
 
+### What is this branch for? ###
+
+* Demonstrate how to make the `Singleton pattern` testable.
+
 ### What should you do here?
 
-* This is the starting point of the SOLID refactoring exercise.
-
-
-
+* Try to figure out strategies to make this code testable.
 
 ### Branches
 
