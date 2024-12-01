@@ -1,0 +1,15 @@
+services:
+
+  working-agile-postgres:
+    image: postgres:16.2-alpine3.18
+
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+    volumes:
+      - ${WORKING_AGILE_DATABASE_PATH}:/var/lib/postgresql/data
+
+    ports:
+      - '5432:5432'
+
