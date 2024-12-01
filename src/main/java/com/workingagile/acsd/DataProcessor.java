@@ -12,6 +12,10 @@ public class DataProcessor {
 	private static Connection database;
 
 	private DataProcessor() throws Exception {
+		System.out.println("Initializing DataProcessor. Very slow...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {}
 	}
 
 	public static void calculateData(boolean next) {
