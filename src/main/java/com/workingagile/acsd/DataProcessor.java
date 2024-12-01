@@ -13,7 +13,7 @@ public class DataProcessor {
 
 	private static DataProcessor theSingleton;
 
-	private DataProcessor() throws Exception {
+	protected DataProcessor() {
 		System.out.println("Initializing DataProcessor. Very slow...");
 		try {
 			Thread.sleep(1000);

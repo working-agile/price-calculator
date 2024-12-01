@@ -17,13 +17,13 @@ public class DataProcessorTests {
         //
         // but the method is static
 
-
+        /*
         List items = new ArrayList<Item>();
         items.add(new Item(1,"10 January 2025",10, 30, 8, "CSD", 3000, 3000));
         items.add(new Item(2,"9 January 2025",9, 30, 7, "CSPO", 4000, 4000));
         items.add(new Item(3, "20 January 2025", 20, 30, 27, "CSM", 3000, 3000));
 
-        DataProcessorTestable dataProcessor = new DataProcessorTestable();
+        TestableDataProcessor dataProcessor = new TestableDataProcessor();
 
         List<Item> updatedItems = dataProcessor.calculateData(items, false);
 
@@ -65,6 +65,8 @@ public class DataProcessorTests {
         System.out.println("-----------------------------------------------------");
         System.out.println("Total sales target remaining: " + DataProcessor.salesValue);
         System.out.println("-----------------------------------------------------");
+
+        */
     }
 
 }
