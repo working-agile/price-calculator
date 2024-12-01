@@ -26,7 +26,10 @@ public class DataProcessor {
 	}
 
 	public static void calculateData(boolean next) {
+		getInstance().calculateDataInstance(next);
+	}
 
+	protected void calculateDataInstance(boolean next) {
 		if (database == null) {
 			try {
 				String url = "jdbc:mysql://production-database:3306/prices";
@@ -122,6 +125,7 @@ public class DataProcessor {
 
 		} catch(Exception exception) {}
 	}
+
 
 
 }
