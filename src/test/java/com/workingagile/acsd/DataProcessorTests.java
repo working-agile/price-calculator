@@ -34,10 +34,11 @@ public class DataProcessorTests {
 
 
     @Test
-    void manual() {
+    void manual_with_live_database() {
 
         // 1. Show the current prices
         DataProcessor processor = DataProcessor.getInstance();
+
         processor.calculateData(false);
 
         System.out.println("-----------------------------------------------------");

@@ -15,15 +15,15 @@ public class DataProcessor {
 
 	private static DataProcessor theSingleton;
 
-	private DataProcessor() {
-		System.out.println("Initializing DataProcessor. Very slow...");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException ex) {}
-		theSingleton = this;
-	}
+	private DataProcessor() {}
 
 	public static DataProcessor getInstance() {
+		if (theSingleton == null) {
+			// simulating a slow initialization process
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException ex) {}
+		}
 		return theSingleton;
 	}
 
