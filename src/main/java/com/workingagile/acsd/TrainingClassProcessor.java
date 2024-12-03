@@ -5,7 +5,19 @@ import java.util.List;
 
 public class TrainingClassProcessor {
 
-    int salesValue;
+    private List<Item> items;
+
+    private int salesValue;
+
+    public int getSalesValue() {
+        return salesValue;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+
 
     public ArrayList<Item> processTrainingCourses(boolean next, List<Item> currentTrainingCourses) {
         salesValue = 0;
@@ -13,7 +25,8 @@ public class TrainingClassProcessor {
         for (Item currentItem: currentTrainingCourses) {
             processTrainingCourse(next, currentItem, newList);
         }
-
+        items = newList;
+        
         return newList;
     }
 
@@ -63,6 +76,5 @@ public class TrainingClassProcessor {
 
         }
     }
-
 
 }

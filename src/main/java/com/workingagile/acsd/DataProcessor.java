@@ -6,14 +6,12 @@ import java.util.List;
 
 public class DataProcessor {
 
-	private List<Item> list;
-
 	public List<Item> getList() {
-		return list;
+		return processor.getItems();
 	}
 
 	public int getSalesValue() {
-		return processor.salesValue;
+		return processor.getSalesValue();
 	}
 
 	// ----------------------------------------------------
@@ -48,9 +46,9 @@ public class DataProcessor {
 
 			updateTrainingCoursesInDatabase(newList);
 
-			list = newList;
-
-		} catch(Exception exception) {}
+		} catch(Exception exception) {
+			throw new RuntimeException(exception);
+		}
 	}
 
 
