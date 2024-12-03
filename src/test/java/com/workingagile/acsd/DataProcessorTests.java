@@ -54,7 +54,7 @@ public class DataProcessorTests {
         processor.calculateData(false);
 
         System.out.println("Scheduled training courses:");
-        for (Item item: processor.list) {
+        for (Item item: processor.getList()) {
             System.out.println("------------------------------");
             System.out.println("Type: " + item.type);
             System.out.println("When: " + item.trDate);
@@ -66,7 +66,7 @@ public class DataProcessorTests {
         }
 
         System.out.println("-----------------------------------------------------");
-        System.out.println("Total sales target remaining: " + processor.salesValue);
+        System.out.println("Total sales target remaining: " + processor.getSalesValue());
         System.out.println("-----------------------------------------------------");
 
 
@@ -74,7 +74,7 @@ public class DataProcessorTests {
         System.out.println("\n\nMove to next day\n");
         processor.calculateData(true);
 
-        for (Item item: processor.list) {
+        for (Item item: processor.getList()) {
             System.out.println("Current training courses:");
             System.out.println("------------------------------");
             System.out.println("Training course");
@@ -88,7 +88,7 @@ public class DataProcessorTests {
         }
 
         System.out.println("-----------------------------------------------------");
-        System.out.println("Total sales target remaining: " + processor.salesValue);
+        System.out.println("Total sales target remaining: " + processor.getSalesValue());
         System.out.println("-----------------------------------------------------");
     }
 

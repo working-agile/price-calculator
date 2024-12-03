@@ -6,15 +6,23 @@ import java.util.List;
 
 public class DataProcessor {
 
-	public int salesValue;
+	private List<Item> list;
 
-	public ArrayList<Item> list;
+	public List<Item> getList() {
+		return list;
+	}
+
+	public int getSalesValue() {
+		return processor.salesValue;
+	}
 
 	// ----------------------------------------------------
 
 	private static Connection database;
 
 	private static DataProcessor theSingleton;
+
+	private static TrainingClassProcessor processor;
 
 	private DataProcessor() {}
 
@@ -26,6 +34,7 @@ public class DataProcessor {
 			} catch (InterruptedException ex) {}
 			initDatabaseConnection();
 			theSingleton = new DataProcessor();
+			processor = new TrainingClassProcessor();
 		}
 		return theSingleton;
 	}
@@ -35,7 +44,7 @@ public class DataProcessor {
 
 			List<Item> currentTrainingCourses = loadTrainingCoursesFromDatabase();
 
-			ArrayList<Item> newList = processTrainingCourses(next, currentTrainingCourses);
+			ArrayList<Item> newList = processor.processTrainingCourses(next, currentTrainingCourses);
 
 			updateTrainingCoursesInDatabase(newList);
 
@@ -44,14 +53,6 @@ public class DataProcessor {
 		} catch(Exception exception) {}
 	}
 
-	private ArrayList<Item> processTrainingCourses(boolean next, List<Item> currentTrainingCourses) {
-		salesValue = 0;
-		ArrayList<Item> newList = new ArrayList<>();
-		for (Item currentItem: currentTrainingCourses) {
-			processTrainingCourse(next, currentItem, newList);
-		}
-		return newList;
-	}
 
 	private List<Item> loadTrainingCoursesFromDatabase() throws SQLException {
 		String query = "select * from tr_crs";
@@ -77,7 +78,7 @@ public class DataProcessor {
 		return currentTrainingCourses;
 	}
 
-	private static void updateTrainingCoursesInDatabase(ArrayList<Item> newList) throws SQLException {
+	private void updateTrainingCoursesInDatabase(ArrayList<Item> newList) throws SQLException {
 		for (int i = 0; i< newList.size(); i++) {
 
 			String update = "update tr_crs set days=?, curr_price=? where id=? ";
@@ -88,53 +89,6 @@ public class DataProcessor {
 			pstmt.setLong(3, newList.get(i).id);
 
 			int res = pstmt.executeUpdate();
-		}
-	}
-
-	private void processTrainingCourse(boolean next, Item item, ArrayList<Item> newList) {
-		if (!(item.days < 0 || (next && item.days == 0))) {
-
-			newList.add(item);
-
-			if (next) {
-				item.days--;
-			}
-
-			if (item.days <= 10) {
-
-				if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-					item.curr = item.full;
-				} else {
-					if (item.type.equals("CSD")) {
-						item.curr = item.full - (item.days * 30);
-					} else {
-						item.curr = item.full - (item.days * 20);
-					}
-				}
-
-			} else if (item.days > 10) {
-
-				if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-					item.curr = item.full;
-				} else {
-					if (item.type.equals("CSM")) {
-						item.curr = item.full - 500;
-					} else {
-						item.curr = item.full - 400;
-					}
-				}
-			}
-
-			if (item.type.equals("CSD") && item.curr < 900) {
-				item.curr = 900;
-			} else if (item.type.equals("CSM") && item.curr < 1000) {
-				item.curr = 1000;
-			} else if (item.type.equals("CSPO") && item.curr < 1200) {
-				item.curr = 1200;
-			}
-
-			salesValue += (item.avail * item.curr);
-
 		}
 	}
 
