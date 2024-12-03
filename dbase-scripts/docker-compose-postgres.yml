@@ -1,6 +1,7 @@
 services:
 
-  working-agile-postgres:
+  a-csd-postgres:
+
     image: postgres:16.2-alpine3.18
 
     environment:

@@ -2,32 +2,45 @@ package com.workingagile.acsd;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 public class DataProcessorTests {
 
 
     @Test
-    void insert_data_into_database() {
+    void register_training_courses_in_the_database() throws Exception {
 
-        // database: a-csd
-        // user: "prices-admin"
-        // password: "prices-secret-password"
-        // url = "jdbc:mysql://a-csd-database:3306/prices"
+        // database: postgres
+        // user: "postgres"
+        // password: "postgres"
+        // url = "jdbc:postgresql://127.0.0.1:5432/postgres"
 
-        // table: tr_crs
-        // long: "id"
-        // string: "tr_date"
-        // int: "days"
-        // int: "ttl_seats"
-        // int: "avail"
-        // string: "type"
-        // int: "curr"
-        // int: full
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Setting up the training courses");
+        System.out.println("Current date: 1. January 2025");
+        System.out.println("Training course CSPO scheduled for January 9th");
+        System.out.println("Training course CSD scheduled for January 10th");
+        System.out.println("Training course CSM scheduled for January 20th");
 
-        // current date: 1. January 2025
+        String url = "jdbc:postgresql://127.0.0.1:5432/postgres";
+        Class.forName("org.postgresql.Driver");
+        Connection connection = DriverManager.getConnection(url, "postgres", "postgres");
+        Statement statement = connection.createStatement();
 
-        // Item("9 January 2025",   9,  30, 7, "CSPO", 4000, 4000));
-        // Item("10 January 2025",  10, 30, 8, "CSD", 3000, 3000));
-        // Item("20 January 2025",  20, 30, 27, "CSM", 3000, 3000));
+        statement.executeUpdate("delete from tr_crs");
+
+        String sql1 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " + "" +
+                "VALUES(1,'9 January 2025',9,30,7,'CSPO',4000)";
+        String sql2 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " + "" +
+                "VALUES(2,'10 January 2025',10,30,8,'CSO',3000)";
+        String sql3 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " + "" +
+                "VALUES(3, '20 January 2025',20,30,27,'CSM',3000)";
+
+        statement.executeUpdate(sql1);
+        statement.executeUpdate(sql2);
+        statement.executeUpdate(sql3);
 
     }
 

@@ -10,5 +10,5 @@ set -e
 
 echo "----connecting to the postgres database"
 
-docker exec -it current-server-ssr-working-agile-postgres-1 psql -U postgres
+docker exec -it dbase-scripts-a-csd-postgres-1 psql -U postgres
 

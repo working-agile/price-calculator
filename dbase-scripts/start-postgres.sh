@@ -10,7 +10,7 @@ set -e
 
 echo "----starting the postgres database independently from the services"
 
-export WORKING_AGILE_DATABASE_PATH=/opt/working-agile/postgres
+export WORKING_AGILE_DATABASE_PATH=/opt/working-agile/a-csd/postgres
 
 DOCKER_COMPOSE_LOCATION=./docker-compose-postgres.yml
 
