@@ -38,7 +38,6 @@ public class DataProcessor {
 	}
 
 	public void calculateData(boolean next) {
-		try {
 
 			List<Item> currentTrainingCourses = loadTrainingCoursesFromDatabase();
 
@@ -46,47 +45,52 @@ public class DataProcessor {
 
 			updateTrainingCoursesInDatabase(newList);
 
-		} catch(Exception exception) {
-			throw new RuntimeException(exception);
-		}
 	}
 
+	private List<Item> loadTrainingCoursesFromDatabase() {
+		List<Item> currentTrainingCourses = null;
+		try {
+			String query = "select * from tr_crs";
+			Statement st = database.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			currentTrainingCourses = new ArrayList<>();
+			while (rs.next()) {
 
-	private List<Item> loadTrainingCoursesFromDatabase() throws SQLException {
-		String query = "select * from tr_crs";
-		Statement st = database.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		List<Item> currentTrainingCourses = new ArrayList<>();
-		while (rs.next()) {
+				long id = rs.getLong("id");
+				String trDate = rs.getString("tr_date");
+				int days = rs.getInt("days");
+				int ttlSeats = rs.getInt("ttl_seats");
+				int avail = rs.getInt("avail");
+				String type = rs.getString("type");
+				int curr = rs.getInt("curr_price");
+				int full = rs.getInt("full_price");
 
-			long id = rs.getLong("id");
-			String trDate = rs.getString("tr_date");
-			int days = rs.getInt("days");
-			int ttlSeats = rs.getInt("ttl_seats");
-			int avail = rs.getInt("avail");
-			String type = rs.getString("type");
-			int curr = rs.getInt("curr_price");
-			int full = rs.getInt("full_price");
+				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
 
-			Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
-
-			currentTrainingCourses.add(item);
+				currentTrainingCourses.add(item);
+			}
+			st.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
 		}
-		st.close();
 		return currentTrainingCourses;
 	}
 
-	private void updateTrainingCoursesInDatabase(ArrayList<Item> newList) throws SQLException {
+	private void updateTrainingCoursesInDatabase(ArrayList<Item> newList) {
 		for (int i = 0; i< newList.size(); i++) {
 
-			String update = "update tr_crs set days=?, curr_price=? where id=? ";
-			PreparedStatement pstmt = database.prepareStatement(update);
+			try {
+				String update = "update tr_crs set days=?, curr_price=? where id=? ";
+				PreparedStatement pstmt = database.prepareStatement(update);
 
-			pstmt.setInt(1, newList.get(i).days);
-			pstmt.setInt(2, newList.get(i).curr);
-			pstmt.setLong(3, newList.get(i).id);
+				pstmt.setInt(1, newList.get(i).days);
+				pstmt.setInt(2, newList.get(i).curr);
+				pstmt.setLong(3, newList.get(i).id);
 
-			int res = pstmt.executeUpdate();
+				int res = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 
