@@ -23,6 +23,7 @@ public class DataProcessor {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException ex) {}
+			theSingleton = new DataProcessor();
 		}
 		return theSingleton;
 	}
@@ -31,9 +32,9 @@ public class DataProcessor {
 
 		if (database == null) {
 			try {
-				String url = "jdbc:postgresql://127.0.0.1:5432/a-csd";
+				String url = "jdbc:postgresql://127.0.0.1:5432/postgres";
 				Class.forName("org.postgresql.Driver");
-				database = DriverManager.getConnection(url, "prices-user", "prices-secret-password");
+				database = DriverManager.getConnection(url, "postgres", "postgres");
 			} catch (Exception e) {
 			}
 		}
@@ -54,8 +55,8 @@ public class DataProcessor {
 				int ttlSeats = rs.getInt("ttl_seats");
 				int avail = rs.getInt("avail");
 				String type = rs.getString("type");
-				int curr = rs.getInt("curr");
-				int full = rs.getInt("full");
+				int curr = rs.getInt("curr_price");
+				int full = rs.getInt("full_price");
 
 				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
 
@@ -109,7 +110,7 @@ public class DataProcessor {
 			// update database
 			for (int i=0; i<newList.size(); i++) {
 
-				String update = "update tr_crs set days=?, curr=? where id=? ";
+				String update = "update tr_crs set days=?, curr_price=? where id=? ";
 				PreparedStatement pstmt = database.prepareStatement(update);
 
 				pstmt.setInt(1, newList.get(i).days);
@@ -117,7 +118,6 @@ public class DataProcessor {
 				pstmt.setLong(3, newList.get(i).id);
 
 				int res = pstmt.executeUpdate();
-				System.out.println("Result: " + res);
 			}
 			list = newList;
 

@@ -8,8 +8,7 @@ import java.sql.Statement;
 
 public class DataProcessorTests {
 
-
-    @Test
+    @Test()
     void register_training_courses_in_the_database() throws Exception {
 
         // database: postgres
@@ -31,11 +30,11 @@ public class DataProcessorTests {
 
         statement.executeUpdate("delete from tr_crs");
 
-        String sql1 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " + "" +
+        String sql1 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " +
                 "VALUES(1,'9 January 2025',9,30,7,'CSPO',4000)";
-        String sql2 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " + "" +
+        String sql2 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " +
                 "VALUES(2,'10 January 2025',10,30,8,'CSO',3000)";
-        String sql3 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " + "" +
+        String sql3 = "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) " +
                 "VALUES(3, '20 January 2025',20,30,27,'CSM',3000)";
 
         statement.executeUpdate(sql1);
@@ -47,21 +46,16 @@ public class DataProcessorTests {
 
 
     @Test
-    void manual_with_live_database() {
+    void manual_tests_with_live_database() {
 
         // 1. Show the current prices
         DataProcessor processor = DataProcessor.getInstance();
 
         processor.calculateData(false);
 
-        System.out.println("-----------------------------------------------------");
-        System.out.println("Total sales target remaining: " + processor.salesValue);
-        System.out.println("-----------------------------------------------------");
-
+        System.out.println("Scheduled training courses:");
         for (Item item: processor.list) {
-            System.out.println("Current training courses:");
             System.out.println("------------------------------");
-            System.out.println("Training course");
             System.out.println("Type: " + item.type);
             System.out.println("When: " + item.trDate);
             System.out.println("Remaining days before training course: " + item.days);
@@ -70,14 +64,15 @@ public class DataProcessorTests {
             System.out.println("Number of seats: " + item.seats);
             System.out.println("Remaining available seats: " + item.avail);
         }
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Total sales target remaining: " + processor.salesValue);
+        System.out.println("-----------------------------------------------------");
+
 
         // 2. Move to next day
-        System.out.println("\n\nMove to next day");
+        System.out.println("\n\nMove to next day\n");
         processor.calculateData(true);
-
-        System.out.println("-----------------------------------------------------");
-        System.out.println("Total sales target remaining: " + processor.salesValue);
-        System.out.println("-----------------------------------------------------");
 
         for (Item item: processor.list) {
             System.out.println("Current training courses:");
@@ -92,6 +87,9 @@ public class DataProcessorTests {
             System.out.println("Remaining available seats: " + item.avail);
         }
 
+        System.out.println("-----------------------------------------------------");
+        System.out.println("Total sales target remaining: " + processor.salesValue);
+        System.out.println("-----------------------------------------------------");
     }
 
 }
