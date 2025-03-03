@@ -17,6 +17,10 @@ public class DataProcessor {
 
 	private DataProcessor() {}
 
+	public static void setTestConnection(Connection testConnection) {
+		database = testConnection;
+	}
+
 	public static DataProcessor getInstance() {
 		if (theSingleton == null) {
 			// simulating a slow initialization process
@@ -32,9 +36,11 @@ public class DataProcessor {
 
 		if (database == null) {
 			try {
+
 				String url = "jdbc:postgresql://127.0.0.1:5432/postgres";
 				Class.forName("org.postgresql.Driver");
 				database = DriverManager.getConnection(url, "postgres", "postgres");
+
 			} catch (Exception e) {
 			}
 		}
