@@ -1,5 +1,6 @@
 package com.workingagile.acsd;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.Statement;
 
 public class DataProcessorTests {
 
+    @Disabled
     @Test()
     void register_training_courses_in_the_database() throws Exception {
 
@@ -44,7 +46,7 @@ public class DataProcessorTests {
     }
 
 
-
+    @Disabled
     @Test
     void manual_tests_with_live_database() {
 
