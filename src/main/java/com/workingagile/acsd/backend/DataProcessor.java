@@ -15,7 +15,11 @@ public class DataProcessor {
 
 	private static DataProcessor theSingleton;
 
-	private DataProcessor() {}
+	protected DataProcessor() {}
+
+	protected void setTestDatabaseConnection(Connection testDatabaseConnection) {
+		database = testDatabaseConnection;
+	}
 
 	public static DataProcessor getInstance() {
 		if (theSingleton == null) {
