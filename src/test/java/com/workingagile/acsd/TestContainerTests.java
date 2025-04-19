@@ -1,5 +1,7 @@
 package com.workingagile.acsd;
 
+import com.workingagile.acsd.backend.DataProcessor;
+import com.workingagile.acsd.backend.Item;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.junit.jupiter.api.AfterAll;

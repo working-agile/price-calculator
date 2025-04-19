@@ -1,6 +1,9 @@
 package com.workingagile.acsd;
 
-import static com.workingagile.acsd.ECommerceBackend.bootingECommerceSystem;
+import com.workingagile.acsd.backend.DataProcessor;
+import com.workingagile.acsd.backend.Item;
+
+import static com.workingagile.acsd.backend.ECommerceBackend.bootingECommerceSystem;
 
 public class ECommerceApplication {
 

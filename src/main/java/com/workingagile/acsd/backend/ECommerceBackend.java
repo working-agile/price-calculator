@@ -1,4 +1,4 @@
-package com.workingagile.acsd;
+package com.workingagile.acsd.backend;
 
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
