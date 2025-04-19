@@ -28,7 +28,7 @@ public class DataProcessor {
 		return theSingleton;
 	}
 
-	public void calculateData(boolean next) {
+	public void calculateData(boolean moveToNextDay) {
 
 		if (database == null) {
 			try {
@@ -40,7 +40,7 @@ public class DataProcessor {
 			} catch (Exception e) {
 			}
 		}
-		// read the prices
+		// read the prices from database
 		try {
 			String query = "select * from tr_crs";
 			Statement st = database.createStatement();
@@ -62,11 +62,11 @@ public class DataProcessor {
 
 				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
 
-				if (!(item.days < 0 || (next && item.days == 0))) {
+				if (!(item.days < 0 || (moveToNextDay && item.days == 0))) {
 
 					newList.add(item);
 
-					if (next) {
+					if (moveToNextDay) {
 						item.days--;
 					}
 
@@ -109,7 +109,7 @@ public class DataProcessor {
 			}
 			st.close();
 
-			// update database
+			// update prices in database
 			for (int i=0; i<newList.size(); i++) {
 
 				String update = "update tr_crs set days=?, curr_price=? where id=? ";
