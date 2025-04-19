@@ -17,10 +17,6 @@ public class DataProcessor {
 
 	private DataProcessor() {}
 
-	public static void setTestConnection(Connection testConnection) {
-		database = testConnection;
-	}
-
 	public static DataProcessor getInstance() {
 		if (theSingleton == null) {
 			// simulating a slow initialization process
