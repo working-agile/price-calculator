@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ECommerceBackend {
+public class ECommercePersistence {
 
     private static final String URL_PRODUCTION_DATABASE = "jdbc:postgresql://127.0.0.1:5432/production_database";
 

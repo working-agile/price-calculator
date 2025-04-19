@@ -3,7 +3,7 @@ package com.workingagile.acsd;
 import com.workingagile.acsd.backend.DataProcessor;
 import com.workingagile.acsd.backend.Item;
 
-import static com.workingagile.acsd.backend.ECommerceBackend.bootingECommerceSystem;
+import static com.workingagile.acsd.backend.ECommercePersistence.bootingECommerceSystem;
 
 public class ECommerceApplication {
 
