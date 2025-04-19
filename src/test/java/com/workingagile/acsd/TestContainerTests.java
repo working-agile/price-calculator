@@ -24,6 +24,11 @@ public class TestContainerTests {
 
     @BeforeAll
     static void beforeAll() {
+
+
+        // TODO: set the URL, password and user
+
+
         postgres.start();
         url = postgres.getJdbcUrl();
         username = postgres.getUsername();
@@ -64,7 +69,6 @@ public class TestContainerTests {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
     }
 
     private void createCustomersTableIfNotExists() {
