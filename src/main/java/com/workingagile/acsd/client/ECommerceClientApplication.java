@@ -1,9 +1,9 @@
 package com.workingagile.acsd.client;
 
-import com.workingagile.acsd.backend.DataProcessor;
+import com.workingagile.acsd.backend.RefactoredDataProcessor;
 import com.workingagile.acsd.backend.domain.Item;
 
-import static com.workingagile.acsd.backend.ECommercePersistence.bootingECommerceSystem;
+import static com.workingagile.acsd.backend.persistence.ECommercePersistence.bootingECommerceSystem;
 
 public class ECommerceClientApplication {
 
@@ -19,7 +19,7 @@ public class ECommerceClientApplication {
         System.out.println("   Calculate the current prices...");
         System.out.println("------------------------------------------------------------------");
 
-        DataProcessor processor = DataProcessor.getInstance();
+        RefactoredDataProcessor processor = RefactoredDataProcessor.getInstance();
         processor.calculateData(false /* don't change the date */);
         printReport();
 
@@ -33,7 +33,7 @@ public class ECommerceClientApplication {
     }
 
     private static void printReport() {
-        DataProcessor processor = DataProcessor.getInstance();
+        RefactoredDataProcessor processor = RefactoredDataProcessor.getInstance();
         System.out.println("Current prices of scheduled training courses:");
         System.out.println("---------------------------------------------");
         for (Item item : processor.getList()) {

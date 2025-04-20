@@ -2,18 +2,40 @@ package com.workingagile.acsd.backend;
 
 import com.workingagile.acsd.backend.domain.Item;
 import com.workingagile.acsd.backend.domain.TrainingClassProcessor;
-import org.jetbrains.annotations.Nullable;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RefactoredDataProcessor extends DataProcessor {
+public class RefactoredDataProcessor {
 
-    TrainingClassProcessor processor;
+    private TrainingClassProcessor processor;
 
-    public RefactoredDataProcessor() {
+    private static Connection database;
+
+    protected void setTestDatabaseConnection(Connection testDatabaseConnection) {
+        database = testDatabaseConnection;
+    }
+
+    protected Connection getDatabaseConnection() {
+        return database;
+    }
+
+    private static RefactoredDataProcessor theSingleton;
+
+    protected RefactoredDataProcessor() {
         processor = new TrainingClassProcessor();
+    }
+
+    public static RefactoredDataProcessor getInstance() {
+        if (theSingleton == null) {
+            // simulating a slow initialization process
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {}
+            theSingleton = new RefactoredDataProcessor();
+        }
+        return theSingleton;
     }
 
     public int getSalesValue() {
@@ -24,26 +46,19 @@ public class RefactoredDataProcessor extends DataProcessor {
         return processor.getList();
     }
 
-
     public void calculateData(boolean moveToNextDay) {
 
-        System.out.println("Calling RefactoredDataProcessor.calculate()");
+        initDatabaseConnection();
 
-        Connection database = getDatabaseConnection();
-
-        database = initDatabaseConnection(database);
-
-        ArrayList<Item> trainingCourses = readTrainingCoursesFromDatabase(database);
+        ArrayList<Item> trainingCourses = readTrainingCoursesFromDatabase();
 
         processor.processTrainingCourses(trainingCourses, moveToNextDay);
 
-        updatePricesInDatabase(trainingCourses, database);
+        updatePricesInDatabase(trainingCourses);
 
     }
 
-
-
-    private ArrayList<Item> readTrainingCoursesFromDatabase(Connection database) {
+    private ArrayList<Item> readTrainingCoursesFromDatabase() {
         ArrayList<Item> newList = new ArrayList<>();
         Statement st = null;
         try  {
@@ -74,7 +89,7 @@ public class RefactoredDataProcessor extends DataProcessor {
         }
     }
 
-    private static @Nullable Connection initDatabaseConnection(Connection database) {
+    private static void initDatabaseConnection() {
         if (database == null) {
             try {
 
@@ -86,10 +101,9 @@ public class RefactoredDataProcessor extends DataProcessor {
                 throw new RuntimeException(e);
             }
         }
-        return database;
     }
 
-    private static void updatePricesInDatabase(ArrayList<Item> newList, Connection database) {
+    private static void updatePricesInDatabase(ArrayList<Item> newList) {
         try {
             for (int i = 0; i< newList.size(); i++) {
 
