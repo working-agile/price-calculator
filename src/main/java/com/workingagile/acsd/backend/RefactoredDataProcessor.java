@@ -8,6 +8,21 @@ import java.util.List;
 
 public class RefactoredDataProcessor extends DataProcessor {
 
+    TrainingClassProcessor processor;
+
+    public RefactoredDataProcessor() {
+        processor = new TrainingClassProcessor();
+    }
+
+    public int getSalesValue() {
+        return processor.getSalesValue();
+    }
+
+    public List<Item> getList() {
+        return processor.getList();
+    }
+
+
     public void calculateData(boolean moveToNextDay) {
 
         System.out.println("Calling RefactoredDataProcessor.calculate()");
@@ -18,22 +33,13 @@ public class RefactoredDataProcessor extends DataProcessor {
 
         ArrayList<Item> trainingCourses = readTrainingCoursesFromDatabase(database);
 
-        processTrainingCourses(trainingCourses, moveToNextDay);
+        processor.processTrainingCourses(trainingCourses, moveToNextDay);
 
         updatePricesInDatabase(trainingCourses, database);
 
-        list = trainingCourses;
-
     }
 
-    private void processTrainingCourses(List<Item> trainingCourses, boolean moveToNextDay) {
 
-        salesValue = 0;
-
-        for (Item item: trainingCourses) {
-            processTrainingCourse(moveToNextDay, item);
-        }
-    }
 
     private ArrayList<Item> readTrainingCoursesFromDatabase(Connection database) {
         ArrayList<Item> newList = new ArrayList<>();
@@ -99,49 +105,5 @@ public class RefactoredDataProcessor extends DataProcessor {
         }
     }
 
-    private void processTrainingCourse(boolean moveToNextDay, Item item) {
-        if (!(item.days < 0 || (moveToNextDay && item.days == 0))) {
-
-            if (moveToNextDay) {
-                item.days--;
-            }
-
-            if (item.days <= 10) {
-
-                if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-                    item.curr = item.full;
-                } else {
-                    if (item.type.equals("CSD")) {
-                        item.curr = item.full - (item.days * 30);
-                    } else {
-                        item.curr = item.full - (item.days * 20);
-                    }
-                }
-
-            } else if (item.days > 10) {
-
-                if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-                    item.curr = item.full;
-                } else {
-                    if (item.type.equals("CSM")) {
-                        item.curr = item.full - 500;
-                    } else {
-                        item.curr = item.full - 400;
-                    }
-                }
-            }
-
-            if (item.type.equals("CSD") && item.curr < 900) {
-                item.curr = 900;
-            } else if (item.type.equals("CSM") && item.curr < 1000) {
-                item.curr = 1000;
-            } else if (item.type.equals("CSPO") && item.curr < 1200) {
-                item.curr = 1200;
-            }
-
-            salesValue += (item.avail * item.curr);
-
-        }
-    }
 
 }

@@ -36,7 +36,7 @@ public class ECommerceClientApplication {
         DataProcessor processor = DataProcessor.getInstance();
         System.out.println("Current prices of scheduled training courses:");
         System.out.println("---------------------------------------------");
-        for (Item item : processor.list) {
+        for (Item item : processor.getList()) {
             System.out.println("Type: " + item.type);
             System.out.println("When: " + item.trDate);
             System.out.println("Remaining days before training course: " + item.days);
@@ -46,7 +46,7 @@ public class ECommerceClientApplication {
             System.out.println("Remaining available seats: " + item.avail);
             System.out.println();
         }
-        System.out.println("Remaining total sales target: " + processor.salesValue);
+        System.out.println("Remaining total sales target: " + processor.getSalesValue());
     }
 
 
