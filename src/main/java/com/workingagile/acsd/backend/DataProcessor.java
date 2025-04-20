@@ -27,7 +27,7 @@ public class DataProcessor {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException ex) {}
-			theSingleton = new DataProcessor();
+			theSingleton = new RefactoredDataProcessor();
 		}
 		return theSingleton;
 	}
