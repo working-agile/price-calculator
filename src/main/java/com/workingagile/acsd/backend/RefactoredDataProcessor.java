@@ -1,5 +1,7 @@
 package com.workingagile.acsd.backend;
 
+import com.workingagile.acsd.backend.domain.Item;
+import com.workingagile.acsd.backend.domain.TrainingClassProcessor;
 import org.jetbrains.annotations.Nullable;
 
 import java.sql.*;

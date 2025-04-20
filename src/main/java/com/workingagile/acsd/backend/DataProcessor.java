@@ -1,7 +1,8 @@
 package com.workingagile.acsd.backend;
 
+import com.workingagile.acsd.backend.domain.Item;
+
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DataProcessor {

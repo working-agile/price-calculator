@@ -1,4 +1,4 @@
-package com.workingagile.acsd.backend;
+package com.workingagile.acsd.backend.domain;
 
 public class Item {
 

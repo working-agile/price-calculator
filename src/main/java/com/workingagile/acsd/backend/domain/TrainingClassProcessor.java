@@ -1,4 +1,4 @@
-package com.workingagile.acsd.backend;
+package com.workingagile.acsd.backend.domain;
 
 import java.util.ArrayList;
 import java.util.List;

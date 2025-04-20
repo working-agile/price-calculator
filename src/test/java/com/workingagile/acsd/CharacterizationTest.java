@@ -1,6 +1,6 @@
 package com.workingagile.acsd;
 
-import com.workingagile.acsd.backend.Item;
+import com.workingagile.acsd.backend.domain.Item;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
