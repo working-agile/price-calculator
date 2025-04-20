@@ -5,7 +5,7 @@ import com.workingagile.acsd.backend.Item;
 
 import static com.workingagile.acsd.backend.ECommercePersistence.bootingECommerceSystem;
 
-public class ECommerceApplication {
+public class ECommerceClientApplication {
 
     public static void main(String[] args){
 
