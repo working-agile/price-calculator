@@ -1,4 +1,4 @@
-package com.workingagile.acsd;
+package com.workingagile.acsd.client;
 
 import com.workingagile.acsd.backend.DataProcessor;
 import com.workingagile.acsd.backend.domain.Item;
