@@ -13,6 +13,13 @@ public class DataProcessor {
 
 	private static Connection database;
 
+
+	public DataProcessor() {}
+
+	public DataProcessor(Connection databaseConnection) {
+		database = databaseConnection;
+	}
+
 	public void calculateData(boolean moveToNextDay) {
 
 		try {
