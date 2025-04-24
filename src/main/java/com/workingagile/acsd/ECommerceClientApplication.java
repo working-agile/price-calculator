@@ -19,21 +19,20 @@ public class ECommerceClientApplication {
         System.out.println("   Calculate the current prices...");
         System.out.println("------------------------------------------------------------------");
 
-        DataProcessor processor = DataProcessor.getInstance();
+        DataProcessor processor = new DataProcessor();
         processor.calculateData(false /* don't change the date */);
-        printReport();
+        printReport(processor);
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("   Job signals a new day has started, prices need to be updated...");
         System.out.println("------------------------------------------------------------------");
 
         processor.calculateData(true /* move to next day */);
-        printReport();
+        printReport(processor);
 
     }
 
-    private static void printReport() {
-        DataProcessor processor = DataProcessor.getInstance();
+    private static void printReport(DataProcessor processor) {
         System.out.println("Current prices of scheduled training courses:");
         System.out.println("---------------------------------------------");
         for (Item item : processor.list) {

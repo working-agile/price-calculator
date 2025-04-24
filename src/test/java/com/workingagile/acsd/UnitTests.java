@@ -7,17 +7,11 @@ import java.util.List;
 
 public class UnitTests {
 
-
-
-
-
-
-
     @Test
     public void some_unit_test() {
 
         // Arrange
-        DataProcessor processor = DataProcessor.getInstance();
+        DataProcessor processor = new DataProcessor();
         // TODO insert data
 
         // Act - call the function

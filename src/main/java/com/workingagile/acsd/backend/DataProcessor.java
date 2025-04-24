@@ -13,30 +13,18 @@ public class DataProcessor {
 
 	private static Connection database;
 
-	private static DataProcessor dataProcessor;
+	public void calculateData(boolean moveToNextDay) {
 
-	protected DataProcessor() {}
-
-	protected void setTestDatabaseConnection(Connection testDatabaseConnection) {
-		database = testDatabaseConnection;
-	}
-
-	public static DataProcessor getInstance() {
-		if (dataProcessor == null) {
-			try {
+		try {
+			if (database == null) {
 				// slow...
 				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
 				Class.forName("org.postgresql.Driver");
 				database = DriverManager.getConnection(url, "postgres", "postgres");
-			} catch (Exception e) {
-				throw new RuntimeException(e);
 			}
-			dataProcessor = new RefactoredDataProcessor();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		return dataProcessor;
-	}
-
-	public void calculateData(boolean moveToNextDay) {
 
 		// read the prices from database
 		try {
