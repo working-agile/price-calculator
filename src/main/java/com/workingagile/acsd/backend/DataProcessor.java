@@ -13,33 +13,27 @@ public class DataProcessor {
 
 	private static Connection database;
 
-	private static DataProcessor theSingleton;
+	private static DataProcessor dataProcessor;
 
 	private DataProcessor() {}
 
 	public static DataProcessor getInstance() {
-		if (theSingleton == null) {
-			// simulating a slow initialization process
+		if (dataProcessor == null) {
 			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException ex) {}
-			theSingleton = new DataProcessor();
+				// slow...
+				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
+				Class.forName("org.postgresql.Driver");
+				database = DriverManager.getConnection(url, "postgres", "postgres");
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			dataProcessor = new DataProcessor();
 		}
-		return theSingleton;
+		return dataProcessor;
 	}
 
 	public void calculateData(boolean moveToNextDay) {
 
-		if (database == null) {
-			try {
-
-				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
-				Class.forName("org.postgresql.Driver");
-				database = DriverManager.getConnection(url, "postgres", "postgres");
-
-			} catch (Exception e) {
-			}
-		}
 		// read the prices from database
 		try {
 			String query = "select * from tr_crs";
