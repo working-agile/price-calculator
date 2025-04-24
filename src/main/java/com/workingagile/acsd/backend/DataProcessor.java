@@ -2,6 +2,7 @@ package com.workingagile.acsd.backend;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataProcessor {
 
@@ -22,16 +23,24 @@ public class DataProcessor {
 
 	public void calculateData(boolean moveToNextDay) {
 
-		try {
-			if (database == null) {
-				// slow...
-				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
-				Class.forName("org.postgresql.Driver");
-				database = DriverManager.getConnection(url, "postgres", "postgres");
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+		initDatabaseConnection();
+
+		ArrayList<Item> items =  readItemsFromDatabase();
+
+		// process items
+		// TODO
+
+
+		updatePricesInDatabase(items);
+
+	}
+
+
+
+
+	private ArrayList<Item> readItemsFromDatabase() {
+
+		ArrayList<Item> items = new ArrayList<>();
 
 		// read the prices from database
 		try {
@@ -54,56 +63,69 @@ public class DataProcessor {
 				int full = rs.getInt("full_price");
 
 				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
-
-				if (!(item.days < 0 || (moveToNextDay && item.days == 0))) {
-
-					newList.add(item);
-
-					if (moveToNextDay) {
-						item.days--;
-					}
-
-					if (item.days <= 10) {
-
-						if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-							item.curr = item.full;
-						} else {
-							if (item.type.equals("CSD")) {
-								item.curr = item.full - (item.days * 30);
-							} else {
-								item.curr = item.full - (item.days * 20);
-							}
-						}
-
-					} else if (item.days > 10) {
-
-						if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-							item.curr = item.full;
-						} else {
-							if (item.type.equals("CSM")) {
-								item.curr = item.full - 500;
-							} else {
-								item.curr = item.full - 400;
-							}
-						}
-					}
-
-					if (item.type.equals("CSD") && item.curr < 900) {
-						item.curr = 900;
-					} else if (item.type.equals("CSM") && item.curr < 1000) {
-						item.curr = 1000;
-					} else if (item.type.equals("CSPO") && item.curr < 1200) {
-						item.curr = 1200;
-					}
-
-					salesValue += (item.avail * item.curr);
-
-				}
+				items.add(item);
 			}
 			st.close();
 
+			return items;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+
+
+	private void processItem(boolean moveToNextDay, Item item, List<Item> newList) {
+		if (!(item.days < 0 || (moveToNextDay && item.days == 0))) {
+
+			newList.add(item);
+
+			if (moveToNextDay) {
+				item.days--;
+			}
+
+			if (item.days <= 10) {
+
+				if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
+					item.curr = item.full;
+				} else {
+					if (item.type.equals("CSD")) {
+						item.curr = item.full - (item.days * 30);
+					} else {
+						item.curr = item.full - (item.days * 20);
+					}
+				}
+
+			} else if (item.days > 10) {
+
+				if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
+					item.curr = item.full;
+				} else {
+					if (item.type.equals("CSM")) {
+						item.curr = item.full - 500;
+					} else {
+						item.curr = item.full - 400;
+					}
+				}
+			}
+
+			if (item.type.equals("CSD") && item.curr < 900) {
+				item.curr = 900;
+			} else if (item.type.equals("CSM") && item.curr < 1000) {
+				item.curr = 1000;
+			} else if (item.type.equals("CSPO") && item.curr < 1200) {
+				item.curr = 1200;
+			}
+
+			salesValue += (item.avail * item.curr);
+
+		}
+	}
+
+	private void updatePricesInDatabase(ArrayList<Item> newList) {
+		try {
 			// update prices in database
-			for (int i=0; i<newList.size(); i++) {
+			for (int i = 0; i< newList.size(); i++) {
 
 				String update = "update tr_crs set days=?, curr_price=? where id=? ";
 				PreparedStatement pstmt = database.prepareStatement(update);
@@ -115,8 +137,22 @@ public class DataProcessor {
 				int res = pstmt.executeUpdate();
 			}
 			list = newList;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-		} catch(Exception exception) {}
+	private void initDatabaseConnection() {
+		try {
+			if (database == null) {
+				// slow...
+				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
+				Class.forName("org.postgresql.Driver");
+				database = DriverManager.getConnection(url, "postgres", "postgres");
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
