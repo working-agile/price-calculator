@@ -31,7 +31,7 @@ public class DataProcessor {
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
-			dataProcessor = new DataProcessor();
+			dataProcessor = new RefactoredDataProcessor();
 		}
 		return dataProcessor;
 	}
