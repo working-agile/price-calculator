@@ -21,20 +21,17 @@ public class DataProcessor {
 		database = databaseConnection;
 	}
 
-	public void calculateData(boolean moveToNextDay) {
+	public void calculateData(boolean advanceDay) {
 
 		initDatabaseConnection();
 
 		ArrayList<Item> items =  readItemsFromDatabase();
 
-		// process items
-		// TODO
+		ArrayList<Item> processedItems = processItems(items, advanceDay);
 
-
-		updatePricesInDatabase(items);
+		updatePricesInDatabase(processedItems);
 
 	}
-
 
 
 
@@ -75,12 +72,26 @@ public class DataProcessor {
 
 
 
-	private void processItem(boolean moveToNextDay, Item item, List<Item> newList) {
-		if (!(item.days < 0 || (moveToNextDay && item.days == 0))) {
+	private ArrayList<Item> processItems(ArrayList<Item> items, boolean advanceDay) {
+
+		ArrayList<Item> processedItems = new ArrayList<>();
+
+		for (Item item: items) {
+			processItem(advanceDay, item, processedItems);
+		}
+
+		return processedItems;
+
+	}
+
+
+
+	private void processItem(boolean advanceDay, Item item, List<Item> newList) {
+		if (!(item.days < 0 || (advanceDay && item.days == 0))) {
 
 			newList.add(item);
 
-			if (moveToNextDay) {
+			if (advanceDay) {
 				item.days--;
 			}
 
