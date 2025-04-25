@@ -20,7 +20,7 @@ public class DataProcessor {
 		database = databaseConnection;
 	}
 
-	public void calculateData(boolean moveToNextDay) {
+	public void calculateData(boolean advanceDay) {
 
 		try {
 			if (database == null) {
@@ -55,11 +55,11 @@ public class DataProcessor {
 
 				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
 
-				if (!(item.days < 0 || (moveToNextDay && item.days == 0))) {
+				if (!(item.days < 0 || (advanceDay && item.days == 0))) {
 
 					newList.add(item);
 
-					if (moveToNextDay) {
+					if (advanceDay) {
 						item.days--;
 					}
 
