@@ -6,18 +6,26 @@ import java.util.List;
 
 public class DataProcessor {
 
-	public int salesValue;
+	public  int getSalesValue() {
+		return itemProcessor.getSalesValue();
+	}
 
-	public ArrayList<Item> list;
+	public ArrayList<Item> getList() {
+		return itemProcessor.getList();
+	}
 
 	// ----------------------------------------------------
 
 	private static Connection database;
 
+	private ItemProcessor itemProcessor;
 
-	public DataProcessor() {}
+	public DataProcessor() {
+		itemProcessor = new ItemProcessor();
+	}
 
 	public DataProcessor(Connection databaseConnection) {
+		this();
 		database = databaseConnection;
 	}
 
@@ -27,12 +35,11 @@ public class DataProcessor {
 
 		ArrayList<Item> items =  readItemsFromDatabase();
 
-		ArrayList<Item> processedItems = processItems(items, advanceDay);
+		ArrayList<Item> processedItems = itemProcessor.processItems(items, advanceDay);
 
 		updatePricesInDatabase(processedItems);
 
 	}
-
 
 
 	private ArrayList<Item> readItemsFromDatabase() {
@@ -45,7 +52,6 @@ public class DataProcessor {
 			Statement st = database.createStatement();
 			ResultSet rs = st.executeQuery(query);
 
-			salesValue = 0;
 			ArrayList<Item> newList = new ArrayList<>();
 
 			while (rs.next()) {
@@ -72,66 +78,6 @@ public class DataProcessor {
 
 
 
-	private ArrayList<Item> processItems(ArrayList<Item> items, boolean advanceDay) {
-
-		ArrayList<Item> processedItems = new ArrayList<>();
-
-		for (Item item: items) {
-			processItem(advanceDay, item, processedItems);
-		}
-
-		return processedItems;
-
-	}
-
-
-
-	private void processItem(boolean advanceDay, Item item, List<Item> newList) {
-		if (!(item.days < 0 || (advanceDay && item.days == 0))) {
-
-			newList.add(item);
-
-			if (advanceDay) {
-				item.days--;
-			}
-
-			if (item.days <= 10) {
-
-				if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-					item.curr = item.full;
-				} else {
-					if (item.type.equals("CSD")) {
-						item.curr = item.full - (item.days * 30);
-					} else {
-						item.curr = item.full - (item.days * 20);
-					}
-				}
-
-			} else if (item.days > 10) {
-
-				if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-					item.curr = item.full;
-				} else {
-					if (item.type.equals("CSM")) {
-						item.curr = item.full - 500;
-					} else {
-						item.curr = item.full - 400;
-					}
-				}
-			}
-
-			if (item.type.equals("CSD") && item.curr < 900) {
-				item.curr = 900;
-			} else if (item.type.equals("CSM") && item.curr < 1000) {
-				item.curr = 1000;
-			} else if (item.type.equals("CSPO") && item.curr < 1200) {
-				item.curr = 1200;
-			}
-
-			salesValue += (item.avail * item.curr);
-
-		}
-	}
 
 	private void updatePricesInDatabase(ArrayList<Item> newList) {
 		try {
@@ -147,7 +93,6 @@ public class DataProcessor {
 
 				int res = pstmt.executeUpdate();
 			}
-			list = newList;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

@@ -18,7 +18,7 @@ public class UnitTests {
         processor.calculateData(false);
 
         // Assert
-        List<Item> actualResult = processor.list;
+        List<Item> actualResult = processor.getList();
         // TODO compare with the expected result
 
     }
