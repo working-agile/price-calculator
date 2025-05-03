@@ -28,7 +28,7 @@ public class DataProcessor {
 		DataProcessor.databaseConnection = databaseConnection;
 	}
 
-	public void calculateData(boolean advanceDay) {
+	public void calculateCurrentPricesOfTrainingCourses(boolean advanceDay) {
 
 		initDatabaseConnection();
 

@@ -34,7 +34,7 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         pstmt.execute();
 
         // Act - call the function
-        processor.calculateData(false);
+        processor.calculateCurrentPricesOfTrainingCourses(false);
 
         // Assert
         List<TrainingCourse> actualResultCourse = processor.getScheduledTrainingCourses();
@@ -98,7 +98,7 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         pstmt.execute();
 
         // Act - call the function
-        processor.calculateData(true);
+        processor.calculateCurrentPricesOfTrainingCourses(true);
 
         // Assert
         List<TrainingCourse> actualResultCourse = processor.getScheduledTrainingCourses();

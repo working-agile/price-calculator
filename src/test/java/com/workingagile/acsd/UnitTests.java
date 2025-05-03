@@ -17,7 +17,7 @@ public class UnitTests {
         // TODO insert data
 
         // Act - call the function
-        processor.calculateData(false);
+        processor.calculateCurrentPricesOfTrainingCourses(false);
 
         // Assert
         List<TrainingCourse> actualResult = processor.getScheduledTrainingCourses();

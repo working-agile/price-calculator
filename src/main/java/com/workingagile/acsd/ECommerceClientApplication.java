@@ -20,14 +20,14 @@ public class ECommerceClientApplication {
         System.out.println("------------------------------------------------------------------");
 
         DataProcessor processor = new DataProcessor();
-        processor.calculateData(false /* don't change the date */);
+        processor.calculateCurrentPricesOfTrainingCourses(false /* don't change the date */);
         printReport(processor);
 
         System.out.println("------------------------------------------------------------------");
         System.out.println("   Job signals a new day has started, prices need to be updated...");
         System.out.println("------------------------------------------------------------------");
 
-        processor.calculateData(true /* move to next day */);
+        processor.calculateCurrentPricesOfTrainingCourses(true /* move to next day */);
         printReport(processor);
 
     }
