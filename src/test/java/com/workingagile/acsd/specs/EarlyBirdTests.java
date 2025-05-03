@@ -1,6 +1,6 @@
 package com.workingagile.acsd.specs;
 
-import com.workingagile.acsd.backend.Item;
+import com.workingagile.acsd.backend.TrainingCourse;
 import com.workingagile.acsd.backend.ItemProcessor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -33,12 +33,12 @@ public class EarlyBirdTests {
                 discounted price:		 		4000-(6*30) = 3820
              */
             ItemProcessor processor = new ItemProcessor();
-            Item csdTrainingCourse = new Item(1, "10 January 2024",6, 50, 25, "CSD", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse csdTrainingCourse = new TrainingCourse(1, "10 January 2024",6, 50, 25, "CSD", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(csdTrainingCourse);
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3820, updatedTrainingCourses.get(0).curr, "proportional discount expected");
@@ -58,12 +58,12 @@ public class EarlyBirdTests {
                 discounted:		 				4000-(5*30) = 3850
              */
             ItemProcessor processor = new ItemProcessor();
-            Item csdTrainingCourse = new Item(1,"10 January 2024",5, 50, 25, "CSD", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse csdTrainingCourse = new TrainingCourse(1,"10 January 2024",5, 50, 25, "CSD", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(csdTrainingCourse);
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3850, updatedTrainingCourses.get(0).curr, "proportional discount expected when enough seats available");
@@ -86,12 +86,12 @@ public class EarlyBirdTests {
                 discounted:		 				4000-(10*20) = 3800
              */
             ItemProcessor processor = new ItemProcessor();
-            Item trainingCourse = new Item(1,"10 January 2024",10, 50, 25, trainingCourseType, 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",10, 50, 25, trainingCourseType, 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3800, updatedTrainingCourses.get(0).curr, "should apply proportional discount - first day of the interval");

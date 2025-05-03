@@ -1,6 +1,6 @@
 package com.workingagile.acsd.specs;
 
-import com.workingagile.acsd.backend.Item;
+import com.workingagile.acsd.backend.TrainingCourse;
 import com.workingagile.acsd.backend.ItemProcessor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -33,13 +33,13 @@ public class SuperEarlyBirdTests {
                 discounted price:				3600
 
              */
-            Item trainingCourse = new Item(1,"21 January 2024",11, 50, 20,"CSD", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse trainingCourse = new TrainingCourse(1,"21 January 2024",11, 50, 20,"CSD", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
             ItemProcessor processor = new ItemProcessor();
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3600, updatedTrainingCourses.get(0).curr);
@@ -61,13 +61,13 @@ public class SuperEarlyBirdTests {
              */
 
             // Arrange
-            Item trainingCourse = new Item(1,"10 January 2024",25, 50, 20, "CSD", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",25, 50, 20, "CSD", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
             ItemProcessor processor = new ItemProcessor();
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3600, updatedTrainingCourses.get(0).curr);
@@ -86,13 +86,13 @@ public class SuperEarlyBirdTests {
                 SuperEarlyBird discount:		 -500
                 Discounted price:               3500
              */
-            Item trainingCourse = new Item(1,"10 January 2024",25, 50, 20, "CSM", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",25, 50, 20, "CSM", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
             ItemProcessor processor = new ItemProcessor();
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3500, updatedTrainingCourses.get(0).curr);
@@ -113,13 +113,13 @@ public class SuperEarlyBirdTests {
                 SuperEarlyBird discount:		 -400
                 Discounted price:				3600
              */
-            Item trainingCourse = new Item(1,"10 January 2024",32, 50, 20, "CSPO", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",32, 50, 20, "CSPO", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
             ItemProcessor processor = new ItemProcessor();
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3600, updatedTrainingCourses.get(0).curr);

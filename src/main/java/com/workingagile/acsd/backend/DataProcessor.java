@@ -2,7 +2,6 @@ package com.workingagile.acsd.backend;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataProcessor {
 
@@ -10,7 +9,7 @@ public class DataProcessor {
 		return itemProcessor.getSalesValue();
 	}
 
-	public ArrayList<Item> getList() {
+	public ArrayList<TrainingCourse> getList() {
 		return itemProcessor.getList();
 	}
 
@@ -33,18 +32,18 @@ public class DataProcessor {
 
 		initDatabaseConnection();
 
-		ArrayList<Item> items =  readItemsFromDatabase();
+		ArrayList<TrainingCourse> trainingCourses =  readItemsFromDatabase();
 
-		ArrayList<Item> processedItems = itemProcessor.processItems(items, advanceDay);
+		ArrayList<TrainingCourse> processedTrainingCourses = itemProcessor.processItems(trainingCourses, advanceDay);
 
-		updatePricesInDatabase(processedItems);
+		updatePricesInDatabase(processedTrainingCourses);
 
 	}
 
 
-	private ArrayList<Item> readItemsFromDatabase() {
+	private ArrayList<TrainingCourse> readItemsFromDatabase() {
 
-		ArrayList<Item> items = new ArrayList<>();
+		ArrayList<TrainingCourse> trainingCourses = new ArrayList<>();
 
 		// read the prices from database
 		try {
@@ -52,7 +51,7 @@ public class DataProcessor {
 			Statement st = database.createStatement();
 			ResultSet rs = st.executeQuery(query);
 
-			ArrayList<Item> newList = new ArrayList<>();
+			ArrayList<TrainingCourse> newList = new ArrayList<>();
 
 			while (rs.next()) {
 
@@ -65,12 +64,12 @@ public class DataProcessor {
 				int curr = rs.getInt("curr_price");
 				int full = rs.getInt("full_price");
 
-				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
-				items.add(item);
+				TrainingCourse trainingCourse = new TrainingCourse(id, trDate, days, ttlSeats, avail, type, curr, full);
+				trainingCourses.add(trainingCourse);
 			}
 			st.close();
 
-			return items;
+			return trainingCourses;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -79,7 +78,7 @@ public class DataProcessor {
 
 
 
-	private void updatePricesInDatabase(ArrayList<Item> newList) {
+	private void updatePricesInDatabase(ArrayList<TrainingCourse> newList) {
 		try {
 			// update prices in database
 			for (int i = 0; i< newList.size(); i++) {

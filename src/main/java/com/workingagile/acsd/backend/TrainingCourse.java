@@ -1,6 +1,6 @@
 package com.workingagile.acsd.backend;
 
-public class Item {
+public class TrainingCourse {
 
 	public long id;
 	public String trDate;
@@ -11,7 +11,7 @@ public class Item {
 	public int curr;
 	public int full;
 
-	public Item(long id, String trDate, int days, int seats, int avail, String type, int curr, int full) {
+	public TrainingCourse(long id, String trDate, int days, int seats, int avail, String type, int curr, int full) {
 		this.id = id;
 		this.trDate = trDate;
 		this.days = days;

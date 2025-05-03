@@ -8,76 +8,76 @@ public class ItemProcessor {
 
     private int salesValue;
 
-    private ArrayList<Item> list;
+    private ArrayList<TrainingCourse> list;
 
     public int getSalesValue() {
         return salesValue;
     }
 
-    public ArrayList<Item> getList() {
+    public ArrayList<TrainingCourse> getList() {
         return list;
     }
 
 
-    public ArrayList<Item> processItems(ArrayList<Item> items, boolean advanceDay) {
+    public ArrayList<TrainingCourse> processItems(ArrayList<TrainingCourse> trainingCourses, boolean advanceDay) {
 
         salesValue = 0;
 
-        ArrayList<Item> processedItems = new ArrayList<>();
+        ArrayList<TrainingCourse> processedTrainingCourses = new ArrayList<>();
 
-        for (Item item: items) {
-            processItem(advanceDay, item, processedItems);
+        for (TrainingCourse trainingCourse : trainingCourses) {
+            processItem(advanceDay, trainingCourse, processedTrainingCourses);
         }
 
-        list = processedItems;
+        list = processedTrainingCourses;
 
-        return processedItems;
+        return processedTrainingCourses;
     }
 
 
-    private void processItem(boolean advanceDay, Item item, List<Item> newList) {
-        if (!(item.days < 0 || (advanceDay && item.days == 0))) {
+    private void processItem(boolean advanceDay, TrainingCourse trainingCourse, List<TrainingCourse> newList) {
+        if (!(trainingCourse.days < 0 || (advanceDay && trainingCourse.days == 0))) {
 
-            newList.add(item);
+            newList.add(trainingCourse);
 
             if (advanceDay) {
-                item.days--;
+                trainingCourse.days--;
             }
 
-            if (item.days <= 10) {
+            if (trainingCourse.days <= 10) {
 
-                if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-                    item.curr = item.full;
+                if (trainingCourse.days <= 1 || (trainingCourse.avail < 3 && trainingCourse.days <= 5)) {
+                    trainingCourse.curr = trainingCourse.full;
                 } else {
-                    if (item.type.equals("CSD")) {
-                        item.curr = item.full - (item.days * 30);
+                    if (trainingCourse.type.equals("CSD")) {
+                        trainingCourse.curr = trainingCourse.full - (trainingCourse.days * 30);
                     } else {
-                        item.curr = item.full - (item.days * 20);
+                        trainingCourse.curr = trainingCourse.full - (trainingCourse.days * 20);
                     }
                 }
 
-            } else if (item.days > 10) {
+            } else if (trainingCourse.days > 10) {
 
-                if (item.days <= 1 || (item.avail < 3 && item.days <= 5)) {
-                    item.curr = item.full;
+                if (trainingCourse.days <= 1 || (trainingCourse.avail < 3 && trainingCourse.days <= 5)) {
+                    trainingCourse.curr = trainingCourse.full;
                 } else {
-                    if (item.type.equals("CSM")) {
-                        item.curr = item.full - 500;
+                    if (trainingCourse.type.equals("CSM")) {
+                        trainingCourse.curr = trainingCourse.full - 500;
                     } else {
-                        item.curr = item.full - 400;
+                        trainingCourse.curr = trainingCourse.full - 400;
                     }
                 }
             }
 
-            if (item.type.equals("CSD") && item.curr < 900) {
-                item.curr = 900;
-            } else if (item.type.equals("CSM") && item.curr < 1000) {
-                item.curr = 1000;
-            } else if (item.type.equals("CSPO") && item.curr < 1200) {
-                item.curr = 1200;
+            if (trainingCourse.type.equals("CSD") && trainingCourse.curr < 900) {
+                trainingCourse.curr = 900;
+            } else if (trainingCourse.type.equals("CSM") && trainingCourse.curr < 1000) {
+                trainingCourse.curr = 1000;
+            } else if (trainingCourse.type.equals("CSPO") && trainingCourse.curr < 1200) {
+                trainingCourse.curr = 1200;
             }
 
-            salesValue += (item.avail * item.curr);
+            salesValue += (trainingCourse.avail * trainingCourse.curr);
 
         }
     }

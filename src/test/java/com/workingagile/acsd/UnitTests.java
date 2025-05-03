@@ -1,7 +1,7 @@
 package com.workingagile.acsd;
 
 import com.workingagile.acsd.backend.DataProcessor;
-import com.workingagile.acsd.backend.Item;
+import com.workingagile.acsd.backend.TrainingCourse;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class UnitTests {
         processor.calculateData(false);
 
         // Assert
-        List<Item> actualResult = processor.getList();
+        List<TrainingCourse> actualResult = processor.getList();
         // TODO compare with the expected result
 
     }

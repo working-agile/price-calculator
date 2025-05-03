@@ -1,6 +1,6 @@
 package com.workingagile.acsd.specs;
 
-import com.workingagile.acsd.backend.Item;
+import com.workingagile.acsd.backend.TrainingCourse;
 import com.workingagile.acsd.backend.ItemProcessor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -31,7 +31,7 @@ public class SalesTargetTests {
                 Super early bird discount:		 400
                 Discounted price:				3600
              */
-            Item csd1 = new Item(1,"20 February 2024",41, 50, 5, "CSD", 4000, 4000);
+            TrainingCourse csd1 = new TrainingCourse(1,"20 February 2024",41, 50, 5, "CSD", 4000, 4000);
             /*
                 Number of seats:				2
                 Days before training course:	9
@@ -40,14 +40,14 @@ public class SalesTargetTests {
                 Proportional discount:		    9*30
                 Discounted price:				3500
              */
-            Item csd2 = new Item(2,"19 January 2024",9, 50, 2, "CSD", 4000, 4000);
-            ArrayList<Item> courses = new ArrayList<>();
+            TrainingCourse csd2 = new TrainingCourse(2,"19 January 2024",9, 50, 2, "CSD", 4000, 4000);
+            ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(csd1);
             courses.add(csd2);
             ItemProcessor processor = new ItemProcessor();
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;

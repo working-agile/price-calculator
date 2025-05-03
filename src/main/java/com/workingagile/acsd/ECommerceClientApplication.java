@@ -1,7 +1,7 @@
 package com.workingagile.acsd;
 
 import com.workingagile.acsd.backend.DataProcessor;
-import com.workingagile.acsd.backend.Item;
+import com.workingagile.acsd.backend.TrainingCourse;
 
 import static com.workingagile.acsd.backend.persistence.ECommercePersistence.bootingECommerceSystem;
 
@@ -35,14 +35,14 @@ public class ECommerceClientApplication {
     private static void printReport(DataProcessor processor) {
         System.out.println("Current prices of scheduled training courses:");
         System.out.println("---------------------------------------------");
-        for (Item item : processor.getList()) {
-            System.out.println("Type: " + item.type);
-            System.out.println("When: " + item.trDate);
-            System.out.println("Remaining days before training course: " + item.days);
-            System.out.println("Full Price: " + item.full);
-            System.out.println("Current price: " + item.curr);
-            System.out.println("Number of seats: " + item.seats);
-            System.out.println("Remaining available seats: " + item.avail);
+        for (TrainingCourse trainingCourse : processor.getList()) {
+            System.out.println("Type: " + trainingCourse.type);
+            System.out.println("When: " + trainingCourse.trDate);
+            System.out.println("Remaining days before training course: " + trainingCourse.days);
+            System.out.println("Full Price: " + trainingCourse.full);
+            System.out.println("Current price: " + trainingCourse.curr);
+            System.out.println("Number of seats: " + trainingCourse.seats);
+            System.out.println("Remaining available seats: " + trainingCourse.avail);
             System.out.println();
         }
         System.out.println("Remaining total sales target: " + processor.getSalesValue());
