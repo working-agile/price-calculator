@@ -1,7 +1,7 @@
 package com.workingagile.acsd.specs;
 
 import com.workingagile.acsd.backend.TrainingCourse;
-import com.workingagile.acsd.backend.ItemProcessor;
+import com.workingagile.acsd.backend.TrainingCourseManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -36,10 +36,10 @@ public class SuperEarlyBirdTests {
             TrainingCourse trainingCourse = new TrainingCourse(1,"21 January 2024",11, 50, 20,"CSD", 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3600, updatedTrainingCourses.get(0).currentDiscountedPrice);
@@ -64,10 +64,10 @@ public class SuperEarlyBirdTests {
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",25, 50, 20, "CSD", 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3600, updatedTrainingCourses.get(0).currentDiscountedPrice);
@@ -89,10 +89,10 @@ public class SuperEarlyBirdTests {
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",25, 50, 20, "CSM", 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3500, updatedTrainingCourses.get(0).currentDiscountedPrice);
@@ -116,10 +116,10 @@ public class SuperEarlyBirdTests {
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",32, 50, 20, "CSPO", 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(3600, updatedTrainingCourses.get(0).currentDiscountedPrice);

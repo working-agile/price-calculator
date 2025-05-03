@@ -1,6 +1,6 @@
 package com.workingagile.acsd;
 
-import com.workingagile.acsd.backend.DataProcessor;
+import com.workingagile.acsd.backend.TrainingCourseService;
 import com.workingagile.acsd.backend.TrainingCourse;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ public class UnitTests {
     public void some_unit_test() {
 
         // Arrange
-        DataProcessor processor = new DataProcessor();
+        TrainingCourseService processor = new TrainingCourseService();
         // TODO insert data
 
         // Act - call the function

@@ -1,6 +1,6 @@
 package com.workingagile.acsd;
 
-import com.workingagile.acsd.backend.DataProcessor;
+import com.workingagile.acsd.backend.TrainingCourseService;
 import com.workingagile.acsd.backend.TrainingCourse;
 
 import static com.workingagile.acsd.backend.persistence.ECommercePersistence.bootingECommerceSystem;
@@ -19,7 +19,7 @@ public class ECommerceClientApplication {
         System.out.println("   Calculate the current prices...");
         System.out.println("------------------------------------------------------------------");
 
-        DataProcessor processor = new DataProcessor();
+        TrainingCourseService processor = new TrainingCourseService();
         processor.calculateCurrentPricesOfTrainingCourses(false /* don't change the date */);
         printReport(processor);
 
@@ -32,7 +32,7 @@ public class ECommerceClientApplication {
 
     }
 
-    private static void printReport(DataProcessor processor) {
+    private static void printReport(TrainingCourseService processor) {
         System.out.println("Current prices of scheduled training courses:");
         System.out.println("---------------------------------------------");
         for (TrainingCourse trainingCourse : processor.getScheduledTrainingCourses()) {

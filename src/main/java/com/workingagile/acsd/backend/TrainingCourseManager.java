@@ -3,7 +3,7 @@ package com.workingagile.acsd.backend;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemProcessor {
+public class TrainingCourseManager {
 
 
     private int remainingSalesTarget;
@@ -19,7 +19,7 @@ public class ItemProcessor {
     }
 
 
-    public ArrayList<TrainingCourse> processItems(ArrayList<TrainingCourse> trainingCourses, boolean advanceDay) {
+    public ArrayList<TrainingCourse> processTrainingCourses(ArrayList<TrainingCourse> trainingCourses, boolean advanceDay) {
 
         remainingSalesTarget = 0;
 
@@ -35,10 +35,10 @@ public class ItemProcessor {
     }
 
 
-    private void processItem(boolean advanceDay, TrainingCourse trainingCourse, List<TrainingCourse> newList) {
+    private void processItem(boolean advanceDay, TrainingCourse trainingCourse, List<TrainingCourse> trainingCourses) {
         if (!(trainingCourse.daysBeforeTrainingCourse < 0 || (advanceDay && trainingCourse.daysBeforeTrainingCourse == 0))) {
 
-            newList.add(trainingCourse);
+            trainingCourses.add(trainingCourse);
 
             if (advanceDay) {
                 trainingCourse.daysBeforeTrainingCourse--;

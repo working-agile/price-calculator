@@ -1,7 +1,7 @@
 package com.workingagile.acsd.specs;
 
 import com.workingagile.acsd.backend.TrainingCourse;
-import com.workingagile.acsd.backend.ItemProcessor;
+import com.workingagile.acsd.backend.TrainingCourseManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -31,13 +31,13 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",0, 50, 20, trainingCourseType, 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(4000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the full price");
@@ -55,13 +55,13 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
             TrainingCourse trainingCourse = new TrainingCourse(1, "10 January 2024",1, 50, 20, trainingCourseType, 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(4000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the full price");
@@ -81,13 +81,13 @@ public class FullPriceTests {
                 -->
                 no discount:		 			4000
              */
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",5, 50, 2, trainingCourseType, 4000, 4000);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(4000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the full price");

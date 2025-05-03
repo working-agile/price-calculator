@@ -1,7 +1,7 @@
 package com.workingagile.acsd.specs;
 
 import com.workingagile.acsd.backend.TrainingCourse;
-import com.workingagile.acsd.backend.ItemProcessor;
+import com.workingagile.acsd.backend.TrainingCourseManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -44,10 +44,10 @@ public class RemainingSalesTargetTests {
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(csd1);
             courses.add(csd2);
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;

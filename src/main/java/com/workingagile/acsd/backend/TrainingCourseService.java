@@ -3,29 +3,29 @@ package com.workingagile.acsd.backend;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DataProcessor {
+public class TrainingCourseService {
 
 	public  int getRemainingSalesValue() {
-		return itemProcessor.getRemainingSalesTarget();
+		return trainingCourseManager.getRemainingSalesTarget();
 	}
 
 	public ArrayList<TrainingCourse> getScheduledTrainingCourses() {
-		return itemProcessor.getScheduledTrainingCourses();
+		return trainingCourseManager.getScheduledTrainingCourses();
 	}
 
 	// ----------------------------------------------------
 
 	private static Connection databaseConnection;
 
-	private final ItemProcessor itemProcessor;
+	private final TrainingCourseManager trainingCourseManager;
 
-	public DataProcessor() {
-		itemProcessor = new ItemProcessor();
+	public TrainingCourseService() {
+		trainingCourseManager = new TrainingCourseManager();
 	}
 
-	public DataProcessor(Connection databaseConnection) {
+	public TrainingCourseService(Connection databaseConnection) {
 		this();
-		DataProcessor.databaseConnection = databaseConnection;
+		TrainingCourseService.databaseConnection = databaseConnection;
 	}
 
 	public void calculateCurrentPricesOfTrainingCourses(boolean advanceDay) {
@@ -34,7 +34,7 @@ public class DataProcessor {
 
 		ArrayList<TrainingCourse> trainingCourses =  readTrainingCoursesFromDatabase();
 
-		ArrayList<TrainingCourse> updatedTrainingCourses = itemProcessor.processItems(trainingCourses, advanceDay);
+		ArrayList<TrainingCourse> updatedTrainingCourses = trainingCourseManager.processTrainingCourses(trainingCourses, advanceDay);
 
 		updatePricesInDatabase(updatedTrainingCourses);
 

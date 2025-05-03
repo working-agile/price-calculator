@@ -1,7 +1,7 @@
 package com.workingagile.acsd.specs;
 
 import com.workingagile.acsd.backend.TrainingCourse;
-import com.workingagile.acsd.backend.ItemProcessor;
+import com.workingagile.acsd.backend.TrainingCourseManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -32,13 +32,13 @@ public class MinimumPriceTests {
                 Discounted price:               800
                 Minimum price:                  900
              */
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
             TrainingCourse trainingCourse = new TrainingCourse(1, "10 January 2024",25, 50, 20, "CSD", 1200, 1200);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(900, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the minimum price");
@@ -59,13 +59,13 @@ public class MinimumPriceTests {
                 Discounted price:               700
                 Minimum price:                  1000
              */
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",25, 50, 20, "CSM", 1200, 1200);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(1000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the minimum price");
@@ -89,13 +89,13 @@ public class MinimumPriceTests {
                 Discounted price:               1100
                 Minimum price:                  1200
              */
-            ItemProcessor processor = new ItemProcessor();
+            TrainingCourseManager processor = new TrainingCourseManager();
             TrainingCourse trainingCourse = new TrainingCourse(1,"10 January 2024",25, 50, 20, "CSPO", 1500, 1500);
             ArrayList<TrainingCourse> courses = new ArrayList<>();
             courses.add(trainingCourse);
 
             // Act
-            List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            List<TrainingCourse> updatedTrainingCourses = processor.processTrainingCourses(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             assertEquals(1200, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the minimum price");
