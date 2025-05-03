@@ -44,42 +44,61 @@ public class TrainingCourseManager {
                 trainingCourse.daysBeforeTrainingCourse--;
             }
 
-            if (trainingCourse.daysBeforeTrainingCourse <= 10) {
+            if (isFullPrice(trainingCourse)) {
+                trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+            }
+            else if (isProportionalEarlyBird(trainingCourse)) {
 
-                if (trainingCourse.daysBeforeTrainingCourse <= 1 || (trainingCourse.remainingAvailableSeats < 3 && trainingCourse.daysBeforeTrainingCourse <= 5)) {
-                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+                if (trainingCourse.type.equals("CSD")) {
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 30);
                 } else {
-                    if (trainingCourse.type.equals("CSD")) {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 30);
-                    } else {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 20);
-                    }
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - (trainingCourse.daysBeforeTrainingCourse * 20);
                 }
+            }
+            else if (isSuperEarlyBird(trainingCourse)) {
 
-            } else if (trainingCourse.daysBeforeTrainingCourse > 10) {
-
-                if (trainingCourse.daysBeforeTrainingCourse <= 1 || (trainingCourse.remainingAvailableSeats < 3 && trainingCourse.daysBeforeTrainingCourse <= 5)) {
-                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice;
+                if (trainingCourse.type.equals("CSM")) {
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 500;
                 } else {
-                    if (trainingCourse.type.equals("CSM")) {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 500;
-                    } else {
-                        trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 400;
-                    }
+                    trainingCourse.currentDiscountedPrice = trainingCourse.fullPrice - 400;
                 }
             }
 
-            if (trainingCourse.type.equals("CSD") && trainingCourse.currentDiscountedPrice < 900) {
+            if (isUnderMinimumPriceCSD(trainingCourse)) {
                 trainingCourse.currentDiscountedPrice = 900;
-            } else if (trainingCourse.type.equals("CSM") && trainingCourse.currentDiscountedPrice < 1000) {
+            } else if (isUnderMinimumPriceCSM(trainingCourse)) {
                 trainingCourse.currentDiscountedPrice = 1000;
-            } else if (trainingCourse.type.equals("CSPO") && trainingCourse.currentDiscountedPrice < 1200) {
+            } else if (isUnderMinimumPriceCSPO(trainingCourse)) {
                 trainingCourse.currentDiscountedPrice = 1200;
             }
 
             remainingSalesTarget += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
 
         }
+    }
+
+    private static boolean isUnderMinimumPriceCSPO(TrainingCourse trainingCourse) {
+        return trainingCourse.type.equals("CSPO") && trainingCourse.currentDiscountedPrice < 1200;
+    }
+
+    private static boolean isUnderMinimumPriceCSM(TrainingCourse trainingCourse) {
+        return trainingCourse.type.equals("CSM") && trainingCourse.currentDiscountedPrice < 1000;
+    }
+
+    private static boolean isUnderMinimumPriceCSD(TrainingCourse trainingCourse) {
+        return trainingCourse.type.equals("CSD") && trainingCourse.currentDiscountedPrice < 900;
+    }
+
+    private static boolean isSuperEarlyBird(TrainingCourse trainingCourse) {
+        return trainingCourse.daysBeforeTrainingCourse > 10;
+    }
+
+    private static boolean isProportionalEarlyBird(TrainingCourse trainingCourse) {
+        return trainingCourse.daysBeforeTrainingCourse <= 10;
+    }
+
+    private static boolean isFullPrice(TrainingCourse trainingCourse) {
+        return trainingCourse.daysBeforeTrainingCourse <= 1 || (trainingCourse.remainingAvailableSeats < 3 && trainingCourse.daysBeforeTrainingCourse <= 5);
     }
 
 }
