@@ -40,7 +40,7 @@ public class FullPriceTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(4000, updatedTrainingCourses.get(0).curr, "expecting the full price");
+            assertEquals(4000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the full price");
         }
 
         @DisplayName("Full prices on the day prior to the training course")
@@ -64,7 +64,7 @@ public class FullPriceTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(4000, updatedTrainingCourses.get(0).curr, "expecting the full price");
+            assertEquals(4000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the full price");
         }
 
 
@@ -90,7 +90,7 @@ public class FullPriceTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(4000, updatedTrainingCourses.get(0).curr, "expecting the full price");
+            assertEquals(4000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the full price");
         }
 
     }

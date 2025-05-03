@@ -37,12 +37,12 @@ public class ECommerceClientApplication {
         System.out.println("---------------------------------------------");
         for (TrainingCourse trainingCourse : processor.getList()) {
             System.out.println("Type: " + trainingCourse.type);
-            System.out.println("When: " + trainingCourse.trDate);
-            System.out.println("Remaining days before training course: " + trainingCourse.days);
-            System.out.println("Full Price: " + trainingCourse.full);
-            System.out.println("Current price: " + trainingCourse.curr);
-            System.out.println("Number of seats: " + trainingCourse.seats);
-            System.out.println("Remaining available seats: " + trainingCourse.avail);
+            System.out.println("When: " + trainingCourse.scheduledDate);
+            System.out.println("Remaining days before training course: " + trainingCourse.daysBeforeTrainingCourse);
+            System.out.println("Full Price: " + trainingCourse.fullPrice);
+            System.out.println("Current price: " + trainingCourse.currentDiscountedPrice);
+            System.out.println("Number of seats: " + trainingCourse.totalNumberOfSeats);
+            System.out.println("Remaining available seats: " + trainingCourse.remainingAvailableSeats);
             System.out.println();
         }
         System.out.println("Remaining total sales target: " + processor.getSalesValue());

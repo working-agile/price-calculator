@@ -40,9 +40,9 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         List<TrainingCourse> actualResultCourse = processor.getList();
         int actualSalesValue = processor.getSalesValue();
         // compare with the expected result
-        assertEquals(3820, actualResultCourse.get(0).curr, "current price of course 1 is wrong");
-        assertEquals(2800, actualResultCourse.get(1).curr, "current price of course 2 is wrong");
-        assertEquals(2600, actualResultCourse.get(2).curr, "current price of course 3 is wrong");
+        assertEquals(3820, actualResultCourse.get(0).currentDiscountedPrice, "current price of course 1 is wrong");
+        assertEquals(2800, actualResultCourse.get(1).currentDiscountedPrice, "current price of course 2 is wrong");
+        assertEquals(2600, actualResultCourse.get(2).currentDiscountedPrice, "current price of course 3 is wrong");
         assertEquals(119340, actualSalesValue, "sales target value wrong");
 
         /*
@@ -104,9 +104,9 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         List<TrainingCourse> actualResultCourse = processor.getList();
         int actualSalesValue = processor.getSalesValue();
         // compare with the expected result
-        assertEquals(3840, actualResultCourse.get(0).curr, "current price of course 1 is wrong");
-        assertEquals(2820, actualResultCourse.get(1).curr, "current price of course 2 is wrong");
-        assertEquals(2600, actualResultCourse.get(2).curr, "current price of course 3 is wrong");
+        assertEquals(3840, actualResultCourse.get(0).currentDiscountedPrice, "current price of course 1 is wrong");
+        assertEquals(2820, actualResultCourse.get(1).currentDiscountedPrice, "current price of course 2 is wrong");
+        assertEquals(2600, actualResultCourse.get(2).currentDiscountedPrice, "current price of course 3 is wrong");
         assertEquals(119640, actualSalesValue, "sales target value wrong");
 
     }

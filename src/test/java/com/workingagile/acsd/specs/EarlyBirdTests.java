@@ -41,7 +41,7 @@ public class EarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3820, updatedTrainingCourses.get(0).curr, "proportional discount expected");
+            assertEquals(3820, updatedTrainingCourses.get(0).currentDiscountedPrice, "proportional discount expected");
         }
 
         @DisplayName("Proportional discount when 5 days before the training course and enough seats available")
@@ -66,7 +66,7 @@ public class EarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3850, updatedTrainingCourses.get(0).curr, "proportional discount expected when enough seats available");
+            assertEquals(3850, updatedTrainingCourses.get(0).currentDiscountedPrice, "proportional discount expected when enough seats available");
         }
 
 
@@ -94,7 +94,7 @@ public class EarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3800, updatedTrainingCourses.get(0).curr, "should apply proportional discount - first day of the interval");
+            assertEquals(3800, updatedTrainingCourses.get(0).currentDiscountedPrice, "should apply proportional discount - first day of the interval");
         }
 
     }

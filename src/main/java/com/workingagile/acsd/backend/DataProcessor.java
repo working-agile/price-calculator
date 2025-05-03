@@ -86,8 +86,8 @@ public class DataProcessor {
 				String update = "update tr_crs set days=?, curr_price=? where id=? ";
 				PreparedStatement pstmt = database.prepareStatement(update);
 
-				pstmt.setInt(1, newList.get(i).days);
-				pstmt.setInt(2, newList.get(i).curr);
+				pstmt.setInt(1, newList.get(i).daysBeforeTrainingCourse);
+				pstmt.setInt(2, newList.get(i).currentDiscountedPrice);
 				pstmt.setLong(3, newList.get(i).id);
 
 				int res = pstmt.executeUpdate();

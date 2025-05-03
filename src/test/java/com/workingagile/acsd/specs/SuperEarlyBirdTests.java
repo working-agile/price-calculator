@@ -42,7 +42,7 @@ public class SuperEarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3600, updatedTrainingCourses.get(0).curr);
+            assertEquals(3600, updatedTrainingCourses.get(0).currentDiscountedPrice);
         }
 
 
@@ -70,7 +70,7 @@ public class SuperEarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3600, updatedTrainingCourses.get(0).curr);
+            assertEquals(3600, updatedTrainingCourses.get(0).currentDiscountedPrice);
         }
 
         @DisplayName("Super Early Bird discount for CSM training course")
@@ -95,7 +95,7 @@ public class SuperEarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3500, updatedTrainingCourses.get(0).curr);
+            assertEquals(3500, updatedTrainingCourses.get(0).currentDiscountedPrice);
 
         }
 
@@ -122,7 +122,7 @@ public class SuperEarlyBirdTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(3600, updatedTrainingCourses.get(0).curr);
+            assertEquals(3600, updatedTrainingCourses.get(0).currentDiscountedPrice);
         }
 
     }

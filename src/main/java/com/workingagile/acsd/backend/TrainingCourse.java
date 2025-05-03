@@ -3,22 +3,23 @@ package com.workingagile.acsd.backend;
 public class TrainingCourse {
 
 	public long id;
-	public String trDate;
-	public int days;
-	public int seats;
-	public int avail;
+	public String scheduledDate;
+	public int daysBeforeTrainingCourse;
+	public int totalNumberOfSeats;
+	public int remainingAvailableSeats;
 	public String type;
-	public int curr;
-	public int full;
+	public int currentDiscountedPrice;
+	public int fullPrice;
 
-	public TrainingCourse(long id, String trDate, int days, int seats, int avail, String type, int curr, int full) {
+	public TrainingCourse(long id, String scheduledDate, int daysBeforeTrainingCourse, int totalNumberOfSeats,
+						  int remainingAvailableSeats, String type, int currentDiscountedPrice, int fullPrice) {
 		this.id = id;
-		this.trDate = trDate;
-		this.days = days;
-		this.seats = seats;
-		this.avail = avail;
+		this.scheduledDate = scheduledDate;
+		this.daysBeforeTrainingCourse = daysBeforeTrainingCourse;
+		this.totalNumberOfSeats = totalNumberOfSeats;
+		this.remainingAvailableSeats = remainingAvailableSeats;
 		this.type = type;
-		this.curr = curr;
-		this.full = full;
+		this.currentDiscountedPrice = currentDiscountedPrice;
+		this.fullPrice = fullPrice;
 	}
 }

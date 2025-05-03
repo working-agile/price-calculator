@@ -41,7 +41,7 @@ public class MinimumPriceTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(900, updatedTrainingCourses.get(0).curr, "expecting the minimum price");
+            assertEquals(900, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the minimum price");
         }
 
         @DisplayName("Super Early Bird discount overruled to guarantee minimum price for CSM")
@@ -68,7 +68,7 @@ public class MinimumPriceTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(1000, updatedTrainingCourses.get(0).curr, "expecting the minimum price");
+            assertEquals(1000, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the minimum price");
         }
 
 
@@ -98,7 +98,7 @@ public class MinimumPriceTests {
             List<TrainingCourse> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
-            assertEquals(1200, updatedTrainingCourses.get(0).curr, "expecting the minimum price");
+            assertEquals(1200, updatedTrainingCourses.get(0).currentDiscountedPrice, "expecting the minimum price");
         }
 
     }
