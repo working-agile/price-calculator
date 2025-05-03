@@ -53,15 +53,16 @@ public class DataProcessor {
 			while (rs.next()) {
 
 				long id = rs.getLong("id");
-				String trDate = rs.getString("tr_date");
-				int days = rs.getInt("days");
-				int ttlSeats = rs.getInt("ttl_seats");
-				int avail = rs.getInt("avail");
+				String scheduledDate = rs.getString("tr_date");
+				int daysBeforeTrainingCourse = rs.getInt("days");
+				int totalNumberOfSeats = rs.getInt("ttl_seats");
+				int remainingAvailableSeats = rs.getInt("avail");
 				String type = rs.getString("type");
-				int curr = rs.getInt("curr_price");
-				int full = rs.getInt("full_price");
+				int currentDiscountedPrice = rs.getInt("curr_price");
+				int fullPrice = rs.getInt("full_price");
 
-				TrainingCourse trainingCourse = new TrainingCourse(id, trDate, days, ttlSeats, avail, type, curr, full);
+				TrainingCourse trainingCourse = new TrainingCourse(id, scheduledDate, daysBeforeTrainingCourse,
+						totalNumberOfSeats, remainingAvailableSeats, type, currentDiscountedPrice, fullPrice);
 				trainingCourses.add(trainingCourse);
 			}
 			st.close();
