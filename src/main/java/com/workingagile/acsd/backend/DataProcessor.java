@@ -34,9 +34,9 @@ public class DataProcessor {
 
 		ArrayList<TrainingCourse> trainingCourses =  readTrainingCoursesFromDatabase();
 
-		ArrayList<TrainingCourse> processedTrainingCourses = itemProcessor.processItems(trainingCourses, advanceDay);
+		ArrayList<TrainingCourse> updatedTrainingCourses = itemProcessor.processItems(trainingCourses, advanceDay);
 
-		updatePricesInDatabase(processedTrainingCourses);
+		updatePricesInDatabase(updatedTrainingCourses);
 
 	}
 
