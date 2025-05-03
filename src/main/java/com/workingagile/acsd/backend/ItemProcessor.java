@@ -8,14 +8,14 @@ public class ItemProcessor {
 
     private int remainingSalesTarget;
 
-    private ArrayList<TrainingCourse> list;
+    private ArrayList<TrainingCourse> scheduledTrainingCourses;
 
     public int getRemainingSalesTarget() {
         return remainingSalesTarget;
     }
 
-    public ArrayList<TrainingCourse> getList() {
-        return list;
+    public ArrayList<TrainingCourse> getScheduledTrainingCourses() {
+        return scheduledTrainingCourses;
     }
 
 
@@ -29,7 +29,7 @@ public class ItemProcessor {
             processItem(advanceDay, trainingCourse, processedTrainingCourses);
         }
 
-        list = processedTrainingCourses;
+        scheduledTrainingCourses = processedTrainingCourses;
 
         return processedTrainingCourses;
     }

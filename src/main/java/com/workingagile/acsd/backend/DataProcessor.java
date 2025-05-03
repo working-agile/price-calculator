@@ -10,7 +10,7 @@ public class DataProcessor {
 	}
 
 	public ArrayList<TrainingCourse> getList() {
-		return itemProcessor.getList();
+		return itemProcessor.getScheduledTrainingCourses();
 	}
 
 	// ----------------------------------------------------
