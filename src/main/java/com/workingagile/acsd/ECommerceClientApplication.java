@@ -35,7 +35,7 @@ public class ECommerceClientApplication {
     private static void printReport(DataProcessor processor) {
         System.out.println("Current prices of scheduled training courses:");
         System.out.println("---------------------------------------------");
-        for (TrainingCourse trainingCourse : processor.getList()) {
+        for (TrainingCourse trainingCourse : processor.getScheduledTrainingCourses()) {
             System.out.println("Type: " + trainingCourse.type);
             System.out.println("When: " + trainingCourse.scheduledDate);
             System.out.println("Remaining days before training course: " + trainingCourse.daysBeforeTrainingCourse);
@@ -45,7 +45,7 @@ public class ECommerceClientApplication {
             System.out.println("Remaining available seats: " + trainingCourse.remainingAvailableSeats);
             System.out.println();
         }
-        System.out.println("Remaining total sales target: " + processor.getSalesValue());
+        System.out.println("Remaining total sales target: " + processor.getRemainingSalesValue());
     }
 
 

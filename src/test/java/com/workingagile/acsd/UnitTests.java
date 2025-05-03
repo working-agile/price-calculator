@@ -20,7 +20,7 @@ public class UnitTests {
         processor.calculateData(false);
 
         // Assert
-        List<TrainingCourse> actualResult = processor.getList();
+        List<TrainingCourse> actualResult = processor.getScheduledTrainingCourses();
         // TODO compare with the expected result
 
     }

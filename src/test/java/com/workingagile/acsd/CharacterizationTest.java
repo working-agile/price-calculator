@@ -37,8 +37,8 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         processor.calculateData(false);
 
         // Assert
-        List<TrainingCourse> actualResultCourse = processor.getList();
-        int actualSalesValue = processor.getSalesValue();
+        List<TrainingCourse> actualResultCourse = processor.getScheduledTrainingCourses();
+        int actualSalesValue = processor.getRemainingSalesValue();
         // compare with the expected result
         assertEquals(3820, actualResultCourse.get(0).currentDiscountedPrice, "current price of course 1 is wrong");
         assertEquals(2800, actualResultCourse.get(1).currentDiscountedPrice, "current price of course 2 is wrong");
@@ -101,8 +101,8 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         processor.calculateData(true);
 
         // Assert
-        List<TrainingCourse> actualResultCourse = processor.getList();
-        int actualSalesValue = processor.getSalesValue();
+        List<TrainingCourse> actualResultCourse = processor.getScheduledTrainingCourses();
+        int actualSalesValue = processor.getRemainingSalesValue();
         // compare with the expected result
         assertEquals(3840, actualResultCourse.get(0).currentDiscountedPrice, "current price of course 1 is wrong");
         assertEquals(2820, actualResultCourse.get(1).currentDiscountedPrice, "current price of course 2 is wrong");

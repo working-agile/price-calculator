@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class DataProcessor {
 
-	public  int getSalesValue() {
+	public  int getRemainingSalesValue() {
 		return itemProcessor.getRemainingSalesTarget();
 	}
 
-	public ArrayList<TrainingCourse> getList() {
+	public ArrayList<TrainingCourse> getScheduledTrainingCourses() {
 		return itemProcessor.getScheduledTrainingCourses();
 	}
 
