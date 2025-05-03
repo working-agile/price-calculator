@@ -6,12 +6,12 @@ import java.util.List;
 public class ItemProcessor {
 
 
-    private int salesValue;
+    private int remainingSalesTarget;
 
     private ArrayList<TrainingCourse> list;
 
-    public int getSalesValue() {
-        return salesValue;
+    public int getRemainingSalesTarget() {
+        return remainingSalesTarget;
     }
 
     public ArrayList<TrainingCourse> getList() {
@@ -21,7 +21,7 @@ public class ItemProcessor {
 
     public ArrayList<TrainingCourse> processItems(ArrayList<TrainingCourse> trainingCourses, boolean advanceDay) {
 
-        salesValue = 0;
+        remainingSalesTarget = 0;
 
         ArrayList<TrainingCourse> processedTrainingCourses = new ArrayList<>();
 
@@ -77,7 +77,7 @@ public class ItemProcessor {
                 trainingCourse.currentDiscountedPrice = 1200;
             }
 
-            salesValue += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
+            remainingSalesTarget += (trainingCourse.remainingAvailableSeats * trainingCourse.currentDiscountedPrice);
 
         }
     }

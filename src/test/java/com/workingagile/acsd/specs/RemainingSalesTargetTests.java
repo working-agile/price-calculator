@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SalesTargetTests {
+public class RemainingSalesTargetTests {
 
     @Nested
     @DisplayName("Business rule: Total remaining sales target")
@@ -52,7 +52,7 @@ public class SalesTargetTests {
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;
 
-            assertEquals(expectedRemainingSalesTarget, processor.getSalesValue());
+            assertEquals(expectedRemainingSalesTarget, processor.getRemainingSalesTarget());
 
         }
     }

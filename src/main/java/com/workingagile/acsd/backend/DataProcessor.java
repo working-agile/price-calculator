@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class DataProcessor {
 
 	public  int getSalesValue() {
-		return itemProcessor.getSalesValue();
+		return itemProcessor.getRemainingSalesTarget();
 	}
 
 	public ArrayList<TrainingCourse> getList() {
