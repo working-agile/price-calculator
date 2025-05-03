@@ -35,10 +35,10 @@ public class TrainingCourseManager {
     }
 
 
-    private void processItem(boolean advanceDay, TrainingCourse trainingCourse, List<TrainingCourse> trainingCourses) {
+    private void processItem(boolean advanceDay, TrainingCourse trainingCourse, List<TrainingCourse> processedTrainingCourses) {
         if (!(trainingCourse.daysBeforeTrainingCourse < 0 || (advanceDay && trainingCourse.daysBeforeTrainingCourse == 0))) {
 
-            trainingCourses.add(trainingCourse);
+            processedTrainingCourses.add(trainingCourse);
 
             if (advanceDay) {
                 trainingCourse.daysBeforeTrainingCourse--;
