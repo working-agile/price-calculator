@@ -1,5 +1,6 @@
 package com.workingagile.acsd;
 
+import com.workingagile.acsd.backend.TrainingCourseRepository;
 import com.workingagile.acsd.backend.TrainingCourseService;
 import com.workingagile.acsd.backend.TrainingCourse;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,8 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         // Arrange
         // get test database connection
         Connection testDatabaseConnection = getTestdatabaseConnection();
-        TrainingCourseService processor = new TrainingCourseService(testDatabaseConnection);
+        TrainingCourseRepository testRepo = new TrainingCourseRepository(testDatabaseConnection);
+        TrainingCourseService processor = new TrainingCourseService(testRepo);
 
         // insert data
         PreparedStatement pstmt = testDatabaseConnection.prepareStatement(
@@ -82,7 +84,8 @@ public class CharacterizationTest extends AbstractTestContainerTest {
         // Arrange
         // get test database connection
         Connection testDatabaseConnection = getTestdatabaseConnection();
-        TrainingCourseService processor = new TrainingCourseService(testDatabaseConnection);
+        TrainingCourseRepository testRepo = new TrainingCourseRepository(testDatabaseConnection);
+        TrainingCourseService processor = new TrainingCourseService(testRepo);
 
         // insert data
         PreparedStatement pstmt = testDatabaseConnection.prepareStatement(
