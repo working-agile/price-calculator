@@ -75,16 +75,16 @@ public class DataProcessor {
 
 
 
-	private void updatePricesInDatabase(ArrayList<TrainingCourse> newList) {
+	private void updatePricesInDatabase(ArrayList<TrainingCourse> trainingCourses) {
 		try {
-			for (int i = 0; i< newList.size(); i++) {
+			for (int i = 0; i< trainingCourses.size(); i++) {
 
 				String update = "update tr_crs set days=?, curr_price=? where id=? ";
 				PreparedStatement pstmt = databaseConnection.prepareStatement(update);
 
-				pstmt.setInt(1, newList.get(i).daysBeforeTrainingCourse);
-				pstmt.setInt(2, newList.get(i).currentDiscountedPrice);
-				pstmt.setLong(3, newList.get(i).id);
+				pstmt.setInt(1, trainingCourses.get(i).daysBeforeTrainingCourse);
+				pstmt.setInt(2, trainingCourses.get(i).currentDiscountedPrice);
+				pstmt.setLong(3, trainingCourses.get(i).id);
 
 				int res = pstmt.executeUpdate();
 			}
