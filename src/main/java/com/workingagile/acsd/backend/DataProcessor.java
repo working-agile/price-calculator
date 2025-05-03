@@ -15,9 +15,9 @@ public class DataProcessor {
 
 	// ----------------------------------------------------
 
-	private static Connection database;
+	private static Connection databaseConnection;
 
-	private ItemProcessor itemProcessor;
+	private final ItemProcessor itemProcessor;
 
 	public DataProcessor() {
 		itemProcessor = new ItemProcessor();
@@ -25,14 +25,14 @@ public class DataProcessor {
 
 	public DataProcessor(Connection databaseConnection) {
 		this();
-		database = databaseConnection;
+		DataProcessor.databaseConnection = databaseConnection;
 	}
 
 	public void calculateData(boolean advanceDay) {
 
 		initDatabaseConnection();
 
-		ArrayList<TrainingCourse> trainingCourses =  readItemsFromDatabase();
+		ArrayList<TrainingCourse> trainingCourses =  readTrainingCoursesFromDatabase();
 
 		ArrayList<TrainingCourse> processedTrainingCourses = itemProcessor.processItems(trainingCourses, advanceDay);
 
@@ -41,17 +41,14 @@ public class DataProcessor {
 	}
 
 
-	private ArrayList<TrainingCourse> readItemsFromDatabase() {
+	private ArrayList<TrainingCourse> readTrainingCoursesFromDatabase() {
 
 		ArrayList<TrainingCourse> trainingCourses = new ArrayList<>();
 
-		// read the prices from database
 		try {
 			String query = "select * from tr_crs";
-			Statement st = database.createStatement();
+			Statement st = databaseConnection.createStatement();
 			ResultSet rs = st.executeQuery(query);
-
-			ArrayList<TrainingCourse> newList = new ArrayList<>();
 
 			while (rs.next()) {
 
@@ -80,11 +77,10 @@ public class DataProcessor {
 
 	private void updatePricesInDatabase(ArrayList<TrainingCourse> newList) {
 		try {
-			// update prices in database
 			for (int i = 0; i< newList.size(); i++) {
 
 				String update = "update tr_crs set days=?, curr_price=? where id=? ";
-				PreparedStatement pstmt = database.prepareStatement(update);
+				PreparedStatement pstmt = databaseConnection.prepareStatement(update);
 
 				pstmt.setInt(1, newList.get(i).daysBeforeTrainingCourse);
 				pstmt.setInt(2, newList.get(i).currentDiscountedPrice);
@@ -99,11 +95,11 @@ public class DataProcessor {
 
 	private void initDatabaseConnection() {
 		try {
-			if (database == null) {
+			if (databaseConnection == null) {
 				// slow...
 				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
 				Class.forName("org.postgresql.Driver");
-				database = DriverManager.getConnection(url, "postgres", "postgres");
+				databaseConnection = DriverManager.getConnection(url, "postgres", "postgres");
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
