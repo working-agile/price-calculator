@@ -41,18 +41,16 @@ public class ECommercePersistence {
 
         try (Connection conn = DriverManager.getConnection(URL_PRODUCTION_DATABASE, "postgres", "postgres")) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    """
-                    create table if not exists tr_crs (
-                        id bigint NOT NULL,
-                        tr_date varchar(20) not null,
-                        days integer,
-                        ttl_seats integer,
-                        avail integer,
-                        type char(10),
-                        curr_price integer,
-                        full_price integer
-                    )
-                    """
+                    "create table if not exists tr_crs ( " +
+                    "    id bigint NOT NULL, " +
+                    "    tr_date varchar(20) not null, " +
+                    "    days integer, " +
+                    "    ttl_seats integer, " +
+                    "    avail integer, " +
+                    "    type char(10), " +
+                    "    curr_price integer, " +
+                    "    full_price integer " +
+                    ")"
             );
             pstmt.execute();
         } catch (SQLException e) {
@@ -64,14 +62,9 @@ public class ECommercePersistence {
 
         try (Connection conn = DriverManager.getConnection(URL_PRODUCTION_DATABASE, "postgres", "postgres")) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    """
-                            INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                               VALUES(1,'9 January 2025',9,30,7,'CSPO',4000);
-                            INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                               VALUES(2,'10 January 2025',10,30,8,'CSO',3000);
-                            INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                                VALUES(3, '20 January 2025',20,30,27,'CSM',3000);
-                        """
+                "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(1,'9 January 2025',9,30,7,'CSPO',4000); " +
+                "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(2,'10 January 2025',10,30,8,'CSO',3000); " +
+                "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(3, '20 January 2025',20,30,27,'CSM',3000); "
             );
             pstmt.execute();
 
