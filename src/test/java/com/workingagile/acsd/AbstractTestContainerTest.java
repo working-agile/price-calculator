@@ -55,9 +55,7 @@ public abstract class AbstractTestContainerTest {
     private void clearDatabase() {
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    """
-                    delete  from tr_crs;
-                    """
+                    "delete  from tr_crs;"
             );
             pstmt.execute();
         } catch (SQLException e) {
@@ -71,18 +69,16 @@ public abstract class AbstractTestContainerTest {
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    """
-                    create table if not exists tr_crs (
-                        id bigint NOT NULL,
-                        tr_date varchar(20) not null,
-                        days integer,
-                        ttl_seats integer,
-                        avail integer,
-                        type char(10),
-                        curr_price integer,
-                        full_price integer
-                    )
-                    """
+                    "create table if not exists tr_crs ( " +
+                    "    id bigint NOT NULL, " +
+                    "    tr_date varchar(20) not null, " +
+                    "    days integer, " +
+                    "    ttl_seats integer, " +
+                    "    avail integer, " +
+                    "    type char(10), " +
+                    "    curr_price integer, " +
+                    "    full_price integer " +
+                    ")"
             );
             pstmt.execute();
         } catch (SQLException e) {
