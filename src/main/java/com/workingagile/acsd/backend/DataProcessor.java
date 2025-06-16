@@ -2,7 +2,6 @@ package com.workingagile.acsd.backend;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataProcessor {
 
@@ -51,8 +50,6 @@ public class DataProcessor {
 			String query = "select * from tr_crs";
 			Statement st = database.createStatement();
 			ResultSet rs = st.executeQuery(query);
-
-			ArrayList<Item> newList = new ArrayList<>();
 
 			while (rs.next()) {
 
