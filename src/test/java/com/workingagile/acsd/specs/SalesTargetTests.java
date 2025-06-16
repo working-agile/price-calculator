@@ -47,7 +47,7 @@ public class SalesTargetTests {
             ItemProcessor processor = new ItemProcessor();
 
             // Act
-            List<Item> updatedTrainingCourses = processor.processItems(courses, false /* just recalculate the current discounted price */);
+            processor.processItems(courses, false /* just recalculate the current discounted price */);
 
             // Assert
             int expectedRemainingSalesTarget = (3600 * 5) + (4000-9*30) * 2;
