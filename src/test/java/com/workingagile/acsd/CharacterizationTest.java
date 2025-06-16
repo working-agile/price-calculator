@@ -22,14 +22,9 @@ public class CharacterizationTest extends AbstractTestContainerTest {
 
         // insert data
         PreparedStatement pstmt = testDatabaseConnection.prepareStatement(
-        """
-                    INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                       VALUES(1,'9 January 2025',9,30,7,'CSPO',4000);
-                    INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                       VALUES(2,'10 January 2025',10,30,8,'CSO',3000);
-                    INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                        VALUES(3, '20 January 2025',20,30,27,'CSM',3000);
-            """
+        "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(1,'9 January 2025',9,30,7,'CSPO',4000); " +
+        "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(2,'10 January 2025',10,30,8,'CSO',3000); " +
+        "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(3, '20 January 2025',20,30,27,'CSM',3000); "
         );
         pstmt.execute();
 
@@ -86,14 +81,9 @@ public class CharacterizationTest extends AbstractTestContainerTest {
 
         // insert data
         PreparedStatement pstmt = testDatabaseConnection.prepareStatement(
-        """
-                INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                   VALUES(1,'9 January 2025',9,30,7,'CSPO',4000);
-                INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                   VALUES(2,'10 January 2025',10,30,8,'CSO',3000);
-                INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-                    VALUES(3, '20 January 2025',20,30,27,'CSM',3000);
-            """
+        "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(1,'9 January 2025',9,30,7,'CSPO',4000); " +
+        "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(2,'10 January 2025',10,30,8,'CSO',3000); " +
+        "INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price) VALUES(3, '20 January 2025',20,30,27,'CSM',3000); "
         );
         pstmt.execute();
 
