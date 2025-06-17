@@ -7,11 +7,11 @@ Refactoring exercises of Scrum Alliance A-CSD training course.
 
 ### What is this branch for? ###
 
-* Show the inital state of the  `legacy` application testable.
+* Show the result of the refactoring towards the Single Responsibility Principle (see previous branch).
 
 ### What should you do here?
 
-* Refactor the code, applying clean coding principles.
+* Continue refactoring the code, applying clean coding principles.
 
 ### Branches
 
