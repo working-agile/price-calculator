@@ -12,6 +12,7 @@ Refactoring exercises of Scrum Alliance A-CSD training course.
 ### What should you do here?
 
 * Execute the characterization tests.
+* Refactor applying the Single Responsibility Principle (SPR) to separate the business logic from infrastructure code.
 
 ### Branches
 
