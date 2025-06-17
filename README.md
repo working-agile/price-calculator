@@ -7,7 +7,9 @@ Refactoring exercises of Scrum Alliance A-CSD training course.
 
 ### What is this branch for? ###
 
-* Show how the unit tests document the business rules, and at the same time provide a safety net for implementing changes to the business rules.
+* This is the result of the refactoring according to the SRP.
+* Unit tests have been added to show how unit tests document the business rules.
+* They provide a safety net for implementing changes to the business rules.
 
 ### What should you do here?
 
