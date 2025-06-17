@@ -7,7 +7,7 @@ Refactoring exercises of Scrum Alliance A-CSD training course.
 
 ### What is this branch for? ###
 
-* Show the inital state of the  `legacy` application testable.
+* Show the refactored application where the Dependency Injection principle has been applied, so that basic characterization tests could be implemented. 
 
 ### What should you do here?
 
@@ -17,8 +17,8 @@ Refactoring exercises of Scrum Alliance A-CSD training course.
 ### Branches
 
 * 30-price-calculator-database: the initial state of the backend of the application. Integrated with a postgres database.
-* 31-price-calculator-database-characterization-test: implementation of basic characterization tests.
-* 32-price-calculator-refactored: refactored version, separating business logic from infrastructure code.
+* 31-price-calculator-database-characterization-test: implemented basic characterization tests.
+* 32-price-calculator-refactored: refactored version, separated business logic from infrastructure code.
 * 33-price-calculator-with-unit-tests: business rules illustrated by unit tests.
 
 
