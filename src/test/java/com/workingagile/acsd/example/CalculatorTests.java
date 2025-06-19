@@ -8,11 +8,14 @@ public class CalculatorTests {
     @Test
     public void should_add_amount_to_value() {
 
-        // TODO: Arrange
-        
-        // TODO: Act - call the function
-        
-        // TODO: Assert
+
+        // Arrange (Given)
+
+
+        // Act - call the function (When)
+
+
+        // Assert (Then)
 
     }
 }
