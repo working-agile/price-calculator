@@ -1,6 +1,7 @@
 package com.workingagile.acsd.backend;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DataProcessor {
@@ -38,7 +39,7 @@ public class DataProcessor {
 			while (rs.next()) {
 
 				long id = rs.getLong("id");
-				String trDate = rs.getString("tr_date");
+				LocalDate trDate = rs.getDate("tr_date").toLocalDate();
 				int days = rs.getInt("days");
 				int ttlSeats = rs.getInt("ttl_seats");
 				int avail = rs.getInt("avail");
