@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class DataProcessor {
 
-	public int salesValue;
+	public static int salesValue;
 
-	public ArrayList<Item> list;
+	public static ArrayList<Item> list;
 
 	// ----------------------------------------------------
 
 	private static Connection database;
 
-	public void calculateData(boolean advanceDay) {
+	public static void calculateData(boolean advanceDay) {
 
 		try {
 			if (database == null) {
