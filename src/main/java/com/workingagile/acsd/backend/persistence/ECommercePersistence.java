@@ -17,7 +17,7 @@ public class ECommercePersistence {
 
     private static PostgreSQLContainer<?> postgres;
 
-    public static void bootingECommerceSystem() {
+    public static void bootingECommercePersistence() {
         startDatabase();
         createCustomersTableIfNotExists();
         createTrainingCourses();
