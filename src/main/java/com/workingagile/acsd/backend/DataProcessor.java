@@ -1,7 +1,10 @@
 package com.workingagile.acsd.backend;
 
+import org.springframework.cglib.core.Local;
+
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class DataProcessor {
@@ -14,7 +17,7 @@ public class DataProcessor {
 
 	private static Connection database;
 
-	public static void calculateData(boolean advanceDay) {
+	public static void calculateData() {
 
 		try {
 			if (database == null) {
@@ -49,13 +52,13 @@ public class DataProcessor {
 
 				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
 
-				if (!(item.days < 0 || (advanceDay && item.days == 0))) {
+				int daysDifference = (int) ChronoUnit.DAYS.between(LocalDate.now(), trDate);
+
+				if (daysDifference >= 0) {
 
 					newList.add(item);
 
-					if (advanceDay) {
-						item.days--;
-					}
+					item.days = daysDifference;
 
 					if (item.days <= 10) {
 

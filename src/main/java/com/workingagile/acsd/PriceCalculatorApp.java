@@ -26,31 +26,29 @@ public class PriceCalculatorApp {
 
             bootingECommercePersistence();
 
-            System.out.println("Simulating operations...");
-
             System.out.println("------------------------------------------------------------------");
             System.out.println("   Calculate the current prices...");
             System.out.println("------------------------------------------------------------------");
 
-            DataProcessor processor = new DataProcessor();
-            processor.calculateData(false /* don't change the date */);
-            printReport(processor);
+            DataProcessor.calculateData();
 
             System.out.println("------------------------------------------------------------------");
-            System.out.println("   Job signals a new day has started, prices need to be updated...");
+            System.out.println("   List training courses and current prices");
             System.out.println("------------------------------------------------------------------");
 
-            processor.calculateData(true /* move to next day */);
-            printReport(processor);
+            printTrainingCourses();
 
+            System.out.println("------------------------------------------------------------------");
+            System.out.println("   List sales target");
+            System.out.println("------------------------------------------------------------------");
+
+            printSalesTarget();
         };
     }
 
 
-    private static void printReport(DataProcessor processor) {
-        System.out.println("Current prices of scheduled training courses:");
-        System.out.println("---------------------------------------------");
-        for (Item item : processor.list) {
+    private static void printTrainingCourses() {
+        for (Item item : DataProcessor.list) {
             System.out.println("Type: " + item.type);
             System.out.println("When: " + item.trDate);
             System.out.println("Remaining days before training course: " + item.days);
@@ -60,7 +58,11 @@ public class PriceCalculatorApp {
             System.out.println("Remaining available seats: " + item.avail);
             System.out.println();
         }
-        System.out.println("Remaining total sales target: " + processor.salesValue);
     }
+
+    private static void printSalesTarget() {
+        System.out.println("Remaining total sales target: " + DataProcessor.salesValue);
+    }
+
 
 }
