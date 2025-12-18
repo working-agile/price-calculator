@@ -15,7 +15,7 @@ public class UnitTests {
         // TODO insert data
 
         // Act - call the function
-        processor.calculateData(false);
+        processor.calculateData();
 
         // Assert
         List<Item> actualResult = processor.list;

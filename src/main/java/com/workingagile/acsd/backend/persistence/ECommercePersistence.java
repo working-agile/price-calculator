@@ -31,7 +31,8 @@ public class ECommercePersistence {
                 .withUsername("postgres")
                 .withDatabaseName("production_database")
                 .withCreateContainerCmdModifier(
-                        cmd -> cmd.withHostConfig(new HostConfig().withPortBindings(
+                        cmd ->
+                                cmd.withHostConfig(new HostConfig().withPortBindings(
                                 new PortBinding(Ports.Binding.bindPort(5432), new ExposedPort(5432)))
                         ));
         postgres.start();
