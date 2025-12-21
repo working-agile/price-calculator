@@ -11,22 +11,56 @@ public class DataProcessor {
 
 	public static ArrayList<Item> list;
 
-	// ----------------------------------------------------
-
 	private static Connection database;
 
-	public static void calculateData() {
+	private static DataProcessor dataProcessor;
 
+	// ----------------------------------------------------
+
+	private DataProcessor() {
+	}
+
+	static public DataProcessor getInstance() {
+
+		if (dataProcessor == null) {
+			try {
+				if (database == null) {
+					// slow...
+					String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
+					Class.forName("org.postgresql.Driver");
+					database = DriverManager.getConnection(url, "postgres", "postgres");
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			dataProcessor = new DataProcessor();
+		}
+		return dataProcessor;
+	}
+
+
+	public void insertData(Item[] items) {
 		try {
-			if (database == null) {
-				// slow...
-				String url = "jdbc:postgresql://127.0.0.1:5432/production_database";
-				Class.forName("org.postgresql.Driver");
-				database = DriverManager.getConnection(url, "postgres", "postgres");
+			for (int i = 0; i < items.length; i++) {
+				String insertSql = "insert into tr_crs (id,tr_date,days,ttl_seats,avail,type,full_price) " +
+						"values(?,?,?,?,?,?,?)";
+				PreparedStatement pstmt = database.prepareStatement(insertSql);
+				pstmt.setLong(1, items[i].id);
+				pstmt.setDate(2, Date.valueOf(items[i].trDate));
+				pstmt.setInt(3, items[i].days);
+				pstmt.setInt(4, items[i].seats);
+				pstmt.setInt(5, items[i].avail);
+				pstmt.setString(6, items[i].type);
+				pstmt.setInt(7, items[i].full);
+				int res = pstmt.executeUpdate();
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+
+	public void calculateData() {
 
 		// read the prices from database
 		try {
