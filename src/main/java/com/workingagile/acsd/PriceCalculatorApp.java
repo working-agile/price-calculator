@@ -26,23 +26,4 @@ public class PriceCalculatorApp {
         };
     }
 
-
-    private static void printTrainingCourses() {
-        for (Item item : DataProcessor.list) {
-            System.out.println("Type: " + item.type);
-            System.out.println("When: " + item.trDate);
-            System.out.println("Remaining days before training course: " + item.days);
-            System.out.println("Full Price: " + item.full);
-            System.out.println("Current price: " + item.curr);
-            System.out.println("Number of seats: " + item.seats);
-            System.out.println("Remaining available seats: " + item.avail);
-            System.out.println();
-        }
-    }
-
-    private static void printSalesTarget() {
-        System.out.println("Remaining total sales target: " + DataProcessor.salesValue);
-    }
-
-
 }
