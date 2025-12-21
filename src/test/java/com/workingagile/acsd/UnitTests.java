@@ -11,7 +11,7 @@ public class UnitTests {
     public void some_unit_test() {
 
         // Arrange
-        DataProcessor processor = new DataProcessor();
+        DataProcessor processor = DataProcessor.getInstance();
         // TODO insert data
 
         // Act - call the function
