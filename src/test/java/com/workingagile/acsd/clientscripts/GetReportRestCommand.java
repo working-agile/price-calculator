@@ -4,8 +4,6 @@ import org.springframework.web.client.RestClient;
 
 public class GetReportRestCommand {
 
-    private static RestClient restClient;
-
     public static void main(String[] args) {
         GetReportRestCommand.execute();
     }

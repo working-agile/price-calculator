@@ -1,5 +1,10 @@
 package com.workingagile.acsd.backend;
 
+import org.simplejavamail.api.email.Email;
+import org.simplejavamail.api.mailer.Mailer;
+import org.simplejavamail.email.EmailBuilder;
+import org.simplejavamail.mailer.MailerBuilder;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -10,6 +15,8 @@ public class DataProcessor {
 	public static int salesValue;
 
 	public static ArrayList<Item> list;
+
+	// ----------------------------------------------------
 
 	private static Connection database;
 
@@ -82,7 +89,7 @@ public class DataProcessor {
 				int curr = rs.getInt("curr_price");
 				int full = rs.getInt("full_price");
 
-				Item item = new Item(id, trDate, days, ttlSeats, avail, type, curr, full);
+				Item item = new Item(id, trDate, days, ttlSeats, avail, type.trim(), curr, full);
 
 				int daysDifference = (int) ChronoUnit.DAYS.between(LocalDate.now(), trDate);
 
@@ -117,12 +124,52 @@ public class DataProcessor {
 						}
 					}
 
+					Email email = null;
+					boolean minimumPriceViolation = false;
 					if (item.type.equals("CSD") && item.curr < 900) {
+						email = EmailBuilder.startingBlank()
+								.from("system@working-agile.com")
+								.to("admin@working-agile.com")
+								.withSubject("Minimum price violation for CSD")
+								.withPlainText("The minimum price for CSD has been violated: "
+										+ item.curr
+										+ ". Reset to " + 900)
+										.buildEmail();
+						minimumPriceViolation = true;
 						item.curr = 900;
 					} else if (item.type.equals("CSM") && item.curr < 1000) {
+						email = EmailBuilder.startingBlank()
+								.from("system@working-agile.com")
+								.to("admin@working-agile.com")
+								.withSubject("Minimum price violation for CSM")
+								.withPlainText("The minimum price for CSM has been violated: "
+										+ item.curr
+										+ ". Reset to " + 1000)
+								.buildEmail();
+						minimumPriceViolation = true;
 						item.curr = 1000;
 					} else if (item.type.equals("CSPO") && item.curr < 1200) {
+						email = EmailBuilder.startingBlank()
+								.from("system@working-agile.com")
+								.to("admin@working-agile.com")
+								.withSubject("Minimum price violation for CSPO")
+								.withPlainText("The minimum price for CSPO has been violated: "
+										+ item.curr
+										+ ". Reset to " + 1200)
+								.buildEmail();
+						minimumPriceViolation = true;
 						item.curr = 1200;
+					}
+
+					// send warning email if minimum price guarantee violated
+					if (minimumPriceViolation ) {
+						try (Mailer mailer = MailerBuilder
+								.withSMTPServer("localhost", 3025)
+								.buildMailer()) {
+							mailer.sendMail(email);
+						} catch (Exception e) {
+							throw new RuntimeException(e);
+						}
 					}
 
 					salesValue += (item.avail * item.curr);
@@ -145,7 +192,7 @@ public class DataProcessor {
 			}
 			list = newList;
 
-		} catch(Exception exception) {}
+		} catch(Exception ignored) {}
 	}
 
 }

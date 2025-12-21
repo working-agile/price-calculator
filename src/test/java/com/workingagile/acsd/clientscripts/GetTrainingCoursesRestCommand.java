@@ -5,15 +5,12 @@ import org.springframework.web.client.RestClient;
 
 public class GetTrainingCoursesRestCommand {
 
-    private static RestClient restClient;
-    public static Item[] items;
-
     public static void main(String[] args) {
         GetTrainingCoursesRestCommand.execute();
     }
 
     public static void execute()  {
-        items = RestClient.builder()
+        Item[] items = RestClient.builder()
             .baseUrl("http://localhost:8080")
             .build().get().uri("training-courses").retrieve().body(Item[].class);
 
@@ -28,6 +25,8 @@ public class GetTrainingCoursesRestCommand {
                 System.out.println("Remaining available seats: " + item.avail);
                 System.out.println();
             }
+        } else {
+            System.out.println("No training courses found on the database!");
         }
 
     }

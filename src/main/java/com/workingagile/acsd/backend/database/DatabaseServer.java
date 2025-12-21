@@ -1,4 +1,4 @@
-package com.workingagile.acsd.backend.persistence;
+package com.workingagile.acsd.backend.database;
 
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
@@ -11,15 +11,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ECommercePersistence {
+public class DatabaseServer {
 
     public static final String URL_PRODUCTION_DATABASE = "jdbc:postgresql://127.0.0.1:5432/production_database";
 
     private static PostgreSQLContainer<?> postgres;
 
-    public static void bootingECommercePersistence() {
+    public static void bootingDatabaseServer() {
         startDatabase();
         createCustomersTableIfNotExists();
+        System.out.println("Database server booted successfully!");
     }
 
     private static void startDatabase() {
