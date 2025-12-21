@@ -1,7 +1,5 @@
 package com.workingagile.acsd;
 
-import org.springframework.boot.SpringApplication;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,7 +7,7 @@ import java.sql.SQLException;
 
 import static com.workingagile.acsd.backend.persistence.ECommercePersistence.URL_PRODUCTION_DATABASE;
 
-public class CreateTrainingCourses {
+public class InsertTrainingCoursesIntoDatabaseCommand {
 
     public static void main(String[] args) {
         try (Connection conn = DriverManager.getConnection(URL_PRODUCTION_DATABASE, "postgres", "postgres")) {
