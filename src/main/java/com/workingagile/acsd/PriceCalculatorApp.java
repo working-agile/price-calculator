@@ -21,28 +21,8 @@ public class PriceCalculatorApp {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-
             System.out.println("Booting the system...");
-
             bootingECommercePersistence();
-
-            System.out.println("------------------------------------------------------------------");
-            System.out.println("   Calculate the current prices...");
-            System.out.println("------------------------------------------------------------------");
-
-            DataProcessor.calculateData();
-
-            System.out.println("------------------------------------------------------------------");
-            System.out.println("   List training courses and current prices");
-            System.out.println("------------------------------------------------------------------");
-
-            printTrainingCourses();
-
-            System.out.println("------------------------------------------------------------------");
-            System.out.println("   List sales target");
-            System.out.println("------------------------------------------------------------------");
-
-            printSalesTarget();
         };
     }
 
