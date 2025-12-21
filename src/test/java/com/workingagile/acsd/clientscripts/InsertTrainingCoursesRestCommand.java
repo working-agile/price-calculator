@@ -4,7 +4,6 @@ import com.workingagile.acsd.backend.Item;
 import org.springframework.web.client.RestClient;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
@@ -18,16 +17,6 @@ public class InsertTrainingCoursesRestCommand {
         InsertTrainingCoursesRestCommand.execute();
     }
 
-/*
-    INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-    VALUES(1,'2025-01-09',9,30,7,'CSPO',4000);
-    INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-    VALUES(2,'2025-01-10',10,30,8,'CSO',3000);
-    INSERT INTO tr_crs(id,tr_date,days,ttl_seats,avail,type,full_price)
-    VALUES(3, '2025-01-20',20,30,27,'CSM',3000);
-
-
- */
     public static void execute()  {
 
         items = new Item[3];
@@ -46,7 +35,6 @@ public class InsertTrainingCoursesRestCommand {
                 ).retrieve().toBodilessEntity();
 
     }
-
 
 
 }
