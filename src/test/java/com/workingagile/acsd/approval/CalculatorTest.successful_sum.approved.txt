@@ -1,0 +1,1 @@
+The expected result is: 30
