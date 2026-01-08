@@ -9,26 +9,27 @@ public class GetTrainingCoursesRestCommand {
         GetTrainingCoursesRestCommand.execute();
     }
 
-    public static void execute()  {
+    public static String execute()  {
         Item[] items = RestClient.builder()
             .baseUrl("http://localhost:8080")
             .build().get().uri("training-courses").retrieve().body(Item[].class);
 
+        StringBuilder sb = new StringBuilder();
         if (items != null) {
             for (Item item : items) {
-                System.out.println("Type: " + item.type);
-                System.out.println("When: " + item.trDate);
-                System.out.println("Remaining days before training course: " + item.days);
-                System.out.println("Full Price: " + item.full);
-                System.out.println("Current price: " + item.curr);
-                System.out.println("Number of seats: " + item.seats);
-                System.out.println("Remaining available seats: " + item.avail);
-                System.out.println();
+                sb.append("Type: " + item.type).append(System.lineSeparator());
+                sb.append("When: " + item.trDate).append(System.lineSeparator());
+                sb.append("Remaining days before training course: " + item.days).append(System.lineSeparator());
+                sb.append("Full Price: " + item.full).append(System.lineSeparator());
+                sb.append("Current price: " + item.curr).append(System.lineSeparator());
+                sb.append("Number of seats: " + item.seats).append(System.lineSeparator());
+                sb.append("Remaining available seats: " + item.avail).append(System.lineSeparator());
+                sb.append(System.lineSeparator());
             }
         } else {
-            System.out.println("No training courses found on the database!");
+            sb.append("No training courses found on the database!");
         }
-
+        return sb.toString();
     }
 
 }

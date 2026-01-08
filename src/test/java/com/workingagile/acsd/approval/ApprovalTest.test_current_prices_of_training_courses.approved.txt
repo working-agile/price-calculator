@@ -1,0 +1,32 @@
+Type: CSM
+When: 2026-01-18
+Remaining days before training course: 10
+Full Price: 2850
+Current price: 2650
+Number of seats: 20
+Remaining available seats: 15
+
+Type: CSM
+When: 2026-01-28
+Remaining days before training course: 20
+Full Price: 2850
+Current price: 2350
+Number of seats: 20
+Remaining available seats: 20
+
+Type: CSM
+When: 2026-02-07
+Remaining days before training course: 30
+Full Price: 2850
+Current price: 2350
+Number of seats: 20
+Remaining available seats: 20
+
+Type: CSPO
+When: 2026-02-07
+Remaining days before training course: 30
+Full Price: 1300
+Current price: 1200
+Number of seats: 20
+Remaining available seats: 20
+
