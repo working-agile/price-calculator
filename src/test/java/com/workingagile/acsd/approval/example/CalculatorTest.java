@@ -1,4 +1,4 @@
-package com.workingagile.acsd.approval;
+package com.workingagile.acsd.approval.example;
 
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;

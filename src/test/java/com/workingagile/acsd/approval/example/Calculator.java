@@ -1,4 +1,4 @@
-package com.workingagile.acsd.approval;
+package com.workingagile.acsd.approval.example;
 
 public class Calculator {
 
