@@ -74,7 +74,7 @@ public abstract class AbstractTestContainerTest {
                     """
                     create table if not exists tr_crs (
                         id bigint NOT NULL,
-                        tr_date varchar(20) not null,
+                        tr_date DATE not null,
                         days integer,
                         ttl_seats integer,
                         avail integer,
