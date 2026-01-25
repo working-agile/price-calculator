@@ -13,16 +13,9 @@ import java.util.ArrayList;
 public class DataProcessor {
 
 	public static int salesValue;
-
 	public static ArrayList<Item> list;
-
-	// ----------------------------------------------------
-
 	private static Connection database;
-
 	private static DataProcessor dataProcessor;
-
-	// ----------------------------------------------------
 
 	private DataProcessor() {
 	}
@@ -45,7 +38,6 @@ public class DataProcessor {
 		return dataProcessor;
 	}
 
-
 	public void insertData(Item[] items) {
 		try {
 			for (int i = 0; i < items.length; i++) {
@@ -65,7 +57,6 @@ public class DataProcessor {
 			throw new RuntimeException(e);
 		}
 	}
-
 
 	public void calculateData() {
 
@@ -124,6 +115,7 @@ public class DataProcessor {
 						}
 					}
 
+					// send warning email if minimum price guarantee violated
 					Email email = null;
 					boolean minimumPriceViolation = false;
 					if (item.type.equals("CSD") && item.curr < 900) {
@@ -161,7 +153,6 @@ public class DataProcessor {
 						item.curr = 1200;
 					}
 
-					// send warning email if minimum price guarantee violated
 					if (minimumPriceViolation ) {
 						try (Mailer mailer = MailerBuilder
 								.withSMTPServer("localhost", 3025)
