@@ -14,7 +14,7 @@ public class GetTrainingCoursesRestCommand {
             .baseUrl("http://localhost:8080")
             .build().get().uri("training-courses").retrieve().body(Item[].class);
 
-        if (items != null) {
+        if (items != null && items.length > 0) {
             for (Item item : items) {
                 System.out.println("Type: " + item.type);
                 System.out.println("When: " + item.trDate);
